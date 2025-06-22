@@ -1,20 +1,55 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react';
+import { View, Text, StyleSheet, Button, Image, Alert } from 'react-native';
 
-export default function App() {
+const App: React.FC = () => {
+  const handleStart = () => {
+    Alert.alert('Você clicou em Iniciar!');
+  };
+
+  const handleAbout = () => {
+    Alert.alert('Este é um app de exemplo simples.');
+  };
+
   return (
     <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
+      <Text style={styles.title}>Bem-vindo ao Meu App</Text>
+      <Image
+        source={{ uri: 'https://reactnative.dev/img/tiny_logo.png' }}
+        style={styles.logo}
+      />
+      <View style={styles.buttonContainer}>
+        <Button title="Iniciar" onPress={handleStart} />
+        <View style={styles.spacer} />
+        <Button title="Sobre" onPress={handleAbout} />
+      </View>
     </View>
   );
-}
+};
+
+export default App;
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#eef6ff',
     alignItems: 'center',
     justifyContent: 'center',
+    padding: 20,
+  },
+  title: {
+    fontSize: 26,
+    fontWeight: 'bold',
+    marginBottom: 20,
+  },
+  logo: {
+    width: 100,
+    height: 100,
+    marginBottom: 30,
+  },
+  buttonContainer: {
+    width: '80%',
+  },
+  spacer: {
+    height: 12,
   },
 });
