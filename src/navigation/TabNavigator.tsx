@@ -11,7 +11,7 @@ const Tab = createBottomTabNavigator();
 
 export default function TabNavigator() {
   return (
-    <Tab.Navigator screenOptions={{ headerShown: false }}>
+    <Tab.Navigator screenOptions={{ headerShown: true, tabBarActiveTintColor: '#000', tabBarInactiveTintColor: '#888', tabBarStyle: { backgroundColor: '#fff' } }}>
       <Tab.Screen name="Home" component={Home} options={{ tabBarIcon: ({color, size}) => <Ionicons name="home" size={size} color={color}/> }} />
       <Tab.Screen name="Vida" component={Vida} options={{ tabBarIcon: ({color, size}) => <Ionicons name="heart" size={size} color={color}/> }} />
       <Tab.Screen name="Ranking" component={Ranking} options={{ tabBarIcon: ({color, size}) => <Ionicons name="trophy" size={size} color={color}/> }} />
