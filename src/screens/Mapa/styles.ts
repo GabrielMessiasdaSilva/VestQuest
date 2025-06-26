@@ -1,0 +1,60 @@
+import { StyleSheet } from 'react-native';
+
+export const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'flex-start',
+        backgroundColor: '#ffffff',
+        width: '100%',
+        paddingTop: 72,
+    },
+    title: {
+        fontSize: 16,
+        fontWeight: '500',
+        color: '#000000',
+        marginTop: 52,
+        textAlign: 'center',
+        width: '80%',
+        alignSelf: 'center',
+        maxWidth: '90%',
+    },
+    buttonPlaceholder: {
+        width: '90%',
+        minHeight: 90,
+        borderRadius: 14,
+        backgroundColor: '#f0f0f0',
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: 30,
+        elevation: 2,
+        maxWidth: '100%',
+    },
+    buttonText: {
+        fontSize: 16,
+        color: '#000000',
+        fontWeight: '600',
+        alignSelf: 'flex-start',
+        marginLeft: 20,
+        maxWidth: '90%',
+    },
+    dropdownContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginTop: 16,
+        width: '90%',
+        maxWidth: '100%',
+    },
+    dropdownLabel: {
+        fontSize: 16,
+        color: '#000000',
+        marginRight: 8,
+    },
+    picker: {
+        height: 50,
+        width: 150,
+        backgroundColor: '#f0f0f0',
+        borderRadius: 8,
+        color: '#000000',
+    },
+});
