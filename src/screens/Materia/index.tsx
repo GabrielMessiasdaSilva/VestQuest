@@ -6,7 +6,7 @@ import Footer from '../../components/Footer';
 export default function Materia() {
   return (
     <View style={{ flex: 1 }}>
-      <ScrollView contentContainerStyle={{ flexGrow: 1, paddingBottom: 80 }} showsVerticalScrollIndicator={false}>
+      <ScrollView contentContainerStyle={{ flexGrow: 1, paddingBottom: 80, backgroundColor: '#fff' }} showsVerticalScrollIndicator={false}>
         <View style={styles.container}>
           <View style={styles.navbar}>
             <Image source={require('../../../assets/img/seta_esquerda.png')} style={styles.iconPlaceholder}></Image>

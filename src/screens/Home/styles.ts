@@ -49,7 +49,7 @@ export const styles = StyleSheet.create({
         maxHeight: 24,
     },
     searchText: {
-        color: '#B5B5B5',
+        color: '#000',
         fontSize: 14,
         flexShrink: 1,
     },
@@ -60,6 +60,7 @@ export const styles = StyleSheet.create({
         backgroundColor: '#f0f0f0',
         justifyContent: 'center',
         alignItems: 'center',
+        alignSelf: 'center',
         marginTop: 30,
         elevation: 2,
         maxWidth: '100%',

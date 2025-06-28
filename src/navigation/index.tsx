@@ -11,6 +11,7 @@ import Login from '../screens/Login';
 import Cadastro from '../screens/Cadastro';
 import TabNavigator from './TabNavigator';
 import Mapa from '../screens/Mapa';
+import Materia from '../screens/Materia';
 import React from 'react';
 
 const Stack = createNativeStackNavigator();
@@ -29,6 +30,7 @@ export default function AppRoutes() {
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Cadastro" component={Cadastro} />
         <Stack.Screen name="Main" component={TabNavigator} />
+        <Stack.Screen name="Materia" component={Materia} />
       </Stack.Navigator>
     </NavigationContainer>
   );
