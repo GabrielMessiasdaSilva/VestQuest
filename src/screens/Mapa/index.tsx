@@ -1,10 +1,43 @@
 import { View, Text, Image, ScrollView, TouchableOpacity } from 'react-native';
 import React, { useState } from 'react';
 import { styles } from './styles';
+import { useNavigation, useRoute } from '@react-navigation/native';
+import type { StackNavigationProp } from '@react-navigation/stack';
+import { Alert } from 'react-native';
 import Footer from '../../components/Footer';
-import { Picker } from '@react-native-picker/picker';
+import TimeModal from '../../components/TimeModal';
+
+type RootStackParamList = {
+    Desafio: undefined;
+};
+
 export default function Mapa() {
+  const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
+  const route = useRoute();
   const [selectedTime, setSelectedTime] = useState('none');
+  const [modalVisible, setModalVisible] = useState(false);
+  const [inputTime, setInputTime] = useState('');
+
+  const showCustomAlert = (title: string, message: string) => {
+    Alert.alert(title, message, [{ text: 'OK' }]);
+  };
+
+  const handleActivateTime = () => {
+    if (inputTime && Number(inputTime) >= 1 && Number(inputTime) <= 60) {
+      setSelectedTime(inputTime);
+      setModalVisible(false);
+      showCustomAlert('⏰ Tempo ativado', `Você escolheu ${inputTime} minutos`);
+    } else {
+      showCustomAlert('⚠️ Atenção', 'Escolha um valor entre 1 e 60 minutos');
+    }
+  };
+
+  const handleDeactivateTime = () => {
+    setSelectedTime('none');
+    setInputTime('');
+    setModalVisible(false);
+    showCustomAlert('⏹️ Tempo desativado', 'O tempo foi desativado com sucesso!');
+  };
 
   return (
     <View style={{ flex: 1 }}>
@@ -12,32 +45,35 @@ export default function Mapa() {
         <View style={styles.container}>
           <Text style={styles.title}>Seu mapa de fases</Text>
           <View style={styles.rowButtons}>
-            <TouchableOpacity style={styles.buttonPlaceholder}>
+            <TouchableOpacity
+              style={styles.buttonPlaceholder}
+              onPress={() => navigation.navigate('Desafio')}
+            >
               <Text style={styles.buttonTitle}>Desafio Diário</Text>
               <Text style={styles.buttonSubtitle}>Acesse aqui</Text>
             </TouchableOpacity>
             <View style={styles.dropdownButton}>
-              <View style={styles.dropdownContent}>
-                <Text style={styles.dropdownText}>Ativar tempo</Text>
-                <Image
-                  source={require('../../../assets/img/seta_baixo.png')}
-                  style={styles.dropdownIcon}
-                />
-              </View>
-              <Picker
-                selectedValue={selectedTime}
-                style={styles.picker}
-                onValueChange={(itemValue) => setSelectedTime(itemValue)}
+              <TouchableOpacity
+                style={styles.dropdownContent}
+                onPress={() => setModalVisible(true)}
               >
-                <Picker.Item label="Sem tempo" value="none" />
-                <Picker.Item label="5 minutos" value="5" />
-                <Picker.Item label="10 minutos" value="10" />
-                <Picker.Item label="15 minutos" value="15" />
-              </Picker>
+                <Text style={styles.dropdownText}>
+                  {selectedTime !== 'none' ? `Tempo: ${selectedTime} min` : 'Ativar tempo'}
+                </Text>
+                <Image source={require('../../../assets/img/seta_baixo.png')} style={styles.dropdownIcon} />
+              </TouchableOpacity>
             </View>
           </View>
         </View>
       </ScrollView>
+      <TimeModal
+        visible={modalVisible}
+        inputTime={inputTime}
+        setInputTime={setInputTime}
+        onActivate={handleActivateTime}
+        onDeactivate={handleDeactivateTime}
+        onClose={() => setModalVisible(false)}
+      />
       <Footer />
     </View>
   );
