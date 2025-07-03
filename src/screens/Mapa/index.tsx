@@ -1,7 +1,7 @@
 import { View, Text, Image, ScrollView, TouchableOpacity } from 'react-native';
 import React, { useState } from 'react';
 import { styles } from './styles';
-import { useNavigation, useRoute } from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 import type { StackNavigationProp } from '@react-navigation/stack';
 import { Alert } from 'react-native';
 import Footer from '../../components/Footer';
@@ -11,9 +11,9 @@ type RootStackParamList = {
     Desafio: undefined;
 };
 
+// Componente principal da tela Home
 export default function Mapa() {
   const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
-  const route = useRoute();
   const [selectedTime, setSelectedTime] = useState('none');
   const [modalVisible, setModalVisible] = useState(false);
   const [inputTime, setInputTime] = useState('');
@@ -22,6 +22,7 @@ export default function Mapa() {
     Alert.alert(title, message, [{ text: 'OK' }]);
   };
 
+  // Função para ativar o tempo selecionado
   const handleActivateTime = () => {
     if (inputTime && Number(inputTime) >= 1 && Number(inputTime) <= 60) {
       setSelectedTime(inputTime);
@@ -32,6 +33,7 @@ export default function Mapa() {
     }
   };
 
+  // Função para desativar o tempo selecionado
   const handleDeactivateTime = () => {
     setSelectedTime('none');
     setInputTime('');
