@@ -1,0 +1,27 @@
+import { StyleSheet } from 'react-native';
+
+export const styles = StyleSheet.create({
+  container: { flex:1, padding:20, backgroundColor:'#fff' },
+  logo: { width:120, height:120, alignSelf:'center', marginTop:80, marginBottom:40 },
+  title: { fontSize:24, fontWeight:'bold', textAlign:'center', marginBottom:8, color:'#2D3E4E' },
+  subtitle: { fontSize:16, textAlign:'center', marginBottom:24, color:'#555' },
+  buttonRow: { flexDirection:'row', justifyContent:'space-between', marginHorizontal:20 },
+  button: { flex:1, paddingVertical:14, borderRadius:6, marginHorizontal:5, alignItems:'center' },
+  loginButton: { backgroundColor:'#2D3E4E' },
+  registerButton: { borderWidth:1, borderColor:'#2D3E4E', backgroundColor:'transparent' },
+  buttonText: { fontSize:16 },
+  loginText: { color:'#fff' },
+  registerText: { color:'#2D3E4E' },
+  input: { borderWidth:1, borderColor:'#CCC', borderRadius:6, padding:12, marginBottom:12 },
+  inputRow: { flexDirection:'row', alignItems:'center', marginBottom:12 },
+  eyeIcon: { position:'absolute', right:12 },
+  submitButton: { backgroundColor:'#2D3E4E', paddingVertical:14, borderRadius:6, alignItems:'center', marginVertical:16 },
+  submitText: { color:'#fff', fontSize:16 },
+  dividerRow: { flexDirection:'row', alignItems:'center', marginVertical:16 },
+  divider: { flex:1, height:1, backgroundColor:'#CCC' },
+  dividerText: { marginHorizontal:8, color:'#555' },
+  googleButton: { flexDirection:'row', alignItems:'center', justifyContent:'center', borderWidth:1, borderColor:'#CCC', padding:12, borderRadius:6 },
+  googleText: { marginLeft:8, color:'#555' },
+  bottomText: { textAlign:'center', color:'#555' },
+  linkText: { color:'#2D5CA7', fontWeight:'bold' },
+});
