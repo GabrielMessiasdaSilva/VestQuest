@@ -8,7 +8,10 @@ export default function Inicial() {
 
   return (
     <View style={styles.container}>
-      <Image source={require('../../../assets/img/raposa_mascote.png')} style={styles.logo} />
+      <View style={styles.logoContainer}>
+        <Image source={require('../../../assets/img/circulo_azul.png')} style={styles.circleBg} />
+        <Image source={require('../../../assets/img/raposa_mascote.png')} style={styles.logo} />
+      </View>
       <Text style={styles.title}>Antes de começar…</Text>
       <Text style={styles.subtitle}>
         Crie sua conta ou faça login para salvar seu progresso e continuar sua jornada com o Vest!

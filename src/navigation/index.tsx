@@ -1,7 +1,6 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-
 import SplashScreen from '../screens/SplashScreen/SplashScreen';
 import OnboardingScreen from '../screens/SplashScreen/OnboardingScreen';
 import Inicial from '../screens/Inicial';
@@ -17,8 +16,9 @@ import Materia from '../screens/Materia';
 import Desafio from '../screens/Desafio';
 import Quiz from '../screens/Quiz';
 import TabNavigator from './TabNavigator';
+import type { RootStackParamList } from './types';
 
-const Stack = createNativeStackNavigator();
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export default function AppRoutes() {
   return (
