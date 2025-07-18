@@ -15,6 +15,7 @@ import Perfil from '../screens/Perfil';
 import Mapa from '../screens/Mapa';
 import Materia from '../screens/Materia';
 import Desafio from '../screens/Desafio';
+import Quiz from '../screens/Quiz';
 import TabNavigator from './TabNavigator';
 
 const Stack = createNativeStackNavigator();
@@ -36,6 +37,7 @@ export default function AppRoutes() {
         <Stack.Screen name="Conquista" component={Conquista} />
         <Stack.Screen name="Perfil" component={Perfil} />
         <Stack.Screen name="Desafio" component={Desafio} />
+        <Stack.Screen name="Quiz" component={Quiz} />
         <Stack.Screen name="Main" component={TabNavigator} />
       </Stack.Navigator>
     </NavigationContainer>

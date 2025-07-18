@@ -7,8 +7,9 @@ export const styles = StyleSheet.create({
         justifyContent: 'flex-start',
         backgroundColor: '#ffffff',
         width: '100%',
-        paddingTop: 72,
+        paddingTop: 22,
     },
+
     title: {
         fontSize: 20,
         fontWeight: '500',
@@ -19,14 +20,16 @@ export const styles = StyleSheet.create({
         alignSelf: 'center',
         maxWidth: '90%',
     },
+
     rowButtons: {
         width: '100%',
         alignItems: 'center',
-        marginTop: 26,
+        marginTop: 36,
         flexDirection: 'row',
         justifyContent: 'center',
         gap: 12,
     },
+
     buttonPlaceholder: {
         backgroundColor: '#619B8A',
         borderRadius: 20,
@@ -43,17 +46,20 @@ export const styles = StyleSheet.create({
         alignItems: 'center',
         marginHorizontal: 8,
     },
+
     buttonTitle: {
         color: '#fff',
-        fontWeight: 'bold',
         fontSize: 16,
+        fontWeight: 'bold',
         textAlign: 'center',
     },
+
     buttonSubtitle: {
         color: 'white',
         fontSize: 14,
         textAlign: 'center',
     },
+
     dropdownButton: {
         borderWidth: 2,
         borderColor: '#619B8A',
@@ -67,22 +73,26 @@ export const styles = StyleSheet.create({
         backgroundColor: '#fff',
         marginHorizontal: 8,
     },
+
     dropdownContent: {
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
         paddingVertical: 10,
     },
+
     dropdownText: {
         fontSize: 16,
         marginRight: 8,
         color: '#000',
     },
+
     dropdownIcon: {
         width: 12,
         height: 12,
         resizeMode: 'contain',
     },
+
     picker: {
         position: 'absolute',
         top: 0,
@@ -95,5 +105,104 @@ export const styles = StyleSheet.create({
         opacity: 0,
         width: '100%',
         height: '100%',
+    },
+
+    phaseMapContainer: {
+        marginTop: 12,
+        paddingHorizontal: 30,
+        gap: 16,
+        width: '100%',
+    },
+
+    phaseItem: {
+        marginBottom: 16,
+        position: 'relative',
+        alignItems: 'center',
+    },
+
+    phaseLeft: {
+        alignSelf: 'flex-start',
+        marginLeft: 50,
+    },
+
+    phaseRight: {
+        alignSelf: 'flex-end',
+        marginRight: 50,
+    },
+
+    phaseCircle: {
+        width: 110,
+        height: 100,
+        resizeMode: 'contain',
+    },
+
+    iconCenter: {
+        position: 'absolute',
+        width: 32,
+        height: 32,
+        resizeMode: 'contain',
+        zIndex: 2,
+        paddingTop: 100,
+    },
+
+    playTextContainer: {
+        position: 'absolute',
+        top: '35%',
+        left: 0,
+        right: 0,
+        alignItems: 'center',
+        zIndex: 1,
+    },
+
+    playText: {
+        fontSize: 16,
+        color: '#000',
+    },
+
+    crownIcon: {
+        position: 'absolute',
+        bottom: 10,
+        right: -10,
+        width: 52,
+        height: 32,
+        resizeMode: 'contain',
+    },
+
+    crownNumber: {
+        position: 'absolute',
+        bottom: 15,
+        right: 11,
+        color: '#000',
+    },
+
+    foxMascot: {
+        width: 140,
+        height: 90,
+        resizeMode: 'contain',
+        marginVertical: 8
+    },
+
+    legendContainer: {
+        borderWidth: 2,
+        borderColor: '#FEC946',
+        borderRadius: 20,
+        paddingVertical: 2,
+        paddingHorizontal: 10,
+        alignItems: 'center',
+        backgroundColor: '#fff',
+        flexDirection: 'row',
+        alignSelf: 'flex-end',
+        marginRight: 10
+    },
+
+    legendCrownIcon: {
+        width: 42,
+        height: 42,
+        resizeMode: 'contain',
+    },
+
+    legendText: {
+        fontSize: 14,
+        color: '#000',
     },
 });

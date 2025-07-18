@@ -44,13 +44,13 @@ export default function Materia() {
   // Função utilitária para obter a imagem do balão de conversa com base na cor
   function getBalaoImage(cor: string) {
     switch (cor) {
-      case '#FCCA46': // Amarelo
+      case '#FCCA46':
         return require('../../../assets/img/balao_conversa_amarelo.png');
-      case '#233D4D': // Azul
+      case '#233D4D':
         return require('../../../assets/img/balao_conversa_azul.png');
-      case '#A1C181': // Verde
+      case '#A1C181':
         return require('../../../assets/img/balao_conversa_verde.png');
-      case '#FE7F2D': // Laranja
+      case '#FE7F2D':
         return require('../../../assets/img/balao_conversa_laranja.png');
       default:
         return require('../../../assets/img/lupa.png');
