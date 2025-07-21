@@ -5,14 +5,13 @@ import { initializeApp } from "firebase/app";
 import { getAuth } from 'firebase/auth';
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyA_usnJBYrYRgYx5Kf3-3TzD3ydG04zU5g",
-  authDomain: "vestquestapp.firebaseapp.com",
-  projectId: "vestquestapp",
-  storageBucket: "vestquestapp.firebasestorage.app",
-  messagingSenderId: "1037377114876",
-  appId: "1:1037377114876:web:ada2ceb931658c3a6f3d79"
+  apiKey: "AIzaSyAjn2O_hSxuAdWrHkefG0Y72l61k8nu2F4",
+  authDomain: "app-vestquest.firebaseapp.com",
+  projectId: "app-vestquest",
+  storageBucket: "app-vestquest.firebasestorage.app",
+  messagingSenderId: "9320893736",
+  appId: "1:9320893736:web:79c74cc2d8710c28f2541d"
 };
-
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);

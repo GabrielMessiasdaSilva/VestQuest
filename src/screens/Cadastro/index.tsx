@@ -146,10 +146,6 @@ export default function Cadastro() {
         <View style={styles.line} />
       </View>
 
-      <TouchableOpacity style={styles.googleButton}>
-        <Ionicons name="logo-google" size={20} color="#000" />
-        <Text style={styles.googleButtonText}>Cadastrar com o Google</Text>
-      </TouchableOpacity>
 
       <Text style={styles.footerText}>
         Já tem uma conta?{' '}

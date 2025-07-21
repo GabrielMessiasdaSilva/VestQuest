@@ -116,10 +116,7 @@ navigation.navigate('Home' as never); // redireciona para a tela Home
         <View style={styles.line} />
       </View>
 
-      <TouchableOpacity style={styles.googleButton}>
-        <Ionicons name="logo-google" size={20} color="#000" />
-        <Text style={styles.googleButtonText}>Entrar com o Google</Text>
-      </TouchableOpacity>
+  
 
       <Text style={styles.footerText}>
         Não possui uma conta?{' '}
