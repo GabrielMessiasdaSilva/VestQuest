@@ -155,8 +155,11 @@ export const styles = StyleSheet.create({
     },
 
     playText: {
+        position: 'absolute',
+        color: '#000000',
+        fontWeight: 'semibold',
         fontSize: 16,
-        color: '#000',
+        textAlign: 'center',
     },
 
     crownIcon: {

@@ -88,3 +88,171 @@ export const timeModal = StyleSheet.create({
         fontSize: 15,
     },
 });
+
+export const greenModal = StyleSheet.create({
+    overlay: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: 'rgba(0,0,0,0.4)',
+    },
+    modalContainer: {
+        backgroundColor: '#DEEAD3',
+        borderRadius: 16,
+        borderColor: '#000000',
+        borderWidth: 3,
+        padding: 24,
+        width: 300,
+        alignItems: 'center',
+    },
+    activateButton: {
+        backgroundColor: '#233D4D',
+        paddingVertical: 16,
+        paddingHorizontal: 30,
+        borderRadius: 16,
+        minWidth: 80,
+        alignItems: 'center',
+    },
+    activateButtonText: {
+        color: '#fff',
+        fontWeight: '300',
+        fontSize: 15,
+    },
+    balaoContainer: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginBottom: 18,
+    },
+    balaoInner: {
+        alignItems: 'center',
+    },
+    balaoImg: {
+        width: 190,
+        height: 130,
+        top: 20,
+        left: 50,
+    },
+    balaoText: {
+        position: 'absolute',
+        top: 55,
+        right: 16,
+        color: '#000000',
+        fontSize: 13,
+        fontWeight: 'semibold',
+        transform: [{ rotate: '4.91deg' }],
+        textAlign: 'center',
+    },
+    raposaImg: {
+        width: 280,
+        height: 250,
+    },
+});
+
+export const redModal = StyleSheet.create({
+    overlay: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: 'rgba(0,0,0,0.4)',
+    },
+    modalContainer: {
+        backgroundColor: '#E9CDCD',
+        borderRadius: 16,
+        borderColor: '#000000',
+        borderWidth: 3,
+        padding: 24,
+        width: 300,
+        alignItems: 'center',
+    },
+    activateButton: {
+        backgroundColor: '#233D4D',
+        paddingVertical: 16,
+        paddingHorizontal: 30,
+        borderRadius: 16,
+        minWidth: 80,
+        alignItems: 'center',
+    },
+    activateButtonText: {
+        color: '#fff',
+        fontWeight: '300',
+        fontSize: 15,
+    },
+    balaoContainer: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginBottom: 18,
+    },
+    balaoInner: {
+        alignItems: 'center',
+    },
+    balaoImg: {
+        width: 200,
+        height: 140,
+        top: 20,
+        left: 50,
+    },
+    balaoText: {
+        position: 'absolute',
+        top: 45,
+        right: 22,
+        color: '#ffffff',
+        fontSize: 13,
+        fontWeight: 'semibold',
+        transform: [{ rotate: '4.91deg' }],
+        textAlign: 'justify',
+    },
+    raposaImg: {
+        width: 280,
+        height: 250,
+    },
+});
+
+export const endTimeModal = StyleSheet.create({
+    overlay: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: 'rgba(0,0,0,0.4)',
+    },
+    modalContainer: {
+        backgroundColor: '#ffffff',
+        borderRadius: 16,
+        borderColor: '#000000',
+        borderWidth: 3,
+        padding: 24,
+        width: 300,
+        alignItems: 'center',
+    },
+    activateButton: {
+        backgroundColor: '#233D4D',
+        paddingVertical: 16,
+        paddingHorizontal: 30,
+        borderRadius: 16,
+        minWidth: 80,
+        alignItems: 'center',
+    },
+    activateButtonText: {
+        color: '#fff',
+        fontWeight: '300',
+        fontSize: 15,
+    },
+    title:{
+        fontSize: 22,
+        fontWeight: '600',
+        textAlign: 'center',
+        marginBottom: 30,
+        marginTop: 20,
+    },
+    modalText:{
+        fontSize: 12,
+        textAlign: 'center',
+        marginBottom: 25,
+    },
+    correctText:{
+        fontSize: 24,
+        fontWeight: '500',
+        textAlign: 'center',
+        marginBottom: 15,
+    },
+
+});

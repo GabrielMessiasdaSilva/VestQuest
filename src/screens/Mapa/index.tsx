@@ -1,15 +1,14 @@
-import { View, Text, Image, ScrollView, TouchableOpacity } from 'react-native';
+import { View, Text, Image, ScrollView, TouchableOpacity, Alert } from 'react-native';
 import React, { useState } from 'react';
 import { styles } from './styles';
 import { useNavigation } from '@react-navigation/native';
 import type { StackNavigationProp } from '@react-navigation/stack';
-import { Alert } from 'react-native';
 import Footer from '../../components/Footer';
 import TimeModal from '../../components/TimeModal';
 
 type RootStackParamList = {
   Desafio: undefined;
-  Quiz: undefined;
+  Quiz: { tempoAtivado: boolean; tempoTotal: number };
 };
 
 // Componente principal da tela Home
@@ -28,7 +27,7 @@ export default function Mapa() {
     if (inputTime && Number(inputTime) >= 1 && Number(inputTime) <= 60) {
       setSelectedTime(inputTime);
       setModalVisible(false);
-      showCustomAlert('⏰ Tempo ativado', `Você escolheu ${inputTime} minutos`);
+      showCustomAlert('⏰ Tempo ativado', `Você escolheu ${inputTime} minuto(s)`);
     } else {
       showCustomAlert('⚠️ Atenção', 'Escolha um valor entre 1 e 60 minutos');
     }
@@ -83,35 +82,46 @@ export default function Mapa() {
                   index % 2 === 0 ? styles.phaseLeft : styles.phaseRight
                 ]}
               >
-                <Image
-                  source={
-                    fase.status === 'bloqueada'
-                      ? require('../../../assets/img/circulo_laranja.png')
-                      : fase.status === 'concluida'
-                        ? (index % 2 === 0
-                          ? require('../../../assets/img/circulo_azul.png')
-                          : require('../../../assets/img/circulo_amarelo.png'))
-                        : require('../../../assets/img/circulo_verde.png')
-                  }
-                  style={styles.phaseCircle}
-                />
-                {fase.status === 'concluida' && (
-                  <Image source={require('../../../assets/img/check_w.png')} style={styles.iconCenter} />
-                )}
-                {fase.status === 'bloqueada' && (
-                  <Image source={require('../../../assets/img/cadeado.png')} style={styles.iconCenter} />
-                )}
-                {fase.status === 'disponivel' && (
+                {fase.status === 'disponivel' ? (
                   <TouchableOpacity
-                    onPress={() => navigation.navigate('Quiz')}
-                    style={[styles.playTextContainer]}
+                    onPress={() =>
+                      navigation.navigate('Quiz', {
+                        tempoTotal: selectedTime !== 'none' ? Number(selectedTime) * 60 : 0,
+                        tempoAtivado: selectedTime !== 'none',
+                      })
+                    }
+                    style={{ alignItems: 'center', justifyContent: 'center' }}
                   >
+                    <Image
+                      source={require('../../../assets/img/circulo_verde.png')}
+                      style={styles.phaseCircle}
+                    />
                     <Text style={styles.playText}>Jogar</Text>
+                    <Image source={require('../../../assets/img/coroa.png')} style={styles.crownIcon} />
+                    <Text style={styles.crownNumber}>{fase.numero}</Text>
                   </TouchableOpacity>
+                ) : (
+                  <>
+                    <Image
+                      source={
+                        fase.status === 'bloqueada'
+                          ? require('../../../assets/img/circulo_laranja.png')
+                          : (index % 2 === 0
+                            ? require('../../../assets/img/circulo_azul.png')
+                            : require('../../../assets/img/circulo_amarelo.png'))
+                      }
+                      style={styles.phaseCircle}
+                    />
+                    {fase.status === 'concluida' && (
+                      <Image source={require('../../../assets/img/check_w.png')} style={styles.iconCenter} />
+                    )}
+                    {fase.status === 'bloqueada' && (
+                      <Image source={require('../../../assets/img/cadeado.png')} style={styles.iconCenter} />
+                    )}
+                    <Image source={require('../../../assets/img/coroa.png')} style={styles.crownIcon} />
+                    <Text style={styles.crownNumber}>{fase.numero}</Text>
+                  </>
                 )}
-                <Image source={require('../../../assets/img/coroa.png')} style={styles.crownIcon} />
-                <Text style={styles.crownNumber}>{fase.numero}</Text>
-
                 {index === 1 && (
                   <Image
                     source={require('../../../assets/img/raposa_piscando.png')}

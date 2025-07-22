@@ -4,18 +4,7 @@ import { footer } from './styles';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import type { StackNavigationProp } from '@react-navigation/stack';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-
-type RootStackParamList = {
-    Home: undefined;
-    Mapa: undefined;
-    Perfil: undefined;
-    Quiz?: undefined;
-    Vida?: undefined;
-    Conquista?: undefined;
-    Ranking?: undefined;
-    Desafio?: undefined;
-    Materia?: undefined;
-};
+import type { RootStackParamList } from '../navigation/types';
 
 const mapScreens = ['Mapa', 'Quiz', 'Vida', 'Conquista', 'Ranking', 'Desafio'];
 const homeScreens = ['Home', 'Materia'];
