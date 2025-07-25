@@ -1,17 +1,37 @@
-import { View, Text, StyleSheet } from 'react-native';
+import React from "react";
+import { View, Text, Image, TouchableOpacity } from "react-native";
+import { styles } from "./styles";
+import { useNavigation } from "@react-navigation/native";
+import type { StackNavigationProp } from '@react-navigation/stack';
+
+type RootStackParamList = {
+  Mapa: undefined;
+};
 
 export default function Vida() {
+  const navigation = useNavigation<StackNavigationProp<RootStackParamList, 'Mapa'>>();
+
   return (
     <View style={styles.container}>
-      <Text>Vida</Text>
+      <Image
+        source={require("../../../assets/img/raposa_coracao.png")}
+        style={styles.image}
+        resizeMode="contain"
+      />
+
+      <Text style={styles.title}>Você ficou sem vidas!</Text>
+
+      <Text style={styles.subtitle}>
+        Errar agora é melhor do que no dia da {"\n"}prova. Tente de novo, tenho
+        certeza de {"\n"}que na próxima você vai conseguir!
+      </Text>
+
+      <TouchableOpacity
+        style={styles.button}
+        onPress={() => navigation.navigate("Mapa")}
+      >
+        <Text style={styles.buttonText}>Voltar ao mapa</Text>
+      </TouchableOpacity>
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
