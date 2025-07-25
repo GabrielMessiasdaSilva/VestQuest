@@ -54,9 +54,9 @@ export default function Quiz() {
 
   useEffect(() => {
     if (perguntaAtual > perguntas.length) {
-      navigation.navigate('Conquista');
+      navigation.navigate('Conquista', {acertos});
     }
-  }, [perguntaAtual]);
+  }, [perguntaAtual, acertos]);
 
   function handleResposta(alternativa: string) {
     setRespostaSelecionada(alternativa);
