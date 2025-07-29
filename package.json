@@ -32,7 +32,8 @@
     "react-native-swiper": "^1.6.0",
     "react-native-vector-icons": "^10.2.0",
     "react-navigation": "^5.0.0",
-    "yup": "^1.6.1"
+    "yup": "^1.6.1",
+    "expo-image-picker": "~16.1.4"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",
