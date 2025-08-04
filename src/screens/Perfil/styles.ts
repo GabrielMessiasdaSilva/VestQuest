@@ -29,6 +29,23 @@ export const styles = StyleSheet.create({
     borderRadius: 45,
     marginBottom: 12,
   },
+  avatarExpanded: {
+    width: 180,
+    height: 180,
+    borderRadius: 90,
+    borderWidth: 4,
+    borderColor: "#fff",
+    backgroundColor: "#eee",
+    marginTop: -90, // Puxa metade para cima
+    marginBottom: 16, // Espaço depois da imagem
+    alignSelf: "center",
+    zIndex: 1,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 3 },
+    shadowOpacity: 0.2,
+    shadowRadius: 6,
+    elevation: 5,
+  },
   welcomeText: {
     color: "#fff",
     fontSize: 20,
