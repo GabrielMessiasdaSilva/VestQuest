@@ -1,43 +1,53 @@
-import { View, Text, ScrollView, Image, TouchableOpacity } from 'react-native';
+import { View, Text, ScrollView, Image, TouchableOpacity, Alert, BackHandler } from 'react-native';
 import React, { useState, useEffect } from 'react';
 import { styles } from './styles';
 import GreenModal from '../../components/GreenModal';
 import RedModal from '../../components/RedModal';
 import EndTimeModal from '../../components/EndTimeModal';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import { useRoute, useNavigation } from '@react-navigation/native';
-import { perguntas } from '../../data/perguntasQuiz';
-import type { RouteProp } from '@react-navigation/native';
-
-type RootStackParamList = {
-  Quiz: { tempoAtivado: boolean; tempoTotal: number };
-};
+import { sortearPerguntas } from '../../utils/perguntasLoader';
+import type { Pergunta } from '../../data/perguntasQuiz';
+import { useRoute, useNavigation, useFocusEffect } from '@react-navigation/native';
+import type { RouteProp, NavigationProp } from '@react-navigation/native';
+import type { RootStackParamList } from '../../navigation/types';
 
 export default function Quiz() {
-  const navigation = useNavigation<any>();
+  const navigation = useNavigation<NavigationProp<RootStackParamList>>();
   const [perguntaAtual, setPerguntaAtual] = useState(1);
   const [vidas, setVidas] = useState(3);
   const [respostaSelecionada, setRespostaSelecionada] = useState<string | null>(null);
   const route = useRoute<RouteProp<RootStackParamList, 'Quiz'>>();
   const params = route?.params || {};
+  const fase = params?.faseAtual ?? 1;
+  const [perguntasFase, setPerguntasFase] = useState<Pergunta[]>([]);
   const tempoAtivado = params?.tempoAtivado ?? false;
   const tempoTotal = params?.tempoTotal ?? 0;
-  const pergunta = perguntas[perguntaAtual - 1];
-  const respostaCorreta = pergunta?.correta;
+  const timerRef = React.useRef<NodeJS.Timeout | null>(null);
   const [acertos, setAcertos] = useState(0);
   const [tempoRestante, setTempoRestante] = useState(tempoTotal);
   const [greenModalVisible, setGreenModalVisible] = useState(false);
   const [redModalVisible, setRedModalVisible] = useState(false);
   const [endTimeModalVisible, setEndTimeModalVisible] = useState(false);
+  const scrollRef = React.useRef<ScrollView>(null);
 
   useEffect(() => {
     if (tempoAtivado && tempoRestante > 0) {
-      const timer = setInterval(() => {
-        setTempoRestante((prev: number) => prev - 1);
+      timerRef.current = setInterval(() => {
+        setTempoRestante(prev => prev - 1);
       }, 1000);
-      return () => clearInterval(timer);
+
+      return () => {
+        if (timerRef.current) clearInterval(timerRef.current);
+        timerRef.current = null;
+      };
     }
-  }, [tempoAtivado, tempoRestante]);
+  }, [tempoAtivado]);
+
+  useEffect(() => {
+    const categoria = faseToCategoria[fase] as Pergunta['categoria'];
+    const sorteadas = sortearPerguntas(categoria);
+    setPerguntasFase(sorteadas);
+  }, [fase]);
 
   useEffect(() => {
     if (vidas === 0) {
@@ -52,11 +62,22 @@ export default function Quiz() {
     }
   }, [tempoRestante, tempoAtivado]);
 
+  const faseToCategoria: { [key: number]: string } = {
+    1: "matematica",
+    2: "linguagens",
+    3: "ciencias_natureza",
+    4: "ciencias_humanas"
+  };
+
+  const pergunta = perguntasFase[perguntaAtual - 1];
+  const respostaCorreta = pergunta?.correta;
+
   useEffect(() => {
-    if (perguntaAtual > perguntas.length) {
-      navigation.navigate('Conquista', {acertos});
+    if (perguntasFase.length > 0 && perguntaAtual > perguntasFase.length) {
+      navigation.navigate('Conquista', { acertos, faseConcluida: fase });
     }
-  }, [perguntaAtual, acertos]);
+  }, [perguntaAtual, perguntasFase.length, acertos]);
+
 
   function handleResposta(alternativa: string) {
     setRespostaSelecionada(alternativa);
@@ -75,30 +96,103 @@ export default function Quiz() {
     setGreenModalVisible(false);
     setRespostaSelecionada(null);
     setPerguntaAtual(perguntaAtual + 1);
+    rolarParaTopo();
   }
 
   function respostaErrada() {
     setRedModalVisible(false);
     setRespostaSelecionada(null);
     setPerguntaAtual(perguntaAtual + 1);
+    rolarParaTopo();
+  }
+
+  function pausarTempo() {
+    if (timerRef.current) {
+      clearInterval(timerRef.current);
+      timerRef.current = null;
+    }
+  }
+
+  function retomarTempo() {
+    if (tempoAtivado && tempoRestante > 0 && !timerRef.current) {
+      timerRef.current = setInterval(() => {
+        setTempoRestante(prev => prev - 1);
+      }, 1000);
+    }
   }
 
   // Calcula minutos e segundos
   const minutos = Math.floor(tempoRestante / 60);
   const segundos = tempoRestante % 60;
 
-
   function voltarAoMapa() {
     navigation.navigate('Mapa');
   }
 
+  // Mostra o total de perguntas e a pergunta exibida
+  const totalPerguntas = perguntasFase.length;
+  const perguntaExibida = Math.min(perguntaAtual, totalPerguntas);
+
+  // Previne o botão de voltar físico (Android) e gestos de navegação (iOS)
+  useFocusEffect(
+    React.useCallback(() => {
+      // Previne botão físico (Android)
+      const onBackPress = () => {
+        pausarTempo();
+        // Se quiser permitir com confirmação:
+        Alert.alert('⚠️ Aviso', 'Tem certeza que deseja sair do quiz?', [
+          {
+            text: 'Cancelar', style: 'cancel', onPress: () => {
+              retomarTempo();
+            },
+          },
+          { text: 'Sair', style: 'destructive', onPress: () => navigation.goBack() },
+        ]);
+        return true;
+      };
+
+      const backHandler = BackHandler.addEventListener('hardwareBackPress', onBackPress);
+
+      // Previne gestos de navegação (iOS) e back automático
+      const unsubscribe = navigation.addListener('beforeRemove', (e) => {
+        e.preventDefault();
+        pausarTempo();
+        // Mostra alerta se quiser confirmar saída:
+        Alert.alert('↔️ Quiz em andamento', 'Você confirma que deseja sair do quiz?', [
+          {
+            text: 'Ficar', style: 'cancel', onPress: () => {
+              retomarTempo();
+            }
+          },
+          { text: 'Confirmar', style: 'destructive', onPress: () => navigation.dispatch(e.data.action) }
+        ]);
+      });
+
+      return () => {
+        backHandler.remove();
+        unsubscribe();
+      };
+    }, [navigation])
+  );
+
+  const nomesFases: { [key: number]: string } = {
+    1: "Matemática",
+    2: "Linguagens",
+    3: "Ciências da Natureza",
+    4: "Ciências Humanas",
+  };
+
+  function rolarParaTopo() {
+    scrollRef.current?.scrollTo({ y: 0, animated: true });
+  }
+
   return (
     <View style={{ flex: 1 }}>
-      <ScrollView contentContainerStyle={{ flexGrow: 1, paddingBottom: 80, backgroundColor: '#fff' }} showsVerticalScrollIndicator={false}>
+      <ScrollView ref={scrollRef} contentContainerStyle={{ flexGrow: 1, paddingBottom: 80, backgroundColor: '#fff' }} showsVerticalScrollIndicator={false}>
         <View style={styles.container}>
           <Text style={styles.title}>Quiz de perguntas</Text>
           <View style={styles.statusBar}>
-            <Text style={styles.questionCount}>{perguntaAtual}/10</Text>
+            <Text style={styles.questionCount}>{perguntaExibida}/{totalPerguntas}</Text>
             <View style={styles.heartsContainer}>
               {[...Array(3)].map((_, i) => (
                 <MaterialCommunityIcons
@@ -125,10 +219,10 @@ export default function Quiz() {
             </View>
           </View>
           <View style={styles.question}>
-            <Text style={styles.phase}>Fase 3 - Ciências da Natureza</Text>
+            <Text style={styles.phase}>Fase {fase} - {nomesFases[fase]}</Text>
             {pergunta && (
               <View>
-                <Text style={styles.questionText}>{pergunta.texto}</Text>
+                <Text style={styles.questionText}>{`(ENEM ${pergunta.ano}) ${pergunta.texto}`}</Text>
                 {Object.entries(pergunta.alternativas).map(([letra, texto]) => (
                   <TouchableOpacity
                     key={letra}

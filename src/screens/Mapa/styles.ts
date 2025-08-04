@@ -138,11 +138,13 @@ export const styles = StyleSheet.create({
 
     iconCenter: {
         position: 'absolute',
+        top: '50%',
+        left: '50%',
+        transform: [{ translateX: -96 }, { translateY: -16 }],
         width: 32,
         height: 32,
         resizeMode: 'contain',
         zIndex: 2,
-        paddingTop: 100,
     },
 
     playTextContainer: {

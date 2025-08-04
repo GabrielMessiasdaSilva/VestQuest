@@ -1,5 +1,5 @@
 import { View, Text, Image, ScrollView, TextInput, TouchableOpacity } from 'react-native';
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { styles } from './styles';
 import Footer from '../../components/Footer';
 import { useNavigation } from '@react-navigation/native';
@@ -117,6 +117,14 @@ export default function Home() {
 
   // Estado para controlar o foco do campo de busca
   const [isFocused, setIsFocused] = useState(true);
+
+  useEffect(() => {
+    const unsubscribe = navigation.addListener("beforeRemove", (e) => {
+      e.preventDefault();
+    });
+
+    return unsubscribe;
+  }, [navigation]);
 
   return (
     <View style={{ flex: 1 }}>

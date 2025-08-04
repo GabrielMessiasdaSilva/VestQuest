@@ -1,19 +1,16 @@
 import { View, Text, Image, ScrollView, TouchableOpacity, Alert } from 'react-native';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { styles } from './styles';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute, useFocusEffect, RouteProp } from '@react-navigation/native';
 import type { StackNavigationProp } from '@react-navigation/stack';
 import Footer from '../../components/Footer';
 import TimeModal from '../../components/TimeModal';
+import type { RootStackParamList } from '../../navigation/types';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-type RootStackParamList = {
-  Desafio: undefined;
-  Quiz: { tempoAtivado: boolean; tempoTotal: number };
-};
-
-// Componente principal da tela Home
 export default function Mapa() {
   const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
+  const route = useRoute<RouteProp<RootStackParamList, 'Mapa'>>();
   const [selectedTime, setSelectedTime] = useState('none');
   const [modalVisible, setModalVisible] = useState(false);
   const [inputTime, setInputTime] = useState('');
@@ -41,16 +38,65 @@ export default function Mapa() {
     showCustomAlert('⏹️ Tempo desativado', 'O tempo foi desativado com sucesso!');
   };
 
-  const fases = [
-    { numero: 4, status: 'bloqueada' },
-    { numero: 3, status: 'disponivel' },
-    { numero: 2, status: 'concluida' },
-    { numero: 1, status: 'concluida' },
-  ];
+  const [fases, setFases] = useState([
+    { numero: 4, status: 'bloqueada', cor: 'laranja', nome: 'ciencias_humanas' },
+    { numero: 3, status: 'bloqueada', cor: 'verde', nome: 'ciencias_natureza' },
+    { numero: 2, status: 'bloqueada', cor: 'azul', nome: 'linguagens' },
+    { numero: 1, status: 'disponivel', cor: 'amarelo', nome: 'matematica' },
+  ]);
+
+  const imagensFases: { [cor: string]: any } = {
+    amarelo: require('../../../assets/img/circulo_amarelo.png'),
+    azul: require('../../../assets/img/circulo_azul.png'),
+    verde: require('../../../assets/img/circulo_verde.png'),
+    laranja: require('../../../assets/img/circulo_laranja.png'),
+  };
+
+  useFocusEffect(
+    React.useCallback(() => {
+      const carregarProgresso = async () => {
+        try {
+          const salvo = await AsyncStorage.getItem('fasesConcluidas');
+          const fasesConcluidas: number[] = salvo ? JSON.parse(salvo) : [];
+
+          setFases(prev =>
+            prev.map(fase => {
+              if (fasesConcluidas.includes(fase.numero)) {
+                return { ...fase, status: 'concluida' };
+              } else if (
+                fasesConcluidas.includes(fase.numero - 1) ||
+                fase.numero === 1
+              ) {
+                return { ...fase, status: 'disponivel' };
+              } else {
+                return { ...fase, status: 'bloqueada' };
+              }
+            })
+          );
+        } catch (error) {
+          console.error('Erro ao carregar progresso:', error);
+        }
+      };
+
+      carregarProgresso();
+    }, [])
+  );
+
+  // useEffect(() => {
+  //   AsyncStorage.removeItem('fasesConcluidas');
+  // }, []);
+
+  const iniciarFase = (faseNumero: number) => {
+    navigation.navigate('Quiz', {
+      tempoTotal: selectedTime !== 'none' ? Number(selectedTime) * 60 : 0,
+      tempoAtivado: selectedTime !== 'none',
+      faseAtual: faseNumero,
+    });
+  };
 
   return (
     <View style={{ flex: 1 }}>
-      <ScrollView contentContainerStyle={{ flexGrow: 1, paddingBottom: 80, backgroundColor: '#fff' }} showsVerticalScrollIndicator={false}>
+      <ScrollView contentContainerStyle={{ flexGrow: 1, paddingBottom: 120, backgroundColor: '#fff' }} showsVerticalScrollIndicator={false}>
         <View style={styles.container}>
           <Text style={styles.title}>Seu mapa de fases</Text>
           <View style={styles.rowButtons}>
@@ -74,74 +120,47 @@ export default function Mapa() {
             </View>
           </View>
           <View style={[styles.phaseMapContainer, { position: 'relative', minHeight: 500 }]}>
-            {fases.map((fase, index) => (
-              <View
-                key={fase.numero}
-                style={[
+            {fases.map((fase, index) => {
+              return (
+                <View key={fase.numero} style={[
                   styles.phaseItem,
                   index % 2 === 0 ? styles.phaseLeft : styles.phaseRight
                 ]}
-              >
-                {fase.status === 'disponivel' ? (
-                  <TouchableOpacity
-                    onPress={() =>
-                      navigation.navigate('Quiz', {
-                        tempoTotal: selectedTime !== 'none' ? Number(selectedTime) * 60 : 0,
-                        tempoAtivado: selectedTime !== 'none',
-                      })
-                    }
-                    style={{ alignItems: 'center', justifyContent: 'center' }}
-                  >
-                    <Image
-                      source={require('../../../assets/img/circulo_verde.png')}
-                      style={styles.phaseCircle}
-                    />
-                    <Text style={styles.playText}>Jogar</Text>
-                    <Image source={require('../../../assets/img/coroa.png')} style={styles.crownIcon} />
-                    <Text style={styles.crownNumber}>{fase.numero}</Text>
-                  </TouchableOpacity>
-                ) : (
-                  <>
-                    <Image
-                      source={
-                        fase.status === 'bloqueada'
-                          ? require('../../../assets/img/circulo_laranja.png')
-                          : (index % 2 === 0
-                            ? require('../../../assets/img/circulo_azul.png')
-                            : require('../../../assets/img/circulo_amarelo.png'))
-                      }
-                      style={styles.phaseCircle}
-                    />
-                    {fase.status === 'concluida' && (
-                      <Image source={require('../../../assets/img/check_w.png')} style={styles.iconCenter} />
-                    )}
-                    {fase.status === 'bloqueada' && (
-                      <Image source={require('../../../assets/img/cadeado.png')} style={styles.iconCenter} />
-                    )}
-                    <Image source={require('../../../assets/img/coroa.png')} style={styles.crownIcon} />
-                    <Text style={styles.crownNumber}>{fase.numero}</Text>
-                  </>
-                )}
-                {index === 1 && (
+                >
+                  {fase.status === 'disponivel' ? (
+                    <TouchableOpacity
+                      onPress={() => iniciarFase(fase.numero)}
+                      style={{ alignItems: 'center', justifyContent: 'center' }}
+                    >
+                      <Image source={imagensFases[fase.cor]} style={styles.phaseCircle} />
+                      <Text style={styles.playText}>Jogar</Text>
+                    </TouchableOpacity>
+                  ) : (
+                    <View>
+                      <Image source={imagensFases[fase.cor]} style={styles.phaseCircle} />
+                      {fase.status === 'bloqueada' && (
+                        <Image
+                          source={require('../../../assets/img/cadeado.png')}
+                          style={styles.iconCenter}
+                        />
+                      )}
+                      {fase.status === 'concluida' && (
+                        <Image
+                          source={require('../../../assets/img/check_w.png')}
+                          style={styles.iconCenter}
+                        />
+                      )}
+                    </View>
+                  )}
+
                   <Image
-                    source={require('../../../assets/img/raposa_piscando.png')}
-                    style={[
-                      styles.foxMascot,
-                      { position: 'absolute', left: -150, top: 10, transform: [{ rotate: '-7.91deg' }] }
-                    ]}
+                    source={require('../../../assets/img/coroa.png')}
+                    style={styles.crownIcon}
                   />
-                )}
-                {index === 2 && (
-                  <Image
-                    source={require('../../../assets/img/raposa_confiante.png')}
-                    style={[
-                      styles.foxMascot,
-                      { position: 'absolute', right: -150, top: 10, transform: [{ rotate: '7.91deg' }] }
-                    ]}
-                  />
-                )}
-              </View>
-            ))}
+                  <Text style={styles.crownNumber}>{fase.numero}</Text>
+                </View>
+              );
+            })}
             <View style={styles.legendContainer}>
               <Image source={require('../../../assets/img/coroa.png')} style={styles.legendCrownIcon} />
               <Text style={styles.legendText}>= Número da fase</Text>

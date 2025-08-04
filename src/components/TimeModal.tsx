@@ -1,5 +1,5 @@
-import React from 'react';
-import { Modal, View, Text, TextInput, TouchableOpacity } from 'react-native';
+import React, { useEffect } from 'react';
+import { Modal, View, Text, TextInput, TouchableOpacity, BackHandler } from 'react-native';
 import { timeModal } from './styles';
 
 interface TimeModalProps {
@@ -19,6 +19,15 @@ const TimeModal: React.FC<TimeModalProps> = ({
     onDeactivate,
     onClose,
 }) => {
+
+    useEffect(() => {
+        if (visible) {
+            const backHandler = BackHandler.addEventListener('hardwareBackPress', () => true);
+
+            return () => backHandler.remove();
+        }
+    }, [visible]);
+
     return (
         <Modal
             visible={visible}

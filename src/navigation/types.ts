@@ -7,11 +7,11 @@ export type RootStackParamList = {
   Home: undefined;
   Vida: undefined;
   Ranking: undefined;
-  Conquista: undefined;
+  Conquista: { acertos: number, faseConcluida?: number };
   Perfil: undefined;
-  Mapa: undefined;
+  Mapa: { faseConcluida?: number } | undefined;
   Materia: undefined;
   Desafio: undefined;
-  Quiz: undefined;
+  Quiz: { tempoTotal: number; tempoAtivado: boolean, faseAtual: number };
   Main: undefined;
 };
