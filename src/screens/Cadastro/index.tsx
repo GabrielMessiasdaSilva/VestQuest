@@ -8,6 +8,8 @@ import { useNavigation } from '@react-navigation/native';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { auth } from '../../services/firebaseConfig';
+import { doc, setDoc } from 'firebase/firestore'; // ADICIONE no topo do arquivo
+import { db } from '../../services/firebaseConfig'; // ADICIONE também
 
 import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -41,23 +43,24 @@ export default function Cadastro() {
   });
 
   const onSubmit = async (data: FormData) => {
-    try {
-      const userCredential = await createUserWithEmailAndPassword(auth, data.email, data.password);
-      const user = userCredential.user;
+  try {
+    const userCredential = await createUserWithEmailAndPassword(auth, data.email, data.password);
+    const user = userCredential.user;
 
-      await AsyncStorage.setItem('user', JSON.stringify({
-        uid: user.uid,
-        email: user.email,
-        username: data.username,
-      }));
+    // Salva no Firestore
+    await setDoc(doc(db, 'users', user.uid), {
+      username: data.username,
+      email: data.email,
+      // Não salve a senha! Só o necessário, caralho!
+    });
 
-      Alert.alert('Sucesso', 'Conta criada com sucesso!');
-      reset();
-      navigation.navigate('Login' as never);
-    } catch (error: any) {
-      Alert.alert('Erro', error.message);
-    }
-  };
+    Alert.alert('Sucesso', 'Conta criada com sucesso!');
+    reset();
+    navigation.navigate('Login' as never);
+  } catch (error: any) {
+    Alert.alert('Erro', error.message);
+  }
+};
 
   return (
     <View style={styles.container}>

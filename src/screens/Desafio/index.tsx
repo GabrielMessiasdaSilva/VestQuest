@@ -1,8 +1,12 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { View, Text, Image, ImageBackground, TouchableOpacity } from "react-native";
 import { styles } from "./styles";
 import { useNavigation } from "@react-navigation/native";
 import type { StackNavigationProp } from "@react-navigation/stack";
+
+import { auth, db } from "../../services/firebaseConfig";
+import { onAuthStateChanged } from "firebase/auth";
+import { doc, getDoc } from "firebase/firestore";
 
 type RootStackParamList = {
   Mapa: undefined;
@@ -12,19 +16,40 @@ export default function Desafio() {
   const navigation =
     useNavigation<StackNavigationProp<RootStackParamList, "Mapa">>();
 
+  // Inicializa username como null para não mostrar nome antes de carregar
+  const [username, setUsername] = useState<string | null>(null);
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, async (user) => {
+      if (user) {
+        const docRef = doc(db, "users", user.uid);
+        const docSnap = await getDoc(docRef);
+        if (docSnap.exists()) {
+          const data = docSnap.data();
+          setUsername(data.username || "Jogador");
+        } else {
+          setUsername("Jogador");
+        }
+      } else {
+        setUsername("Jogador");
+      }
+    });
+
+    return () => unsubscribe();
+  }, []);
+
   return (
     <View style={styles.container}>
       {/* Balão de fala */}
-<ImageBackground
-  source={require("../../../assets/img/balao_conversa_verde.png")}
-  style={styles.speechBubble}
-  resizeMode="contain"
->
-  <Text style={styles.speechText}>
-    O desafio de hoje é {"\n"}responder um quiz em {"\n"}10 minutos
-  </Text>
-</ImageBackground>
-
+      <ImageBackground
+        source={require("../../../assets/img/balao_conversa_verde.png")}
+        style={styles.speechBubble}
+        resizeMode="contain"
+      >
+        <Text style={styles.speechText}>
+          O desafio de hoje é {"\n"}responder um quiz em {"\n"}10 minutos
+        </Text>
+      </ImageBackground>
 
       <Image
         source={require("../../../assets/img/raposa_confiante.png")}
@@ -32,7 +57,9 @@ export default function Desafio() {
         resizeMode="contain"
       />
 
-      <Text style={styles.title}>Olá, Jogador!</Text>
+      <Text style={styles.title}>
+        Olá{username !== null ? `, ${username}!` : "!"}
+      </Text>
 
       <Text style={styles.subtitle}>
         Você irá voltar ao mapa e escolher a {"\n"}quantidade de tempo indicada
