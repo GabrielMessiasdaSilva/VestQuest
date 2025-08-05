@@ -4,15 +4,16 @@ import Swiper from 'react-native-swiper';
 import { StackScreenProps } from '@react-navigation/stack';
 import { onboardingStyles } from './styles';
 import type { RootStackParamList } from '../../navigation/types';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useTranslation } from 'react-i18next';
 
 type OnboardingScreenProps = StackScreenProps<RootStackParamList, 'Onboarding'>;
 
 const OnboardingScreen: React.FC<OnboardingScreenProps> = ({ navigation }) => {
   const swiperRef = useRef<Swiper>(null);
+  const { t } = useTranslation();
 
   const handleFinishOnboarding = () => {
-    navigation.replace('Inicial'); // NÃO usa AsyncStorage agora
+    navigation.replace('Inicial');
   };
 
   const renderSlide = (
@@ -26,15 +27,14 @@ const OnboardingScreen: React.FC<OnboardingScreenProps> = ({ navigation }) => {
       <Image source={imageSource} style={onboardingStyles.slideImage} />
       <Text style={onboardingStyles.slideTitle}>{title}</Text>
       <Text style={onboardingStyles.slideDescription}>{description}</Text>
-      {showFinishButton ? (
-        <TouchableOpacity style={onboardingStyles.button} onPress={handleFinishOnboarding}>
-          <Text style={onboardingStyles.buttonText}>Jogar</Text>
-        </TouchableOpacity>
-      ) : (
-        <TouchableOpacity style={onboardingStyles.button} onPress={() => swiperRef.current?.scrollBy(1)}>
-          <Text style={onboardingStyles.buttonText}>Continuar</Text>
-        </TouchableOpacity>
-      )}
+      <TouchableOpacity
+        style={onboardingStyles.button}
+        onPress={showFinishButton ? handleFinishOnboarding : () => swiperRef.current?.scrollBy(1)}
+      >
+        <Text style={onboardingStyles.buttonText}>
+          {showFinishButton ? t('play') : t('continue')}
+        </Text>
+      </TouchableOpacity>
     </View>
   );
 
@@ -49,20 +49,20 @@ const OnboardingScreen: React.FC<OnboardingScreenProps> = ({ navigation }) => {
       {renderSlide(
         '#FCCA46',
         require('../../../assets/img/raposa_mascote.png'),
-        'Bem-vindo(a) ao VestQuest!',
-        'Eu sou o Vest, sua raposa guia nessa jornada rumo à aprovação!'
+        t('slide1.title'),
+        t('slide1.description')
       )}
       {renderSlide(
         '#A1C181',
         require('../../../assets/img/raposa_mascote.png'),
-        'Como o VestQuest funciona?',
-        'Responda quizzes e desbloqueie fases enquanto aprende de verdade!'
+        t('slide2.title'),
+        t('slide2.description')
       )}
       {renderSlide(
         '#619B8A',
         require('../../../assets/img/raposa_mascote.png'),
-        'Partiu trilhar o caminho da aprovação?',
-        'Toque em Jogar e embarque comigo nesta jornada épica!',
+        t('slide3.title'),
+        t('slide3.description'),
         true
       )}
     </Swiper>

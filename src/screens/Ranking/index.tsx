@@ -1,9 +1,10 @@
 import React from "react";
-import { View, Text, TouchableOpacity, Dimensions } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
 import { styles } from "./styles";
 import Footer from "../../components/Footer";
 import { useNavigation } from "@react-navigation/native";
 import type { StackNavigationProp } from "@react-navigation/stack";
+import { useTranslation } from "react-i18next";
 
 type RootStackParamList = {
   Mapa: undefined;
@@ -11,22 +12,27 @@ type RootStackParamList = {
 
 export default function Ranking() {
   const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
+  const { t } = useTranslation();
 
   const data = [
     {
-      materia: "Ciências da Natureza",
+      materia: t("subjectsRanking.natureza"),
       acertos: 9,
       cor: "#A8D08D",
       posicao: "2°",
     },
-    { materia: "Matemática", 
-      acertos: 10, cor: "#FFD966", 
-      posicao: "1°" 
+    {
+      materia: t("subjectsRanking.matematica"),
+      acertos: 10,
+      cor: "#FFD966",
+      posicao: "1°",
     },
-    { materia: "Linguagens", 
-      acertos: 8, 
-      cor: "#203864", 
-      posicao: "3°" },
+    {
+      materia: t("subjectsRanking.linguagens"),
+      acertos: 8,
+      cor: "#203864",
+      posicao: "3°",
+    },
   ];
 
   const maxAcertos = Math.max(...data.map((d) => d.acertos));
@@ -36,7 +42,7 @@ export default function Ranking() {
     <View style={styles.container}>
       <View style={styles.content}>
         <Text style={styles.titulo}>
-          Ranking total de{"\n"}acertos entre matérias
+          {t("titleRanking")}
         </Text>
         <View style={styles.chartContainer}>
           {data.map((item, index) => {
@@ -44,11 +50,9 @@ export default function Ranking() {
 
             return (
               <View key={index} style={styles.columnContainer}>
-                {/* Número de acertos e texto "acertos" no TOPO */}
                 <Text style={styles.acertosNumero}>{item.acertos}</Text>
-                <Text style={styles.acertosTexto}>Acertos</Text>
+                <Text style={styles.acertosTexto}>{t("hits")}</Text>
 
-                {/* Barra com posição + nome da matéria DENTRO (mais acima) */}
                 <View
                   style={[styles.bar, { height, backgroundColor: item.cor }]}
                 >
@@ -66,7 +70,7 @@ export default function Ranking() {
           style={styles.buttonPrimary}
           onPress={() => navigation.navigate("Mapa")}
         >
-          <Text style={styles.buttonTextPrimary}>Voltar ao mapa</Text>
+          <Text style={styles.buttonTextPrimary}>{t("backToMap")}</Text>
         </TouchableOpacity>
       </View>
 

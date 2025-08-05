@@ -26,15 +26,16 @@ export const styles = StyleSheet.create({
     marginBottom: 24,
   },
   button: {
-    backgroundColor: "#1e3a45",
+    backgroundColor: '#233D4D',
     paddingVertical: 17,
     paddingHorizontal: 100,
-    borderRadius: 8,
-    marginBottom: 48,
+    borderRadius: 16,
+    minWidth: 80,
+    alignItems: 'center',
   },
   buttonText: {
-    color: "#fff",
-    fontWeight: "600",
+    color: '#fff',
+    fontWeight: '600',
     fontSize: 16,
   },
   icon: {
@@ -42,22 +43,22 @@ export const styles = StyleSheet.create({
     height: 28,
   },
   speechBubble: {
-  width: 260, // aumentei o tamanho
-  height: 120,
-  justifyContent: "center",
-  alignItems: "center",
-  marginLeft: 90, // para afastar da raposa
-  marginBottom: -35, // para aproximar da raposa
-},
+    width: 260, // aumentei o tamanho
+    height: 120,
+    justifyContent: "center",
+    alignItems: "center",
+    marginLeft: 90, // para afastar da raposa
+    marginBottom: -35, // para aproximar da raposa
+  },
 
-speechText: {
-  color: "#fff",
-  fontSize: 14,
-  fontWeight: "bold",
-  textAlign: "left",
-  marginLeft: 7, // para afastar do balão
-  paddingHorizontal: 12,
-  transform: [{ rotate: "5deg" }], // Ajuste a inclinação até ficar idêntico
-},
+  speechText: {
+    color: "#fff",
+    fontSize: 14,
+    fontWeight: "bold",
+    textAlign: "left",
+    marginLeft: 7, // para afastar do balão
+    paddingHorizontal: 12,
+    transform: [{ rotate: "5deg" }], // Ajuste a inclinação até ficar idêntico
+  },
 
 });

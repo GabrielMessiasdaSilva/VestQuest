@@ -1,0 +1,217 @@
+{
+    "greeting": "Hello, {{name}}!",
+    "greetingChallenge": "Hello, {{username}}!",
+    "save": "Save",
+    "choose_language": "Choose language",
+    "terms": "Terms and Conditions",
+    "send_app": "Send app to friends",
+    "logout": "Log out",
+    "timeUpTitle": "Your time ran out before finishing the questions!",
+    "correctUntilNow": "Until now you had gotten...",
+    "encouragement": "No problem, what matters is that you tried. Go back to the map, Vest is waiting for you...\nMaybe this time you’ll make it!",
+    "backToMap": "Back to map",
+    "correctMessage": "WOW, right answer!\nVest is very\nproud of you!",
+    "continue": "Continue",
+    "wrongMessage": "That wasn’t it...\nYou lost a life, but\nVest still\nbelieves in you.",
+    "chooseAmount": "Choose amount",
+    "placeholderMinutes": "0 - 60",
+    "minutes": "Minutes",
+    "activate": "Activate",
+    "deactivate": "Deactivate",
+    "register": "Register",
+    "createAccount": "Create an account to start your journey",
+    "username": "Username",
+    "usernamePlaceholder": "Enter your username here",
+    "emailPlaceholder": "Enter your email here",
+    "password": "Password",
+    "confirmPassword": "Confirm password",
+    "usernameRequired": "Username is required",
+    "invalidEmail": "Invalid email",
+    "emailRequired": "Email is required",
+    "min6chars": "Minimum 6 characters",
+    "passwordRequired": "Password is required",
+    "passwordsDontMatch": "Passwords do not match",
+    "confirmPasswordRequired": "Confirm the password",
+    "success": "Success",
+    "accountCreated": "Account created successfully!",
+    "error": "Error",
+    "orRegisterWith": "Or register with",
+    "alreadyHaveAccount": "Already have an account?",
+    "loginHere": "Login here",
+    "congratsTitle": "Congratulations!",
+    "quizSuccess": "You completed this quiz\nsuccessfully!",
+    "correctAnswers": "You got {{acertos}}/{{total}} questions right!",
+    "viewRanking": "See my ranking",
+    "speech": "Today's challenge is to \nanswer a quiz in \n10 minutes",
+    "greetingNoName": "Hello!",
+    "instructions": "You will return to the map and choose \nthe indicated time to complete your quiz",
+    "studySubjects": "Subject study",
+    "searchPlaceholder": "Search here",
+    "noResults": "No subject found",
+    "groups": {
+        "Linguagens": "Languages",
+        "Ciencias da Natureza": "Natural Sciences",
+        "Ciencias Humanas": "Human Sciences"
+    },
+    "subjects": {
+        "Matematica": "Mathematics",
+        "Lingua Portuguesa": "Portuguese Language",
+        "Lingua Estrangeira": "Foreign Language",
+        "Biologia": "Biology",
+        "Quimica": "Chemistry",
+        "Fisica": "Physics",
+        "Historia": "History",
+        "Geografia": "Geography",
+        "Filosofia": "Philosophy",
+        "Sociologia": "Sociology"
+    },
+    "startTitle": "Before you start…",
+    "startSubtitle": "Create your account or log in to save your progress and continue your journey with Vest!",
+    "login": {
+        "subtitulo": "Please log in with your account",
+        "senha": "Password",
+        "entrar": "Sign in",
+        "ouEntreCom": "Or sign in with",
+        "naoTemConta": "Don't have an account?",
+        "cadastrarAqui": "Register here",
+        "placeholderEmail": "Enter your email here",
+        "erro": "Error",
+        "erroGenerico": "Failed to log in.",
+        "usuarioNaoEncontrado": "User not found.",
+        "senhaIncorreta": "Incorrect password.",
+        "emailInvalido": "Invalid email",
+        "emailObrigatorio": "Email is required",
+        "senhaObrigatoria": "Password is required"
+    },
+    "mapa": {
+        "titulo": "Your stage map",
+        "desafioDiario": "Daily Challenge",
+        "acessar": "Access here",
+        "ativarTempo": "Activate timer",
+        "tempoSelecionado": "Time: {{tempo}} min",
+        "jogar": "Play",
+        "legendaCoroa": "= Stage number",
+        "alertTempoAtivadoTitulo": "⏰ Timer activated",
+        "alertTempoAtivadoMensagem": "You chose {{tempo}} minute(s)",
+        "alertAtençãoTitulo": "⚠️ Attention",
+        "alertAtençãoMensagem": "Choose a value between 1 and 60 minutes",
+        "alertTempoDesativadoTitulo": "⏹️ Timer deactivated",
+        "alertTempoDesativadoMensagem": "The timer has been successfully deactivated!"
+    },
+    "materia": {
+        "segredo": "Let me tell you a secret...",
+        "assuntosMaisFrequentes": "Topics from {{nome}} that appear most frequently in the entrance exam",
+        "nenhumAssunto": "No topics registered."
+    },
+    "assuntos": {
+        "Matematica": {
+            "geometria": "Geometry (plane and spatial)",
+            "algebra": "Algebra (functions, equations, systems)",
+            "grandezas": "Quantities and measurements (ratios, proportions, percentages)",
+            "estatistica": "Statistics and Probability",
+            "analiseGrafica": "Graph Analysis and Basic Logic"
+        },
+        "Linguas": {
+            "interpretacao": "Text Interpretation (reading and understanding)",
+            "gramatica": "Grammar (morphology, syntax, semantics)",
+            "literatura": "Literature (literary movements, book analysis)",
+            "compreensao": "Text comprehension (English or Spanish)",
+            "vocabulario": "Vocabulary and basic grammar"
+        },
+        "Biologia": {
+            "genetica": "Genetics and Evolution",
+            "ecologia": "Ecology (environments, food chains)",
+            "citologia": "Cytology (cells, tissues)",
+            "fisiologia": "Physiology (living beings, systems)"
+        },
+        "Quimica": {
+            "geral": "General Chemistry (equations, reactions)",
+            "fisico": "Physical Chemistry (reactions, states of matter)",
+            "organica": "Organic Chemistry (structures, functions)"
+        },
+        "Fisica": {
+            "mecanica": "Mechanics (Newton’s laws, motion)",
+            "termologia": "Thermology (temperature, heat)",
+            "optica": "Optics (mirrors, lenses)",
+            "ondulatoria": "Wave Theory (waves, sound)",
+            "eletromagnetismo": "Electromagnetism (electromagnetic waves, circuits)"
+        },
+        "Historia": {
+            "historiaBrasil": "History of Brazil",
+            "historiaGeral": "General History (ancient, medieval)",
+            "idadeModerna": "Modern and Contemporary Age"
+        },
+        "Geografia": {
+            "geografiaBrasil": "Geography of Brazil (economy, population)",
+            "geopolitica": "Geopolitics (political geography, international relations)",
+            "cartografia": "Cartography (map reading, scales)",
+            "meioAmbiente": "Environment (environmental issues, sustainability)"
+        },
+        "Filosofia": {
+            "filosofiaAntiga": "Ancient Philosophy (Plato, Aristotle)",
+            "filosofiaModerna": "Modern Philosophy (Descartes, Kant)",
+            "eticaPolitica": "Ethics and Politics (ethical issues, political theories)"
+        },
+        "Sociologia": {
+            "sociologiaClassica": "Classical Sociology (Comte, Durkheim)",
+            "culturaSociedade": "Culture and Society (identity, culture)",
+            "cidadania": "Citizenship (social issues, rights)"
+        }
+    },
+    "default_username": "User01",
+    "permission_needed_title": "Permission Needed",
+    "permission_needed_message": "Please allow access to images.",
+    "fill_correctly_title": "Fill correctly",
+    "fill_correctly_message": "Name cannot be empty.",
+    "success_title": "Success",
+    "profile_updated": "Profile updated successfully.",
+    "error_title": "Error",
+    "profile_save_error": "Error saving profile.",
+    "logout_error": "Could not log out.",
+    "loading_profile": "Loading profile...",
+    "quiz": {
+        "title": "Quiz questions",
+        "phase": "Phase {{number}} - {{name}}",
+        "phaseName": {
+            "1": "Mathematics",
+            "2": "Languages",
+            "3": "Natural Sciences",
+            "4": "Human Sciences"
+        },
+        "remaining": "Time left:",
+        "alert": {
+            "title": "⚠️ Warning",
+            "message": "Are you sure you want to leave the quiz?",
+            "cancel": "Cancel",
+            "exit": "Exit"
+        },
+        "leaveAlert": {
+            "title": "↔️ Quiz in progress",
+            "message": "Are you sure you want to leave the quiz?",
+            "stay": "Stay",
+            "confirm": "Confirm"
+        }
+    },
+    "titleRanking": "Total ranking of\ncorrect answers by subject",
+    "hits": "Correct",
+    "subjectsRanking": {
+        "natureza": "Natural Sciences",
+        "matematica": "Mathematics",
+        "linguagens": "Languages"
+    },
+    "slide1": {
+        "title": "Welcome to VestQuest!",
+        "description": "I’m Vest, your fox guide on this journey to success!"
+    },
+    "slide2": {
+        "title": "How does VestQuest work?",
+        "description": "Answer quizzes and unlock levels while learning for real!"
+    },
+    "slide3": {
+        "title": "Ready to walk the path to success?",
+        "description": "Tap Play and join me on this epic journey!"
+    },
+    "play": "Play",
+    "outOfLivesTitle": "You're out of lives!",
+    "outOfLivesMessage": "Making mistakes now is better than on exam day.\nTry again — I’m sure next time you’ll succeed!"
+}

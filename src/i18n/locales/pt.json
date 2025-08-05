@@ -1,0 +1,217 @@
+{
+    "greeting": "Olá, {{name}}!",
+    "greetingChallenge": "Olá, {{username}}!",
+    "save": "Salvar",
+    "choose_language": "Escolher língua",
+    "terms": "Termos e Condições",
+    "send_app": "Enviar o app para amigos",
+    "logout": "Sair da sua conta",
+    "timeUpTitle": "Seu tempo acabou antes de finalizar as perguntas!",
+    "correctUntilNow": "Até aqui você tinha acertado...",
+    "encouragement": "Não tem problema, o que importa é que você tentou. Volte ao mapa, o Vest está te esperando...\nVai que dessa vez você consegue!",
+    "backToMap": "Voltar ao mapa",
+    "correctMessage": "UAU, você ACERTOU!\nO Vest tá orgulhoso!",
+    "continue": "Continuar",
+    "wrongMessage": "Ops! Essa não foi...\nVocê perdeu uma\nvida, mas o Vest\nconfia em você.",
+    "chooseAmount": "Escolher quantidade",
+    "placeholderMinutes": "0 - 60",
+    "minutes": "Minutos",
+    "activate": "Ativar",
+    "deactivate": "Desativar",
+    "register": "Cadastrar",
+    "createAccount": "Crie uma conta para começar sua jornada",
+    "username": "Usuário",
+    "usernamePlaceholder": "Adicione seu nome de usuário aqui",
+    "emailPlaceholder": "Adicione seu email aqui",
+    "password": "Senha",
+    "confirmPassword": "Confirmar senha",
+    "usernameRequired": "Usuário é obrigatório",
+    "invalidEmail": "Email inválido",
+    "emailRequired": "Email é obrigatório",
+    "min6chars": "Min. 6 caracteres",
+    "passwordRequired": "Senha é obrigatória",
+    "passwordsDontMatch": "As senhas não coincidem",
+    "confirmPasswordRequired": "Confirme a senha",
+    "success": "Sucesso",
+    "accountCreated": "Conta criada com sucesso!",
+    "error": "Erro",
+    "orRegisterWith": "Ou cadastrar com",
+    "alreadyHaveAccount": "Já tem uma conta?",
+    "loginHere": "Login aqui",
+    "congratsTitle": "Parabéns!",
+    "quizSuccess": "Você completou esse quiz\ncom sucesso!",
+    "correctAnswers": "Acertou {{acertos}}/{{total}} questões!",
+    "viewRanking": "Ver meu ranking",
+    "speech": "O desafio de hoje é \nresponder um quiz em \n10 minutos",
+    "greetingNoName": "Olá!",
+    "instructions": "Você irá voltar ao mapa e escolher a \nquantidade de tempo indicada para\nrealizar seu quiz",
+    "studySubjects": "Estudo de matérias",
+    "searchPlaceholder": "Busque aqui",
+    "noResults": "Nenhuma matéria encontrada",
+    "groups": {
+        "Linguagens": "Linguagens",
+        "Ciencias da Natureza": "Ciências da Natureza",
+        "Ciencias Humanas": "Ciências Humanas"
+    },
+    "subjects": {
+        "Matematica": "Matemática",
+        "Lingua Portuguesa": "Língua Portuguesa",
+        "Lingua Estrangeira": "Língua Estrangeira",
+        "Biologia": "Biologia",
+        "Quimica": "Química",
+        "Fisica": "Física",
+        "Historia": "História",
+        "Geografia": "Geografia",
+        "Filosofia": "Filosofia",
+        "Sociologia": "Sociologia"
+    },
+    "startTitle": "Antes de começar…",
+    "startSubtitle": "Crie sua conta ou faça login para salvar seu progresso e continuar sua jornada com o Vest!",
+    "login": {
+        "subtitulo": "Por favor, faça login com sua conta",
+        "senha": "Senha",
+        "entrar": "Entrar",
+        "ouEntreCom": "Ou entre com",
+        "naoTemConta": "Não possui uma conta?",
+        "cadastrarAqui": "Cadastrar aqui",
+        "placeholderEmail": "Adicione seu email aqui",
+        "erro": "Erro",
+        "erroGenerico": "Erro ao fazer login.",
+        "usuarioNaoEncontrado": "Usuário não encontrado.",
+        "senhaIncorreta": "Senha incorreta.",
+        "emailInvalido": "Email inválido",
+        "emailObrigatorio": "Email é obrigatório",
+        "senhaObrigatoria": "Senha é obrigatória"
+    },
+    "mapa": {
+        "titulo": "Seu mapa de fases",
+        "desafioDiario": "Desafio Diário",
+        "acessar": "Acesse aqui",
+        "ativarTempo": "Ativar tempo",
+        "tempoSelecionado": "Tempo: {{tempo}} min",
+        "jogar": "Jogar",
+        "legendaCoroa": "= Número da fase",
+        "alertTempoAtivadoTitulo": "⏰ Tempo ativado",
+        "alertTempoAtivadoMensagem": "Você escolheu {{tempo}} minuto(s)",
+        "alertAtençãoTitulo": "⚠️ Atenção",
+        "alertAtençãoMensagem": "Escolha um valor entre 1 e 60 minutos",
+        "alertTempoDesativadoTitulo": "⏹️ Tempo desativado",
+        "alertTempoDesativadoMensagem": "O tempo foi desativado com sucesso!"
+    },
+    "materia": {
+        "segredo": "Vou te contar um segredo...",
+        "assuntosMaisFrequentes": "Assuntos de {{nome}} que mais caem no vestibular",
+        "nenhumAssunto": "Nenhum assunto cadastrado."
+    },
+    "assuntos": {
+        "Matematica": {
+            "geometria": "Geometria (plana e espacial)",
+            "algebra": "Álgebra (funções, equações, sistemas)",
+            "grandezas": "Grandezas e medidas (razões, proporções, porcentagens)",
+            "estatistica": "Estatística e Probabilidade",
+            "analiseGrafica": "Análise Gráfica e Noções de Lógica"
+        },
+        "Linguas": {
+            "interpretacao": "Interpretação de texto (leitura e compreensão)",
+            "gramatica": "Gramática (morfologia, sintaxe, semântica)",
+            "literatura": "Literatura (movimentos literários, análise de obras)",
+            "compreensao": "Compreensão de texto (inglês ou espanhol)",
+            "vocabulario": "Vocabulário e gramática básica"
+        },
+        "Biologia": {
+            "genetica": "Genética e Evolução",
+            "ecologia": "Ecologia (ambientes, cadeias alimentares)",
+            "citologia": "Citologia (células, tecidos)",
+            "fisiologia": "Fisiologia (seres vivos, sistemas)"
+        },
+        "Quimica": {
+            "geral": "Química Geral (equações, reações)",
+            "fisico": "Físico-Química (reações, estados da matéria)",
+            "organica": "Química Orgânica (estruturas, funções)"
+        },
+        "Fisica": {
+            "mecanica": "Mecânica (leis de Newton, movimento)",
+            "termologia": "Termologia (temperatura, calor)",
+            "optica": "Óptica (espelhos, lentes)",
+            "ondulatoria": "Ondulatória (ondas, som)",
+            "eletromagnetismo": "Eletromagnetismo (ondas eletromagnéticas, circuitos)"
+        },
+        "Historia": {
+            "historiaBrasil": "História do Brasil",
+            "historiaGeral": "História Geral (antiga, medieval)",
+            "idadeModerna": "Idade Moderna e Contemporânea"
+        },
+        "Geografia": {
+            "geografiaBrasil": "Geografia do Brasil (economia, população)",
+            "geopolitica": "Geopolítica (geografia política, relações internacionais)",
+            "cartografia": "Cartografia (leitura de mapas, escalas)",
+            "meioAmbiente": "Meio Ambiente (questões ambientais, sustentabilidade)"
+        },
+        "Filosofia": {
+            "filosofiaAntiga": "Filosofia Antiga (Platão, Aristóteles)",
+            "filosofiaModerna": "Filosofia Moderna (Descartes, Kant)",
+            "eticaPolitica": "Ética e Política (questões éticas, teorias políticas)"
+        },
+        "Sociologia": {
+            "sociologiaClassica": "Sociologia Clássica (Comte, Durkheim)",
+            "culturaSociedade": "Cultura e Sociedade (identidade, cultura)",
+            "cidadania": "Cidadania (questões sociais, direitos)"
+        }
+    },
+    "default_username": "Usuário01",
+    "permission_needed_title": "Permissão necessária",
+    "permission_needed_message": "Permita acesso às imagens.",
+    "fill_correctly_title": "Preencha corretamente",
+    "fill_correctly_message": "O nome não pode estar vazio.",
+    "success_title": "Sucesso",
+    "profile_updated": "Perfil atualizado com sucesso.",
+    "error_title": "Erro",
+    "profile_save_error": "Erro ao salvar perfil.",
+    "logout_error": "Não foi possível sair da conta.",
+    "loading_profile": "Carregando perfil...",
+    "quiz": {
+        "title": "Quiz de perguntas",
+        "phase": "Fase {{number}} - {{name}}",
+        "phaseName": {
+            "1": "Matemática",
+            "2": "Linguagens",
+            "3": "Ciências da Natureza",
+            "4": "Ciências Humanas"
+        },
+        "remaining": "Faltam:",
+        "alert": {
+            "title": "⚠️ Aviso",
+            "message": "Tem certeza que deseja sair do quiz?",
+            "cancel": "Cancelar",
+            "exit": "Sair"
+        },
+        "leaveAlert": {
+            "title": "↔️ Quiz em andamento",
+            "message": "Você confirma que deseja sair do quiz?",
+            "stay": "Ficar",
+            "confirm": "Confirmar"
+        }
+    },
+    "titleRanking": "Ranking total de\nacertos entre matérias",
+    "hits": "Acertos",
+    "subjectsRanking": {
+        "natureza": "Ciências da Natureza",
+        "matematica": "Matemática",
+        "linguagens": "Linguagens"
+    },
+    "slide1": {
+        "title": "Bem-vindo(a) ao VestQuest!",
+        "description": "Eu sou o Vest, sua raposa guia nessa jornada rumo à aprovação!"
+    },
+    "slide2": {
+        "title": "Como o VestQuest funciona?",
+        "description": "Responda quizzes e desbloqueie fases enquanto aprende de verdade!"
+    },
+    "slide3": {
+        "title": "Partiu trilhar o caminho da aprovação?",
+        "description": "Toque em Jogar e embarque comigo nesta jornada épica!"
+    },
+    "play": "Jogar",
+    "outOfLivesTitle": "Você ficou sem vidas!",
+    "outOfLivesMessage": "Errar agora é melhor do que no dia da \nprova. Tente de novo, tenho certeza de \nque na próxima você vai conseguir!"
+}

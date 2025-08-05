@@ -3,6 +3,7 @@ import { View, Text, Image, TouchableOpacity } from "react-native";
 import { styles } from "./styles";
 import { useNavigation } from "@react-navigation/native";
 import type { StackNavigationProp } from '@react-navigation/stack';
+import { useTranslation } from 'react-i18next';
 
 type RootStackParamList = {
   Mapa: undefined;
@@ -10,8 +11,9 @@ type RootStackParamList = {
 
 export default function Vida() {
   const navigation = useNavigation<StackNavigationProp<RootStackParamList, 'Mapa'>>();
+  const { t } = useTranslation();
 
-    useEffect(() => {
+  useEffect(() => {
     const unsubscribe = navigation.addListener("beforeRemove", (e) => {
       e.preventDefault();
     });
@@ -27,18 +29,17 @@ export default function Vida() {
         resizeMode="contain"
       />
 
-      <Text style={styles.title}>Você ficou sem vidas!</Text>
+      <Text style={styles.title}>{t('outOfLivesTitle')}</Text>
 
       <Text style={styles.subtitle}>
-        Errar agora é melhor do que no dia da {"\n"}prova. Tente de novo, tenho
-        certeza de {"\n"}que na próxima você vai conseguir!
+        {t('outOfLivesMessage')}
       </Text>
 
       <TouchableOpacity
         style={styles.button}
         onPress={() => navigation.navigate("Mapa")}
       >
-        <Text style={styles.buttonText}>Voltar ao mapa</Text>
+        <Text style={styles.buttonText}>{t('backToMap')}</Text>
       </TouchableOpacity>
     </View>
   );

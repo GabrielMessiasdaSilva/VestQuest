@@ -3,6 +3,7 @@ import { View, Text, Image, ImageBackground, TouchableOpacity } from "react-nati
 import { styles } from "./styles";
 import { useNavigation } from "@react-navigation/native";
 import type { StackNavigationProp } from "@react-navigation/stack";
+import { useTranslation } from "react-i18next";
 
 import { auth, db } from "../../services/firebaseConfig";
 import { onAuthStateChanged } from "firebase/auth";
@@ -13,10 +14,8 @@ type RootStackParamList = {
 };
 
 export default function Desafio() {
-  const navigation =
-    useNavigation<StackNavigationProp<RootStackParamList, "Mapa">>();
-
-  // Inicializa username como null para não mostrar nome antes de carregar
+  const navigation = useNavigation<StackNavigationProp<RootStackParamList, "Mapa">>();
+  const { t } = useTranslation();
   const [username, setUsername] = useState<string | null>(null);
 
   useEffect(() => {
@@ -40,15 +39,12 @@ export default function Desafio() {
 
   return (
     <View style={styles.container}>
-      {/* Balão de fala */}
       <ImageBackground
         source={require("../../../assets/img/balao_conversa_verde.png")}
         style={styles.speechBubble}
         resizeMode="contain"
       >
-        <Text style={styles.speechText}>
-          O desafio de hoje é {"\n"}responder um quiz em {"\n"}10 minutos
-        </Text>
+        <Text style={styles.speechText}>{t('speech')}</Text>
       </ImageBackground>
 
       <Image
@@ -58,19 +54,18 @@ export default function Desafio() {
       />
 
       <Text style={styles.title}>
-        Olá{username !== null ? `, ${username}!` : "!"}
+        {username !== null ? t('greetingChallenge', { username }) : "t('greetingNoName')"}
       </Text>
 
       <Text style={styles.subtitle}>
-        Você irá voltar ao mapa e escolher a {"\n"}quantidade de tempo indicada
-        para{"\n"} realizar seu quiz
+        {t('instructions')}
       </Text>
 
       <TouchableOpacity
         style={styles.button}
         onPress={() => navigation.navigate("Mapa")}
       >
-        <Text style={styles.buttonText}>Voltar ao mapa</Text>
+        <Text style={styles.buttonText}>{t('backToMap')}</Text>
       </TouchableOpacity>
     </View>
   );

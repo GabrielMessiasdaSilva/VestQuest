@@ -1,6 +1,7 @@
 import React from 'react';
 import { Modal, View, Text, Image, TouchableOpacity } from 'react-native';
 import { redModal } from './styles';
+import { useTranslation } from 'react-i18next';
 
 interface RedModalProps {
     visible: boolean;
@@ -11,6 +12,8 @@ const RedModal: React.FC<RedModalProps> = ({
     visible,
     onContinue
 }) => {
+    const { t } = useTranslation();
+
     return (
         <Modal
             visible={visible}
@@ -28,7 +31,7 @@ const RedModal: React.FC<RedModalProps> = ({
                                 resizeMode="contain"
                             />
                             <Text style={redModal.balaoText}>
-                                Ops! Essa não foi...{'\n'}Você perdeu uma{'\n'}vida, mas o Vest{'\n'}confia em você.
+                                {t('wrongMessage')}
                             </Text>
                             <Image
                                 source={require('../../assets/img/raposa_coracao.png')}
@@ -38,7 +41,7 @@ const RedModal: React.FC<RedModalProps> = ({
                         </View>
                     </View>
                     <TouchableOpacity style={redModal.activateButton} onPress={onContinue}>
-                        <Text style={redModal.activateButtonText}>Continuar</Text>
+                        <Text style={redModal.activateButtonText}>{t('continue')}</Text>
                     </TouchableOpacity>
                 </View>
             </View>

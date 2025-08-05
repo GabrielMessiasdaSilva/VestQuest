@@ -16,7 +16,7 @@ import { useNavigation, CommonActions } from "@react-navigation/native";
 import { auth, db } from "../../services/firebaseConfig";
 import { doc, getDoc, setDoc } from "firebase/firestore";
 import { onAuthStateChanged } from "firebase/auth";
-
+import { useTranslation } from 'react-i18next';
 export default function Perfil() {
   const [username, setUsername] = useState("");
   const [uid, setUid] = useState<string | null>(null);
@@ -25,6 +25,7 @@ export default function Perfil() {
   const [initialUsername, setInitialUsername] = useState("");
   const [initialImage, setInitialImage] = useState<string | null>(null);
   const [isModified, setIsModified] = useState(false);
+  const { t, i18n } = useTranslation();
 
   const navigation = useNavigation();
 
@@ -42,7 +43,7 @@ export default function Perfil() {
           setInitialUsername(data.username || "");
           setInitialImage(data.photoURL || null);
         } else {
-          setUsername("Usuário01");
+          setUsername(t('default_username'));
         }
       } else {
         navigation.navigate("Login" as never);
@@ -57,7 +58,7 @@ export default function Perfil() {
     const permissionResult =
       await ImagePicker.requestMediaLibraryPermissionsAsync();
     if (!permissionResult.granted) {
-      Alert.alert("Permissão necessária", "Permita acesso às imagens.");
+      Alert.alert(t('permission_needed_title'), t('permission_needed_message'));
       return;
     }
 
@@ -76,7 +77,7 @@ export default function Perfil() {
 
   const handleSave = async () => {
     if (!username.trim()) {
-      Alert.alert("Preencha corretamente", "O nome não pode estar vazio.");
+      Alert.alert(t('fill_correctly_title'), t('fill_correctly_message'));
       return;
     }
 
@@ -87,13 +88,13 @@ export default function Perfil() {
         username,
         photoURL: image || "", // Agora armazena o link local da imagem
       });
-      Alert.alert("Sucesso", "Perfil atualizado com sucesso.");
+      Alert.alert(t('success_title'), t('profile_updated'));
       setInitialUsername(username);
       setInitialImage(image);
       setIsModified(false); // Resetando o estado de modificação após salvar
     } catch (error) {
       console.error(error);
-      Alert.alert("Erro", "Erro ao salvar perfil.");
+      Alert.alert(t('error_title'), t('profile_save_error'));
     }
   };
 
@@ -107,7 +108,7 @@ export default function Perfil() {
         })
       );
     } catch (error) {
-      Alert.alert("Erro", "Não foi possível sair da conta.");
+      Alert.alert(t('error_title'), t('logout_error'));
     }
   };
 
@@ -122,7 +123,7 @@ export default function Perfil() {
   if (loading) {
     return (
       <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-        <Text>Carregando perfil...</Text>
+        <Text>{t('loading_profile')}</Text>
       </View>
     );
   }
@@ -142,7 +143,7 @@ export default function Perfil() {
             />
           </TouchableOpacity>
 
-          <Text style={styles.welcomeText}>Olá, {username}!</Text>
+          <Text style={styles.welcomeText}>{t('greeting', { name: username })}</Text>
 
           <View style={styles.inputContainer}>
             <TextInput
@@ -158,32 +159,38 @@ export default function Perfil() {
             onPress={handleSave}
             disabled={!isModified} // Desativa o botão quando não houver alterações
           >
-            <Text style={styles.saveButtonText}>Salvar</Text>
+            <Text style={styles.saveButtonText}>{t('save')}</Text>
           </TouchableOpacity>
         </View>
 
         <View style={styles.menuContainer}>
           <TouchableOpacity style={styles.menuItem}>
             <Feather name="file-text" size={23} color="#000" />
-            <Text style={styles.menuText}>Termos e Condições</Text>
+            <Text style={styles.menuText}>{t('terms')}</Text>
             <Entypo name="chevron-right" size={23} color="#000" />
           </TouchableOpacity>
 
-          <TouchableOpacity style={styles.menuItem}>
+          <TouchableOpacity
+            style={styles.menuItem}
+            onPress={() => {
+              const newLang = i18n.language === 'pt' ? 'en' : 'pt';
+              i18n.changeLanguage(newLang);
+            }}
+          >
             <MaterialIcons name="language" size={20} color="#000" />
-            <Text style={styles.menuText}>Escolher língua</Text>
+            <Text style={styles.menuText}>{t('choose_language')}</Text>
             <Entypo name="chevron-right" size={23} color="#000" />
           </TouchableOpacity>
 
           <TouchableOpacity style={styles.menuItem}>
             <Feather name="share-2" size={23} color="#000" />
-            <Text style={styles.menuText}>Enviar o app para amigos</Text>
+            <Text style={styles.menuText}>{t('send_app')}</Text>
             <Entypo name="chevron-right" size={23} color="#000" />
           </TouchableOpacity>
 
           <TouchableOpacity style={styles.menuItem} onPress={handleLogout}>
             <MaterialIcons name="logout" size={23} color="#000" />
-            <Text style={styles.menuText}>Sair da sua conta</Text>
+            <Text style={styles.menuText}>{t('logout')}</Text>
             <Entypo name="chevron-right" size={23} color="#000" />
           </TouchableOpacity>
         </View>

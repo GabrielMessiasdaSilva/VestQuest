@@ -6,6 +6,7 @@ import { useNavigation, useRoute } from '@react-navigation/native';
 import type { RouteProp } from '@react-navigation/native';
 import type { StackNavigationProp } from '@react-navigation/stack';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import { useTranslation } from 'react-i18next';
 
 type RootStackParamList = {
   Home: undefined;
@@ -16,6 +17,7 @@ export default function Materia() {
   const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
   const route = useRoute<RouteProp<RootStackParamList, 'Materia'>>();
   const { nome, cor, assuntos } = route.params;
+  const { t } = useTranslation();
 
   // Função para renderizar texto com parênteses em cor mais fraca
   const renderAssunto = (texto: string, idxAssunto: number) => {
@@ -68,6 +70,12 @@ export default function Materia() {
   }
   const textColor = getContrastingTextColor(cor);
 
+  function normalizarNomeParaChave(nome: string) {
+    return nome
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+  }
+
   return (
     <View style={{ flex: 1 }}>
       <View style={[styles.navbar, { backgroundColor: cor }]}>
@@ -80,7 +88,9 @@ export default function Materia() {
             onPress={() => navigation.navigate('Home')}
           />
         </TouchableOpacity>
-        <Text style={[styles.title, { color: textColor }]}>{nome}</Text>
+        <Text style={[styles.title, { color: textColor }]}>
+          {t(`subjects.${normalizarNomeParaChave(nome)}`)}
+        </Text>
       </View>
       <ScrollView contentContainerStyle={{ flexGrow: 1, paddingBottom: 80, backgroundColor: '#fff' }} showsVerticalScrollIndicator={false}>
         <View style={styles.container}>
@@ -92,7 +102,7 @@ export default function Materia() {
                 resizeMode="contain"
               />
               <Text style={[styles.balaoText, { color: textColor }]}>
-                Vou te contar um segredo...
+                {t('materia.segredo')}
               </Text>
               <Image
                 source={require('../../../assets/img/raposa_confiante.png')}
@@ -102,12 +112,14 @@ export default function Materia() {
             </View>
           </View>
           <View style={styles.assuntosContainer}>
-            <Text style={styles.assuntos}>Assuntos de {nome} que mais caem no vestibular</Text>
+            <Text style={styles.assuntos}>
+              {t('materia.assuntosMaisFrequentes', { nome })}
+            </Text>
             <View style={[styles.assuntosBox, { borderColor: cor }]}>
               {assuntos && assuntos.length > 0 ? (
-                assuntos.map((a, i) => renderAssunto(a, i))
+                assuntos.map((chave, idx) => renderAssunto(t(chave), idx))
               ) : (
-                <Text style={{ color: '#B5B5B5', fontStyle: 'italic' }}>Nenhum assunto cadastrado.</Text>
+                <Text style={{ color: '#B5B5B5', fontStyle: 'italic' }}>{t('materia.nenhumAssunto')}</Text>
               )}
             </View>
           </View>

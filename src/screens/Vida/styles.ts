@@ -26,15 +26,16 @@ export const styles = StyleSheet.create({
     marginBottom: 24,
   },
   button: {
-    backgroundColor: "#1e3a45",
+    backgroundColor: '#233D4D',
     paddingVertical: 17,
     paddingHorizontal: 100,
-    borderRadius: 8,
-    marginBottom: 48,
+    borderRadius: 16,
+    minWidth: 80,
+    alignItems: 'center',
   },
   buttonText: {
-    color: "#fff",
-    fontWeight: "600",
+    color: '#fff',
+    fontWeight: '600',
     fontSize: 16,
   },
   bottomMenu: {

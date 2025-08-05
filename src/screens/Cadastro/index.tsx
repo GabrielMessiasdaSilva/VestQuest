@@ -10,7 +10,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { auth } from '../../services/firebaseConfig';
 import { doc, setDoc } from 'firebase/firestore'; // ADICIONE no topo do arquivo
 import { db } from '../../services/firebaseConfig'; // ADICIONE também
-
+import { useTranslation } from 'react-i18next';
 import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
@@ -22,20 +22,21 @@ type FormData = {
   confirmPassword: string;
 };
 
-const schema = yup.object({
-  username: yup.string().required('Usuário é obrigatório'),
-  email: yup.string().email('Email inválido').required('Email é obrigatório'),
-  password: yup.string().min(6, 'Min. 6 caracteres').required('Senha é obrigatória'),
-  confirmPassword: yup.string()
-    .oneOf([yup.ref('password')], 'As senhas não coincidem')
-    .required('Confirme a senha'),
-});
+
 
 export default function Cadastro() {
   const navigation = useNavigation();
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirm, setShowConfirm] = useState(false);
-
+  const { t } = useTranslation();
+  const schema = yup.object({
+    username: yup.string().required(t('usernameRequired')),
+    email: yup.string().email(t('invalidEmail')).required(t('emailRequired')),
+    password: yup.string().min(6, t('min6chars')).required(t('passwordRequired')),
+    confirmPassword: yup.string()
+      .oneOf([yup.ref('password')], t('passwordsDontMatch'))
+      .required(t('confirmPasswordRequired')),
+  });
   const {
     control, handleSubmit, formState: { errors }, reset,
   } = useForm<FormData>({
@@ -43,38 +44,38 @@ export default function Cadastro() {
   });
 
   const onSubmit = async (data: FormData) => {
-  try {
-    const userCredential = await createUserWithEmailAndPassword(auth, data.email, data.password);
-    const user = userCredential.user;
+    try {
+      const userCredential = await createUserWithEmailAndPassword(auth, data.email, data.password);
+      const user = userCredential.user;
 
-    // Salva no Firestore
-    await setDoc(doc(db, 'users', user.uid), {
-      username: data.username,
-      email: data.email,
-      // Não salve a senha! Só o necessário, caralho!
-    });
+      // Salva no Firestore
+      await setDoc(doc(db, 'users', user.uid), {
+        username: data.username,
+        email: data.email,
+        // Não salve a senha! Só o necessário, caralho!
+      });
 
-    Alert.alert('Sucesso', 'Conta criada com sucesso!');
-    reset();
-    navigation.navigate('Login' as never);
-  } catch (error: any) {
-    Alert.alert('Erro', error.message);
-  }
-};
+      Alert.alert(t('success'), t('accountCreated'));
+      reset();
+      navigation.navigate('Login' as never);
+    } catch (error: any) {
+      Alert.alert('Erro', error.message);
+    }
+  };
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Cadastrar</Text>
-      <Text style={styles.subtitle}>Crie uma conta para começar sua jornada</Text>
+      <Text style={styles.title}>{t('register')}</Text>
+      <Text style={styles.subtitle}>{t('createAccount')}</Text>
 
-      <Text style={styles.label}>Usuário</Text>
+      <Text style={styles.label}>{t('username')}</Text>
       <Controller
         control={control}
         name="username"
         render={({ field: { onChange, value } }) => (
           <TextInput
             style={styles.input}
-            placeholder="Adicione seu nome de usuário aqui"
+            placeholder={t('usernamePlaceholder')}
             value={value}
             onChangeText={onChange}
           />
@@ -89,7 +90,7 @@ export default function Cadastro() {
         render={({ field: { onChange, value } }) => (
           <TextInput
             style={styles.input}
-            placeholder="Adicione seu email aqui"
+            placeholder={t('emailPlaceholder')}
             value={value}
             onChangeText={onChange}
             keyboardType="email-address"
@@ -119,7 +120,7 @@ export default function Cadastro() {
       </View>
       {errors.password && <Text style={styles.error}>{errors.password.message}</Text>}
 
-      <Text style={styles.label}>Confirmar senha</Text>
+      <Text style={styles.label}>{t('confirmPassword')}</Text>
       <View style={styles.passwordContainer}>
         <Controller
           control={control}
@@ -141,22 +142,22 @@ export default function Cadastro() {
       {errors.confirmPassword && <Text style={styles.error}>{errors.confirmPassword.message}</Text>}
 
       <TouchableOpacity style={styles.loginButton} onPress={handleSubmit(onSubmit)}>
-        <Text style={styles.loginButtonText}>Cadastrar</Text>
+        <Text style={styles.loginButtonText}>{t('register')}</Text>
       </TouchableOpacity>
-    <View style={styles.separatorContainer}>
+      <View style={styles.separatorContainer}>
         <View style={styles.line} />
-        <Text style={styles.orText}>Ou cadastrar com</Text>
+        <Text style={styles.orText}>{t('orRegisterWith')}</Text>
         <View style={styles.line} />
       </View>
 
 
       <Text style={styles.footerText}>
-        Já tem uma conta?{' '}
+        {t('alreadyHaveAccount')}{' '}
         <Text
           style={styles.linkText}
           onPress={() => navigation.navigate('Login' as never)}
         >
-          Login aqui
+          {t('loginHere')}
         </Text>
       </Text>
     </View>
@@ -196,7 +197,7 @@ const styles = StyleSheet.create({
     marginBottom: 24,
   },
   loginButtonText: { color: '#fff', fontWeight: '600', fontSize: 16 },
-    error: { color: 'red', marginBottom: 8 },
+  error: { color: 'red', marginBottom: 8 },
   separatorContainer: {
     flexDirection: 'row',
     alignItems: 'center',

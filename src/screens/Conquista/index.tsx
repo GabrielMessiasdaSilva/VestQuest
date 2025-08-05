@@ -8,12 +8,14 @@ import { styles } from "./styles";
 import { useRoute, RouteProp } from "@react-navigation/native";
 import type { RootStackParamList } from "../../navigation/types";
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useTranslation } from "react-i18next";
 
 export default function ResultadoQuiz() {
+  const { t } = useTranslation();
   const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
   const route = useRoute<RouteProp<RootStackParamList, "Conquista">>();
-  const acertos = route.params?.acertos ?? 0; // pega o valor, ou 0 se não existir
-  const total = 10; // total de perguntas do quiz
+  const acertos = route.params?.acertos ?? 0;
+  const total = 10;
   const porcentagem = acertos / total;
 
   useEffect(() => {
@@ -46,22 +48,19 @@ export default function ResultadoQuiz() {
   return (
     <View style={styles.container}>
       <View style={styles.content}>
-        <Text style={styles.title}>Parabéns!</Text>
-        <Text style={styles.subtitle}>
-          Você completou esse quiz{"\n"}com sucesso!
-        </Text>
+        <Text style={styles.title}>{t('congratsTitle')}</Text>
+        <Text style={styles.subtitle}>{t('quizSuccess')}</Text>
 
         <Text style={styles.resultText}>
-          Acertou {acertos}/{total} questões!
+          {t('correctAnswers', { acertos, total })}
         </Text>
 
         <View style={styles.circleWrapper}>
-          {/* Fundo vermelho: representa o erro */}
           <Progress.Circle
             size={240}
             progress={1}
             thickness={8}
-            color="#D9534F" // vermelho
+            color="#D9534F"
             unfilledColor="#eee"
             borderWidth={0}
           />
@@ -82,14 +81,14 @@ export default function ResultadoQuiz() {
           style={styles.buttonPrimary}
           onPress={() => navigation.navigate('Mapa', { faseConcluida: route.params?.faseConcluida })}
         >
-          <Text style={styles.buttonTextPrimary}>Voltar ao mapa</Text>
+          <Text style={styles.buttonTextPrimary}>{t('backToMap')}</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
           style={styles.buttonSecondary}
           onPress={() => navigation.navigate("Ranking")}
         >
-          <Text style={styles.buttonTextSecondary}>Ver meu ranking</Text>
+          <Text style={styles.buttonTextSecondary}>{t('viewRanking')}</Text>
         </TouchableOpacity>
       </View>
 

@@ -4,6 +4,7 @@ import { styles } from './styles';
 import Footer from '../../components/Footer';
 import { useNavigation } from '@react-navigation/native';
 import type { StackNavigationProp } from '@react-navigation/stack';
+import { useTranslation } from 'react-i18next';
 
 // Definição do tipo de botão de texto
 const buttonTextTypes = ['buttonText', 'buttonTextSecondary'] as const;
@@ -39,59 +40,59 @@ type RootStackParamList = {
 // Função que retorna os assuntos de cada matéria
 const assuntosPorMateria: Record<string, string[]> = {
   'Matemática': [
-    'Geometria (plana e espacial)',
-    'Álgebra (funções, equações, sistemas)',
-    'Grandezas e medidas (razões, proporções, porcentagens)',
-    'Estatística e Probabilidade',
-    'Análise Gráfica e Noções de Lógica',
+    'assuntos.Matematica.geometria',
+    'assuntos.Matematica.algebra',
+    'assuntos.Matematica.grandezas',
+    'assuntos.Matematica.estatistica',
+    'assuntos.Matematica.analiseGrafica',
   ],
   'Língua Portuguesa': [
-    'Interpretação de texto (leitura e compreensão)',
-    'Gramática (morfologia, sintaxe, semântica)',
-    'Literatura (movimentos literários, análise de obras)',
+    'assuntos.Linguas.interpretacao',
+    'assuntos.Linguas.gramatica',
+    'assuntos.Linguas.literatura',
   ],
   'Língua Estrangeira': [
-    'Compreensão de texto (inglês ou espanhol)',
-    'Vocabulário e gramática básica',
+    'assuntos.Linguas.compreensao',
+    'assuntos.Linguas.vocabulario',
   ],
   'Biologia': [
-    'Genética e Evolução',
-    'Ecologia (ambientes, cadeias alimentares)',
-    'Citologia (células, tecidos)',
-    'Fisiologia (seres vivos, sistemas)',
+    'assuntos.Biologia.genetica',
+    'assuntos.Biologia.ecologia',
+    'assuntos.Biologia.citologia',
+    'assuntos.Biologia.fisiologia',
   ],
   'Química': [
-    'Química Geral (equações, reações)',
-    'Físico-Química (reações, estados da matéria)',
-    'Química Orgânica (estruturas, funções)',
+    'assuntos.Quimica.geral',
+    'assuntos.Quimica.fisico',
+    'assuntos.Quimica.organica',
   ],
   'Física': [
-    'Mecânica (leis de Newton, movimento)',
-    'Termologia (temperatura, calor)',
-    'Óptica (espelhos, lentes)',
-    'Ondulatória (ondas, som)',
-    'Eletromagnetismo (ondas eletromagnéticas, circuitos)',
+    'assuntos.Fisica.mecanica',
+    'assuntos.Fisica.termologia',
+    'assuntos.Fisica.optica',
+    'assuntos.Fisica.ondulatoria',
+    'assuntos.Fisica.eletromagnetismo',
   ],
   'História': [
-    'História do Brasil',
-    'História Geral (antiga, medieval)',
-    'Idade Moderna e Contemporânea',
+    'assuntos.Historia.historiaBrasil',
+    'assuntos.Historia.historiaGeral',
+    'assuntos.Historia.idadeModerna',
   ],
   'Geografia': [
-    'Geografia do Brasil (economia, população)',
-    'Geopolítica (geografia política, relações internacionais)',
-    'Cartografia (leitura de mapas, escalas)',
-    'Meio Ambiente (questões ambientais, sustentabilidade)',
+    'assuntos.Geografia.geografiaBrasil',
+    'assuntos.Geografia.geopolitica',
+    'assuntos.Geografia.cartografia',
+    'assuntos.Geografia.meioAmbiente',
   ],
   'Filosofia': [
-    'Filosofia Antiga (Platão, Aristóteles)',
-    'Filosofia Moderna (Descartes, Kant)',
-    'Ética e Política (questões éticas, teorias políticas)',
+    'assuntos.Filosofia.filosofiaAntiga',
+    'assuntos.Filosofia.filosofiaModerna',
+    'assuntos.Filosofia.eticaPolitica',
   ],
   'Sociologia': [
-    'Sociologia Clássica (Comte, Durkheim)',
-    'Cultura e Sociedade (identidade, cultura)',
-    'Cidadania (questões sociais, direitos)',
+    'assuntos.Sociologia.sociologiaClassica',
+    'assuntos.Sociologia.culturaSociedade',
+    'assuntos.Sociologia.cidadania',
   ],
 };
 
@@ -101,6 +102,7 @@ export default function Home() {
   const [busca, setBusca] = useState('');
   const inputRef = useRef<TextInput>(null);
   const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
+  const { t } = useTranslation();
 
   // Filtra as matérias com base na busca, removendo acentos e convertendo para minúsculas
   const materiasFiltradas = materias.filter(m =>
@@ -116,7 +118,7 @@ export default function Home() {
   const matematica = materiasFiltradas.find(m => m.grupo === 'Matemática');
 
   // Estado para controlar o foco do campo de busca
-  const [isFocused, setIsFocused] = useState(true);
+  const [hasInteracted, setHasInteracted] = useState(false);
 
   useEffect(() => {
     const unsubscribe = navigation.addListener("beforeRemove", (e) => {
@@ -130,7 +132,7 @@ export default function Home() {
     <View style={{ flex: 1 }}>
       <ScrollView contentContainerStyle={{ flexGrow: 1, paddingBottom: 80, backgroundColor: '#fff' }} showsVerticalScrollIndicator={false}>
         <View style={styles.container}>
-          <Text style={styles.title}>Estudo de matérias</Text>
+          <Text style={styles.title}>{t('studySubjects')}</Text>
           <TouchableOpacity
             activeOpacity={1}
             style={styles.searchContainer}
@@ -140,13 +142,13 @@ export default function Home() {
             <TextInput
               ref={inputRef}
               style={styles.searchText}
-              placeholder={isFocused ? 'Busque aqui' : ''}
+              placeholder={hasInteracted ? t('searchPlaceholder') : ''}
               value={busca}
               onChangeText={text => setBusca(text.slice(0, 18))}
               maxLength={18}
               placeholderTextColor="#B5B5B5"
               underlineColorAndroid="transparent"
-              onFocus={() => setIsFocused(false)}
+              onFocus={() => setHasInteracted(true)}
             />
           </TouchableOpacity>
           {matematica && (
@@ -155,26 +157,26 @@ export default function Home() {
                 style={[styles.buttonPlaceholder, { backgroundColor: matematica.cor }]}
                 onPress={() => navigation.navigate('Materia', { nome: matematica.nome, cor: matematica.cor, assuntos: assuntosPorMateria[matematica.nome] || [] })}
               >
-                <Text style={styles[matematica.tipo]}>{matematica.nome}</Text>
+                <Text style={styles[matematica.tipo]}>{t(`subjects.${removerAcentos(matematica.nome)}`)}</Text>
               </TouchableOpacity>
             </View>
           )}
           {materiasPorGrupo.filter(({ materias }) => materias.length > 0).map(({ grupo, materias }) => (
             <View key={grupo} style={{ width: '100%', alignItems: 'center' }}>
-              <Text style={styles.subtitle}>{grupo}</Text>
+              <Text style={styles.subtitle}>{t(`groups.${removerAcentos(grupo)}`)}</Text>
               {materias.map(m => (
                 <TouchableOpacity
                   key={m.nome}
                   style={[styles.buttonPlaceholder, { backgroundColor: m.cor }]}
                   onPress={() => navigation.navigate('Materia', { nome: m.nome, cor: m.cor, assuntos: assuntosPorMateria[m.nome] || [] })}
                 >
-                  <Text style={styles[m.tipo]}>{m.nome}</Text>
+                  <Text style={styles[m.tipo]}>{t(`subjects.${removerAcentos(m.nome)}`)}</Text>
                 </TouchableOpacity>
               ))}
             </View>
           ))}
           {materiasFiltradas.length === 0 && (
-            <Text style={{ color: '#B5B5B5', marginTop: 24 }}>Nenhuma matéria encontrada</Text>
+            <Text style={{ color: '#B5B5B5', marginTop: 24 }}>{t('noResults')}</Text>
           )}
         </View>
       </ScrollView>

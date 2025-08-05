@@ -1,16 +1,16 @@
 import React from 'react';
 import { Modal, View, Text, Image, TouchableOpacity } from 'react-native';
 import { greenModal } from './styles';
+import { useTranslation } from 'react-i18next';
 
 interface GreenModalProps {
     visible: boolean;
     onContinue: () => void;
 }
 
-const GreenModal: React.FC<GreenModalProps> = ({
-    visible,
-    onContinue
-}) => {
+const GreenModal: React.FC<GreenModalProps> = ({ visible, onContinue }) => {
+    const { t } = useTranslation();
+
     return (
         <Modal
             visible={visible}
@@ -28,7 +28,7 @@ const GreenModal: React.FC<GreenModalProps> = ({
                                 resizeMode="contain"
                             />
                             <Text style={greenModal.balaoText}>
-                                UAU, você ACERTOU!{'\n'}O Vest tá orgulhoso!
+                                {t('correctMessage')}
                             </Text>
                             <Image
                                 source={require('../../assets/img/raposa_estrela.png')}
@@ -38,7 +38,7 @@ const GreenModal: React.FC<GreenModalProps> = ({
                         </View>
                     </View>
                     <TouchableOpacity style={greenModal.activateButton} onPress={onContinue}>
-                        <Text style={greenModal.activateButtonText}>Continuar</Text>
+                        <Text style={greenModal.activateButtonText}>{t('continue')}</Text>
                     </TouchableOpacity>
                 </View>
             </View>

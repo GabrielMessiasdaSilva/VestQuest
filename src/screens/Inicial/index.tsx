@@ -2,9 +2,11 @@ import React from 'react';
 import { View, Text, TouchableOpacity, Image } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { styles } from './styles';
+import { useTranslation } from 'react-i18next';
 
 export default function Inicial() {
   const navigation = useNavigation<any>();
+  const { t } = useTranslation();
 
   return (
     <View style={styles.container}>
@@ -12,10 +14,8 @@ export default function Inicial() {
         <Image source={require('../../../assets/img/circulo_azul.png')} style={styles.circleBg} />
         <Image source={require('../../../assets/img/raposa_mascote.png')} style={styles.logo} />
       </View>
-      <Text style={styles.title}>Antes de começar…</Text>
-      <Text style={styles.subtitle}>
-        Crie sua conta ou faça login para salvar seu progresso e continuar sua jornada com o Vest!
-      </Text>
+      <Text style={styles.title}>{t('startTitle')}</Text>
+      <Text style={styles.subtitle}>{t('startSubtitle')}</Text>
       <View style={styles.buttonRow}>
         <TouchableOpacity
           style={[styles.button, styles.loginButton]}
@@ -27,7 +27,7 @@ export default function Inicial() {
           style={[styles.button, styles.registerButton]}
           onPress={() => navigation.navigate('Cadastro')}
         >
-          <Text style={[styles.buttonText, styles.registerText]}>Cadastrar</Text>
+          <Text style={[styles.buttonText, styles.registerText]}>{t('register')}</Text>
         </TouchableOpacity>
       </View>
     </View>

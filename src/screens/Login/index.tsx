@@ -13,21 +13,24 @@ import * as yup from 'yup';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../services/firebaseConfig';
 
+import { useTranslation } from 'react-i18next';
 
 type FormData = {
   email: string;
   password: string;
 };
 
-const schema = yup.object({
-  email: yup.string().email('Email inválido').required('Email é obrigatório'),
-  password: yup.string().required('Senha é obrigatória'),
-});
+
 
 export default function Login() {
   const navigation = useNavigation();
   const [showPassword, setShowPassword] = useState(false);
+  const { t } = useTranslation();
 
+  const schema = yup.object({
+    email: yup.string().email(t('login.emailInvalido')).required(t('login.emailObrigatorio')),
+    password: yup.string().required(t('login.senhaObrigatoria')),
+  });
   const {
     control, handleSubmit, formState: { errors },
   } = useForm<FormData>({
@@ -37,16 +40,16 @@ export default function Login() {
   const onSubmit = async (data: FormData) => {
     try {
       await signInWithEmailAndPassword(auth, data.email, data.password);
-//navigation.navigate('Main', { screen: 'Home' });
-navigation.navigate('Home' as never); // redireciona para a tela Home
+      //navigation.navigate('Main', { screen: 'Home' });
+      navigation.navigate('Home' as never); // redireciona para a tela Home
 
 
     } catch (error: any) {
       console.error(error);
-      let message = 'Erro ao fazer login.';
-      if (error.code === 'auth/user-not-found') message = 'Usuário não encontrado.';
-      else if (error.code === 'auth/wrong-password') message = 'Senha incorreta.';
-      Alert.alert('Erro', message);
+      let message = t('login.erroGenerico');
+      if (error.code === 'auth/user-not-found') message = t('login.usuarioNaoEncontrado');
+      else if (error.code === 'auth/wrong-password') message = t('login.senhaIncorreta');
+      Alert.alert(t('login.erro'), message);
     }
   };
 
@@ -60,7 +63,7 @@ navigation.navigate('Home' as never); // redireciona para a tela Home
       </TouchableOpacity>
 
       <Text style={styles.title}>Login</Text>
-      <Text style={styles.subtitle}>Por favor, faça login com sua conta</Text>
+      <Text style={styles.subtitle}>{t('login.subtitulo')}</Text>
 
       <Text style={styles.label}>Email</Text>
       <Controller
@@ -68,7 +71,7 @@ navigation.navigate('Home' as never); // redireciona para a tela Home
         name="email"
         render={({ field: { onChange, value } }) => (
           <TextInput
-            placeholder="Adicione seu email aqui"
+            placeholder={t('login.placeholderEmail')}
             style={styles.input}
             keyboardType="email-address"
             placeholderTextColor="#999"
@@ -80,7 +83,7 @@ navigation.navigate('Home' as never); // redireciona para a tela Home
       />
       {errors.email && <Text style={styles.error}>{errors.email.message}</Text>}
 
-      <Text style={styles.label}>Senha</Text>
+      <Text style={styles.label}>{t('login.senha')}</Text>
       <View style={styles.passwordContainer}>
         <Controller
           control={control}
@@ -107,24 +110,21 @@ navigation.navigate('Home' as never); // redireciona para a tela Home
         style={styles.loginButton}
         onPress={handleSubmit(onSubmit)}
       >
-        <Text style={styles.loginButtonText}>Entrar</Text>
+        <Text style={styles.loginButtonText}>{t('login.entrar')}</Text>
       </TouchableOpacity>
 
       <View style={styles.separatorContainer}>
         <View style={styles.line} />
-        <Text style={styles.orText}>Ou entre com</Text>
+        <Text style={styles.orText}>{t('login.ouEntreCom')}</Text>
         <View style={styles.line} />
       </View>
 
-  
+
 
       <Text style={styles.footerText}>
-        Não possui uma conta?{' '}
-        <Text
-          style={styles.linkText}
-          onPress={() => navigation.navigate('Cadastro' as never)}
-        >
-          Cadastrar aqui
+        {t('login.naoTemConta')}{' '}
+        <Text style={styles.linkText} onPress={() => navigation.navigate('Cadastro' as never)}>
+          {t('login.cadastrarAqui')}
         </Text>
       </Text>
     </View>

@@ -10,6 +10,7 @@ import type { Pergunta } from '../../data/perguntasQuiz';
 import { useRoute, useNavigation, useFocusEffect } from '@react-navigation/native';
 import type { RouteProp, NavigationProp } from '@react-navigation/native';
 import type { RootStackParamList } from '../../navigation/types';
+import { useTranslation } from 'react-i18next';
 
 export default function Quiz() {
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
@@ -29,6 +30,7 @@ export default function Quiz() {
   const [redModalVisible, setRedModalVisible] = useState(false);
   const [endTimeModalVisible, setEndTimeModalVisible] = useState(false);
   const scrollRef = React.useRef<ScrollView>(null);
+  const { t } = useTranslation();
 
   useEffect(() => {
     if (tempoAtivado && tempoRestante > 0) {
@@ -140,13 +142,13 @@ export default function Quiz() {
       const onBackPress = () => {
         pausarTempo();
         // Se quiser permitir com confirmação:
-        Alert.alert('⚠️ Aviso', 'Tem certeza que deseja sair do quiz?', [
+        Alert.alert(t('quiz.alert.title'), t('quiz.alert.message'), [
           {
-            text: 'Cancelar', style: 'cancel', onPress: () => {
+            text: t('quiz.alert.cancel'), style: 'cancel', onPress: () => {
               retomarTempo();
             },
           },
-          { text: 'Sair', style: 'destructive', onPress: () => navigation.goBack() },
+          { text: t('quiz.alert.exit'), style: 'destructive', onPress: () => navigation.goBack() },
         ]);
         return true;
       };
@@ -158,13 +160,13 @@ export default function Quiz() {
         e.preventDefault();
         pausarTempo();
         // Mostra alerta se quiser confirmar saída:
-        Alert.alert('↔️ Quiz em andamento', 'Você confirma que deseja sair do quiz?', [
+        Alert.alert(t('quiz.leaveAlert.title'), t('quiz.leaveAlert.message'), [
           {
-            text: 'Ficar', style: 'cancel', onPress: () => {
+            text: t('quiz.leaveAlert.stay'), style: 'cancel', onPress: () => {
               retomarTempo();
             }
           },
-          { text: 'Confirmar', style: 'destructive', onPress: () => navigation.dispatch(e.data.action) }
+          { text: t('quiz.leaveAlert.confirm'), style: 'destructive', onPress: () => navigation.dispatch(e.data.action) }
         ]);
       });
 
@@ -190,7 +192,7 @@ export default function Quiz() {
     <View style={{ flex: 1 }}>
       <ScrollView ref={scrollRef} contentContainerStyle={{ flexGrow: 1, paddingBottom: 80, backgroundColor: '#fff' }} showsVerticalScrollIndicator={false}>
         <View style={styles.container}>
-          <Text style={styles.title}>Quiz de perguntas</Text>
+          <Text style={styles.title}>{t('quiz.title')}</Text>
           <View style={styles.statusBar}>
             <Text style={styles.questionCount}>{perguntaExibida}/{totalPerguntas}</Text>
             <View style={styles.heartsContainer}>
@@ -209,7 +211,7 @@ export default function Quiz() {
                 <>
                   <Image source={require('../../../assets/img/relogio.png')} style={styles.timerIcon} />
                   <View style={styles.timerTextContainer}>
-                    <Text style={styles.timerLabel}>Faltam:</Text>
+                    <Text style={styles.timerLabel}>{t('quiz.remaining')}</Text>
                     <Text style={styles.timerText}>{minutos}min{segundos}s</Text>
                   </View>
                 </>
@@ -219,7 +221,7 @@ export default function Quiz() {
             </View>
           </View>
           <View style={styles.question}>
-            <Text style={styles.phase}>Fase {fase} - {nomesFases[fase]}</Text>
+            <Text style={styles.phase}>{t('quiz.phase', { number: fase, name: t(`quiz.phaseName.${fase}`) })}</Text>
             {pergunta && (
               <View>
                 <Text style={styles.questionText}>{`(ENEM ${pergunta.ano}) ${pergunta.texto}`}</Text>
