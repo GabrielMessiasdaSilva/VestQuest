@@ -7,6 +7,8 @@ import {
   ScrollView,
   Image,
   Alert,
+  Modal,
+  ActivityIndicator,
 } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 import { Feather, Entypo, MaterialIcons } from "@expo/vector-icons";
@@ -26,6 +28,7 @@ export default function Perfil() {
   const [initialImage, setInitialImage] = useState<string | null>(null);
   const [isModified, setIsModified] = useState(false);
   const { t, i18n } = useTranslation();
+  const [isLoggingOut, setIsLoggingOut] = useState(false);
 
   const navigation = useNavigation();
 
@@ -103,15 +106,21 @@ export default function Perfil() {
   };
 
   const handleLogout = async () => {
+    setIsLoggingOut(true); // Mostra o modal
+
     try {
-      await auth.signOut();
-      navigation.dispatch(
-        CommonActions.reset({
-          index: 0,
-          routes: [{ name: "Login" }],
-        })
-      );
+      // Aguarde um pouco para a animação aparecer (ex: 1.5 segundos)
+      setTimeout(async () => {
+        await auth.signOut();
+        navigation.dispatch(
+          CommonActions.reset({
+            index: 0,
+            routes: [{ name: "Login" }],
+          })
+        );
+      }, 1300);
     } catch (error) {
+      setIsLoggingOut(false); // Oculta o modal em caso de erro
       Alert.alert(t("error_title"), t("logout_error"));
     }
   };
@@ -213,6 +222,32 @@ export default function Perfil() {
           </TouchableOpacity>
         </View>
       </ScrollView>
+
+      <Modal transparent={true} animationType="fade" visible={isLoggingOut}>
+        <View
+          style={{
+            flex: 1,
+            backgroundColor: "rgba(0,0,0,0.5)",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <View
+            style={{
+              backgroundColor: "#fff",
+              padding: 30,
+              borderRadius: 10,
+              alignItems: "center",
+            }}
+          >
+            <ActivityIndicator size="large" color="#000" />
+            <Text style={{ marginTop: 15, fontSize: 16 }}>
+              {t("signing_out") || "Saindo..."}
+            </Text>
+          </View>
+        </View>
+      </Modal>
+
       <Footer />
     </View>
   );
