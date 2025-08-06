@@ -14,6 +14,8 @@ import { useTranslation } from 'react-i18next';
 import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
+import CustomAlert from '../../components/SuccessAlert'; // ajuste o caminho conforme o local do arquivo
+
 
 type FormData = {
   username: string;
@@ -25,6 +27,19 @@ type FormData = {
 
 
 export default function Cadastro() {
+  const [alertVisible, setAlertVisible] = useState(false);
+  const [alertTitle, setAlertTitle] = useState('');
+  const [alertMessage, setAlertMessage] = useState('');
+
+  const showAlert = (title: string, message: string) => {
+    setAlertTitle(title);
+    setAlertMessage(message);
+    setAlertVisible(true);
+  };
+const onConfirmAlert = () => {
+  setAlertVisible(false);
+  navigation.navigate('Login' as never);
+};
   const navigation = useNavigation();
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirm, setShowConfirm] = useState(false);
@@ -55,14 +70,13 @@ export default function Cadastro() {
         // Não salve a senha! Só o necessário, caralho!
       });
 
-      Alert.alert(t('success'), t('accountCreated'));
+       showAlert(t('success'), t('accountCreated'));
       reset();
-      navigation.navigate('Login' as never);
+
     } catch (error: any) {
-      Alert.alert('Erro', error.message);
+      showAlert('Erro', error.message);
     }
   };
-
   return (
     <View style={styles.container}>
       <Text style={styles.title}>{t('register')}</Text>
@@ -160,6 +174,15 @@ export default function Cadastro() {
           {t('loginHere')}
         </Text>
       </Text>
+
+  <CustomAlert
+  visible={alertVisible}
+  title={alertTitle}
+  message={alertMessage}
+  onConfirm={onConfirmAlert}
+  duration={3500}
+/>
+
     </View>
   );
 }
