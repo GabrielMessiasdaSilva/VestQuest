@@ -197,7 +197,8 @@
     "subjectsRanking": {
         "natureza": "Natural Sciences",
         "matematica": "Mathematics",
-        "linguagens": "Languages"
+        "linguagens": "Languages",
+        "humanas": "Human Sciences"
     },
     "slide1": {
         "title": "Welcome to VestQuest!",
