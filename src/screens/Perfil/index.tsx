@@ -179,7 +179,10 @@ export default function Perfil() {
             <Entypo name="chevron-right" size={23} color="#000" />
           </TouchableOpacity>
 
-          <TouchableOpacity style={styles.menuItem}>
+          <TouchableOpacity
+            style={styles.menuItem}
+            onPress={() => navigation.navigate("Termos" as never)}
+          >
             <Feather name="file-text" size={23} color="#000" />
             <Text style={styles.menuText}>{t("terms")}</Text>
             <Entypo name="chevron-right" size={23} color="#000" />

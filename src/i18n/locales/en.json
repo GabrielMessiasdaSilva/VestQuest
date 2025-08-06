@@ -34,8 +34,8 @@
     "confirmPasswordRequired": "Confirm the password",
     "success": "Success",
     "accountCreated": "Account created successfully!",
+    "accountAlreadyInUse": "Email already in use!",
     "error": "Error",
-    "orRegisterWith": "Or register with",
     "alreadyHaveAccount": "Already have an account?",
     "loginHere": "Login here",
     "congratsTitle": "Congratulations!",
@@ -71,7 +71,6 @@
         "subtitulo": "Please log in with your account",
         "senha": "Password",
         "entrar": "Sign in",
-        "ouEntreCom": "Or sign in with",
         "naoTemConta": "Don't have an account?",
         "cadastrarAqui": "Register here",
         "placeholderEmail": "Enter your email here",
@@ -214,5 +213,53 @@
     },
     "play": "Play",
     "outOfLivesTitle": "You're out of lives!",
-    "outOfLivesMessage": "Making mistakes now is better than on exam day.\nTry again — I’m sure next time you’ll succeed!"
+    "outOfLivesMessage": "Making mistakes now is better than on exam day.\nTry again — I’m sure next time you’ll succeed!",
+    "termsNConditions": {
+        "title": "Terms and Conditions of Use",
+        "last_update": "Last update: 08/06/2025",
+        "intro": "By using this app, you agree to the following terms and conditions. Please read them carefully before using.",
+        "sections": {
+            "objective": {
+                "title": "1. Purpose of the App",
+                "content": "Our app aims to help students preparing for the ENEM exam by offering a practical, fun, and efficient study platform."
+            },
+            "usage": {
+                "title": "2. Permitted Use",
+                "content": "You agree to use the app only for educational purposes, not to interfere with its functioning, and not to use it for commercial purposes without permission."
+            },
+            "account": {
+                "title": "3. User Account",
+                "content": "By creating an account, you are responsible for keeping your information accurate. Do not share your account with others."
+            },
+            "privacy": {
+                "title": "4. Privacy and Data",
+                "content": "Your data is securely stored and used only to improve your experience with the app."
+            },
+            "intellectual": {
+                "title": "5. Intellectual Property",
+                "content": "All content in the app is protected by copyright and may not be copied or distributed without permission."
+            },
+            "updates": {
+                "title": "6. App Modifications",
+                "content": "We may update or improve the app at any time, without prior notice."
+            },
+            "responsibility": {
+                "title": "7. Limitation of Responsibility",
+                "content": "The app is a support tool and does not guarantee success on the ENEM exam."
+            },
+            "account_deletion": {
+                "title": "8. Account Deletion",
+                "content": "You can delete your account at any time. Accounts violating the terms may be suspended."
+            },
+            "contact": {
+                "title": "9. Contact",
+                "content": "Questions? Contact us at: support@enemapp.com"
+            },
+            "acceptance": "By continuing to use the app, you agree to these terms."
+        }
+    },
+    "iAgreeToThe": "I agree to the",
+    "termsOfUse": "Terms of Use",
+    "termsRequiredTitle": "Terms not accepted",
+    "termsRequiredMessage": "You need to accept the Terms of Use to continue."
 }

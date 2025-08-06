@@ -7,13 +7,14 @@ import {
   Animated,
   Easing,
 } from 'react-native';
+import { SuccessAlert } from './styles'
 
 type CustomAlertProps = {
   visible: boolean;
   title: string;
   message: string;
-  onConfirm: () => void;  // chamado quando terminar o tempo
-  duration?: number; // duração em ms (ex: 3000)
+  onConfirm: () => void;
+  duration?: number;
 };
 
 export default function CustomAlert({
@@ -60,62 +61,17 @@ export default function CustomAlert({
 
   return (
     <Modal transparent visible={visible} animationType="none">
-      <Animated.View style={[styles.overlay, { opacity }]}>
-        <View style={styles.alertBox}>
-          <Text style={styles.title}>{title}</Text>
-          <Text style={styles.message}>{message}</Text>
+      <Animated.View style={[SuccessAlert.overlay, { opacity }]}>
+        <View style={SuccessAlert.alertBox}>
+          <Text style={SuccessAlert.title}>{title}</Text>
+          <Text style={SuccessAlert.message}>{message}</Text>
 
           {/* Barra verde de progresso */}
-          <View style={styles.progressBarBackground}>
-            <Animated.View style={[styles.progressBarFill, { width: progressWidth }]} />
+          <View style={SuccessAlert.progressBarBackground}>
+            <Animated.View style={[SuccessAlert.progressBarFill, { width: progressWidth }]} />
           </View>
         </View>
       </Animated.View>
     </Modal>
   );
 }
-
-const styles = StyleSheet.create({
-  overlay: {
-    flex: 1,
-    backgroundColor: 'rgba(30, 30, 30, 0.6)',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  alertBox: {
-    width: '80%',
-    backgroundColor: '#fff',
-    borderRadius: 12,
-    paddingVertical: 24,
-    paddingHorizontal: 20,
-    elevation: 10,
-    shadowColor: '#000',
-    shadowOpacity: 0.3,
-    shadowRadius: 10,
-    shadowOffset: { width: 0, height: 4 },
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: '700',
-    color: '#1A3C40',
-    marginBottom: 12,
-    textAlign: 'center',
-  },
-  message: {
-    fontSize: 16,
-    color: '#444',
-    marginBottom: 24,
-    textAlign: 'center',
-    lineHeight: 22,
-  },
-  progressBarBackground: {
-    height: 4,
-    backgroundColor: '#d0e8dc',
-    borderRadius: 4,
-    overflow: 'hidden',
-  },
-  progressBarFill: {
-    height: 4,
-    backgroundColor: '#1A3C40',
-  },
-});

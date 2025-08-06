@@ -1,4 +1,3 @@
-// src/screens/Cadastro.tsx
 import React, { useState } from 'react';
 import {
   View, Text, TextInput, StyleSheet, TouchableOpacity, Alert,
@@ -8,14 +7,14 @@ import { useNavigation } from '@react-navigation/native';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { auth } from '../../services/firebaseConfig';
-import { doc, setDoc } from 'firebase/firestore'; // ADICIONE no topo do arquivo
-import { db } from '../../services/firebaseConfig'; // ADICIONE também
+import { doc, setDoc } from 'firebase/firestore';
+import { db } from '../../services/firebaseConfig';
 import { useTranslation } from 'react-i18next';
 import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
-import CustomAlert from '../../components/SuccessAlert'; // ajuste o caminho conforme o local do arquivo
-
+import CustomAlert from '../../components/SuccessAlert';
+import { styles } from './styles';
 
 type FormData = {
   username: string;
@@ -24,22 +23,23 @@ type FormData = {
   confirmPassword: string;
 };
 
-
-
 export default function Cadastro() {
   const [alertVisible, setAlertVisible] = useState(false);
   const [alertTitle, setAlertTitle] = useState('');
   const [alertMessage, setAlertMessage] = useState('');
+  const [termsAccepted, setTermsAccepted] = useState(false);
 
   const showAlert = (title: string, message: string) => {
     setAlertTitle(title);
     setAlertMessage(message);
     setAlertVisible(true);
   };
-const onConfirmAlert = () => {
-  setAlertVisible(false);
-  navigation.navigate('Login' as never);
-};
+
+  const onConfirmAlert = () => {
+    setAlertVisible(false);
+    navigation.navigate('Login' as never);
+  };
+
   const navigation = useNavigation();
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirm, setShowConfirm] = useState(false);
@@ -52,6 +52,7 @@ const onConfirmAlert = () => {
       .oneOf([yup.ref('password')], t('passwordsDontMatch'))
       .required(t('confirmPasswordRequired')),
   });
+
   const {
     control, handleSubmit, formState: { errors }, reset,
   } = useForm<FormData>({
@@ -67,18 +68,23 @@ const onConfirmAlert = () => {
       await setDoc(doc(db, 'users', user.uid), {
         username: data.username,
         email: data.email,
-        // Não salve a senha! Só o necessário, caralho!
       });
 
-       showAlert(t('success'), t('accountCreated'));
+      showAlert(t('success'), t('accountCreated'));
       reset();
 
     } catch (error: any) {
-      showAlert('Erro', error.message);
+      showAlert(t('error'), t('accountAlreadyInUse'));
     }
   };
   return (
     <View style={styles.container}>
+      <TouchableOpacity
+        style={styles.backButton}
+        onPress={() => navigation.goBack()}
+      >
+        <Ionicons name="chevron-back" size={24} color="#000" />
+      </TouchableOpacity>
       <Text style={styles.title}>{t('register')}</Text>
       <Text style={styles.subtitle}>{t('createAccount')}</Text>
 
@@ -155,15 +161,41 @@ const onConfirmAlert = () => {
       </View>
       {errors.confirmPassword && <Text style={styles.error}>{errors.confirmPassword.message}</Text>}
 
-      <TouchableOpacity style={styles.loginButton} onPress={handleSubmit(onSubmit)}>
-        <Text style={styles.loginButtonText}>{t('register')}</Text>
-      </TouchableOpacity>
-      <View style={styles.separatorContainer}>
-        <View style={styles.line} />
-        <Text style={styles.orText}>{t('orRegisterWith')}</Text>
-        <View style={styles.line} />
+      <View style={styles.checkboxContainer}>
+        <TouchableOpacity
+          style={styles.checkbox}
+          onPress={() => setTermsAccepted(!termsAccepted)}
+        >
+          <Ionicons
+            name={termsAccepted ? 'checkbox' : 'square-outline'}
+            size={22}
+            color="#333"
+          />
+        </TouchableOpacity>
+        <Text style={styles.checkboxText}>
+          {t('iAgreeToThe')}{' '}
+          <Text
+            style={styles.linkTextTerms}
+            onPress={() => navigation.navigate('Termos' as never)}
+          >
+            {t('termsOfUse')}
+          </Text>
+        </Text>
       </View>
 
+      <TouchableOpacity
+        style={[styles.loginButton, !termsAccepted && { opacity: 0.5 }]}
+        onPress={() => {
+          if (!termsAccepted) {
+            Alert.alert(t('termsRequiredTitle'), t('termsRequiredMessage'));
+            return;
+          }
+          handleSubmit(onSubmit)();
+        }}
+        disabled={!termsAccepted}
+      >
+        <Text style={styles.loginButtonText}>{t('register')}</Text>
+      </TouchableOpacity>
 
       <Text style={styles.footerText}>
         {t('alreadyHaveAccount')}{' '}
@@ -175,72 +207,14 @@ const onConfirmAlert = () => {
         </Text>
       </Text>
 
-  <CustomAlert
-  visible={alertVisible}
-  title={alertTitle}
-  message={alertMessage}
-  onConfirm={onConfirmAlert}
-  duration={3500}
-/>
+      <CustomAlert
+        visible={alertVisible}
+        title={alertTitle}
+        message={alertMessage}
+        onConfirm={onConfirmAlert}
+        duration={3500}
+      />
 
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: { flex: 1, padding: 24, backgroundColor: '#fff' },
-  backButton: { marginTop: 16, marginBottom: 16 },
-  title: { fontSize: 28, fontWeight: '600', textAlign: 'center', marginBottom: 4 },
-  subtitle: { textAlign: 'center', marginBottom: 32, color: '#444' },
-  label: { fontSize: 14, marginBottom: 4, color: '#333' },
-  input: {
-    borderWidth: 1,
-    borderColor: '#ccc',
-    padding: 14,
-    borderRadius: 8,
-    marginBottom: 16,
-  },
-  passwordContainer: {
-    flexDirection: 'row',
-    borderWidth: 1,
-    borderColor: '#ccc',
-    paddingHorizontal: 14,
-    paddingVertical: 12,
-    borderRadius: 8,
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    marginBottom: 24,
-  },
-  passwordInput: { flex: 1, fontSize: 16 },
-  loginButton: {
-    backgroundColor: '#1A3C40',
-    padding: 16,
-    borderRadius: 8,
-    alignItems: 'center',
-    marginBottom: 24,
-  },
-  loginButtonText: { color: '#fff', fontWeight: '600', fontSize: 16 },
-  error: { color: 'red', marginBottom: 8 },
-  separatorContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 24,
-  },
-  line: { flex: 1, height: 1, backgroundColor: '#ccc' },
-  orText: { marginHorizontal: 8, color: '#666' },
-  googleButton: {
-    flexDirection: 'row',
-    borderWidth: 1,
-    borderColor: '#ccc',
-    padding: 14,
-    borderRadius: 8,
-    justifyContent: 'center',
-    alignItems: 'center',
-    gap: 8,
-    marginBottom: 32,
-  },
-  googleButtonText: { fontWeight: '500', fontSize: 15 },
-  footerText: { textAlign: 'center', color: '#333' },
-  linkText: { color: '#1A3C40', fontWeight: '600' },
-});
-

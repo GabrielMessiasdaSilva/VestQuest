@@ -20,6 +20,7 @@
     "deactivate": "Desativar",
     "register": "Cadastrar",
     "createAccount": "Crie uma conta para começar sua jornada",
+    "accountAlreadyInUse": "Email já está em uso!",
     "username": "Usuário",
     "usernamePlaceholder": "Adicione seu nome de usuário aqui",
     "emailPlaceholder": "Adicione seu email aqui",
@@ -35,7 +36,6 @@
     "success": "Sucesso",
     "accountCreated": "Conta criada com sucesso!",
     "error": "Erro",
-    "orRegisterWith": "Ou cadastrar com",
     "alreadyHaveAccount": "Já tem uma conta?",
     "loginHere": "Login aqui",
     "congratsTitle": "Parabéns!",
@@ -71,7 +71,6 @@
         "subtitulo": "Por favor, faça login com sua conta",
         "senha": "Senha",
         "entrar": "Entrar",
-        "ouEntreCom": "Ou entre com",
         "naoTemConta": "Não possui uma conta?",
         "cadastrarAqui": "Cadastrar aqui",
         "placeholderEmail": "Adicione seu email aqui",
@@ -197,7 +196,7 @@
     "subjectsRanking": {
         "natureza": "Ciências da Natureza",
         "matematica": "Matemática",
-        "linguagens": "Linguagens", 
+        "linguagens": "Linguagens",
         "humanas": "Ciências Humanas"
     },
     "slide1": {
@@ -214,5 +213,53 @@
     },
     "play": "Jogar",
     "outOfLivesTitle": "Você ficou sem vidas!",
-    "outOfLivesMessage": "Errar agora é melhor do que no dia da \nprova. Tente de novo, tenho certeza de \nque na próxima você vai conseguir!"
+    "outOfLivesMessage": "Errar agora é melhor do que no dia da \nprova. Tente de novo, tenho certeza de \nque na próxima você vai conseguir!",
+    "termsNConditions": {
+        "title": "Termos e Condições de Uso",
+        "last_update": "Última atualização: 06/08/2025",
+        "intro": "Ao utilizar este aplicativo, você concorda com os seguintes termos e condições. Leia atentamente antes de usar.",
+        "sections": {
+            "objective": {
+                "title": "1. Objetivo do Aplicativo",
+                "content": "Nosso app tem como objetivo auxiliar estudantes que se preparam para o Exame Nacional do Ensino Médio (ENEM), oferecendo uma plataforma de estudo prática, divertida e eficiente."
+            },
+            "usage": {
+                "title": "2. Uso Permitido",
+                "content": "Você se compromete a usar o aplicativo apenas para fins educacionais, não interferir em seu funcionamento e não utilizá-lo para fins comerciais sem autorização."
+            },
+            "account": {
+                "title": "3. Conta do Usuário",
+                "content": "Ao criar sua conta, você é responsável por manter suas informações corretas. Não compartilhe sua conta com outras pessoas."
+            },
+            "privacy": {
+                "title": "4. Privacidade e Dados",
+                "content": "Seus dados são armazenados com segurança e usados apenas para melhorar sua experiência no app."
+            },
+            "intellectual": {
+                "title": "5. Propriedade Intelectual",
+                "content": "Todo o conteúdo do app é protegido por direitos autorais e não pode ser copiado ou distribuído sem permissão."
+            },
+            "updates": {
+                "title": "6. Modificações no App",
+                "content": "Podemos realizar atualizações e melhorias a qualquer momento, sem aviso prévio."
+            },
+            "responsibility": {
+                "title": "7. Limitação de Responsabilidade",
+                "content": "O app é uma ferramenta de apoio ao estudo e não garante aprovação no ENEM."
+            },
+            "account_deletion": {
+                "title": "8. Cancelamento de Conta",
+                "content": "Você pode excluir sua conta a qualquer momento. Contas que violarem os termos poderão ser suspensas."
+            },
+            "contact": {
+                "title": "9. Contato",
+                "content": "Dúvidas? Entre em contato pelo e-mail: vini.valero@gmail.com"
+            },
+            "acceptance": "Ao continuar usando o app, você concorda com estes termos."
+        }
+    },
+    "iAgreeToThe": "Eu concordo com os",
+    "termsOfUse": "Termos de Uso",
+    "termsRequiredTitle": "Termos não aceitos",
+    "termsRequiredMessage": "Você precisa aceitar os Termos de Uso para continuar."
 }

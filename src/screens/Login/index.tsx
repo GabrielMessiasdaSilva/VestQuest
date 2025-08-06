@@ -1,26 +1,22 @@
 // src/screens/Login.tsx
 import React, { useState } from 'react';
 import {
-  View, Text, TextInput, StyleSheet, TouchableOpacity, Alert,
+  View, Text, TextInput, StyleSheet, TouchableOpacity, Alert, BackHandler
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { useNavigation } from '@react-navigation/native';
-
+import { useNavigation, useFocusEffect } from '@react-navigation/native';
 import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
-
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../services/firebaseConfig';
-
 import { useTranslation } from 'react-i18next';
+import { styles } from './styles';
 
 type FormData = {
   email: string;
   password: string;
 };
-
-
 
 export default function Login() {
   const navigation = useNavigation();
@@ -41,7 +37,7 @@ export default function Login() {
     try {
       await signInWithEmailAndPassword(auth, data.email, data.password);
       //navigation.navigate('Main', { screen: 'Home' });
-      navigation.navigate('Home' as never); // redireciona para a tela Home
+      navigation.navigate('Home' as never);
 
 
     } catch (error: any) {
@@ -53,6 +49,18 @@ export default function Login() {
     }
   };
 
+  useFocusEffect(
+    React.useCallback(() => {
+      const onBackPress = () => {
+        navigation.navigate('Inicial' as never);
+        return true;
+      };
+
+      const subscription = BackHandler.addEventListener('hardwareBackPress', onBackPress);
+
+      return () => subscription.remove();
+    }, [navigation])
+  );
   return (
     <View style={styles.container}>
       <TouchableOpacity
@@ -113,14 +121,6 @@ export default function Login() {
         <Text style={styles.loginButtonText}>{t('login.entrar')}</Text>
       </TouchableOpacity>
 
-      <View style={styles.separatorContainer}>
-        <View style={styles.line} />
-        <Text style={styles.orText}>{t('login.ouEntreCom')}</Text>
-        <View style={styles.line} />
-      </View>
-
-
-
       <Text style={styles.footerText}>
         {t('login.naoTemConta')}{' '}
         <Text style={styles.linkText} onPress={() => navigation.navigate('Cadastro' as never)}>
@@ -130,60 +130,3 @@ export default function Login() {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: { flex: 1, padding: 24, backgroundColor: '#fff' },
-  backButton: { marginTop: 16, marginBottom: 16 },
-  title: { fontSize: 28, fontWeight: '600', textAlign: 'center', marginBottom: 4 },
-  subtitle: { textAlign: 'center', marginBottom: 32, color: '#444' },
-  label: { fontSize: 14, marginBottom: 4, color: '#333' },
-  input: {
-    borderWidth: 1,
-    borderColor: '#ccc',
-    padding: 14,
-    borderRadius: 8,
-    marginBottom: 16,
-  },
-  passwordContainer: {
-    flexDirection: 'row',
-    borderWidth: 1,
-    borderColor: '#ccc',
-    paddingHorizontal: 14,
-    paddingVertical: 12,
-    borderRadius: 8,
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    marginBottom: 24,
-  },
-  passwordInput: { flex: 1, fontSize: 16 },
-  loginButton: {
-    backgroundColor: '#1A3C40',
-    padding: 16,
-    borderRadius: 8,
-    alignItems: 'center',
-    marginBottom: 24,
-  },
-  loginButtonText: { color: '#fff', fontWeight: '600', fontSize: 16 },
-  separatorContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 24,
-  },
-  line: { flex: 1, height: 1, backgroundColor: '#ccc' },
-  orText: { marginHorizontal: 8, color: '#666' },
-  googleButton: {
-    flexDirection: 'row',
-    borderWidth: 1,
-    borderColor: '#ccc',
-    padding: 14,
-    borderRadius: 8,
-    justifyContent: 'center',
-    alignItems: 'center',
-    gap: 8,
-    marginBottom: 32,
-  },
-  googleButtonText: { fontWeight: '500', fontSize: 15 },
-  footerText: { textAlign: 'center', color: '#333' },
-  linkText: { color: '#1A3C40', fontWeight: '600' },
-  error: { color: 'red', marginBottom: 8 },
-});

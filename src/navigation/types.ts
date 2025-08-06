@@ -13,5 +13,6 @@ export type RootStackParamList = {
   Materia: undefined;
   Desafio: undefined;
   Quiz: { tempoTotal: number; tempoAtivado: boolean, faseAtual: number };
+  Termos: undefined;
   Main: undefined;
 };

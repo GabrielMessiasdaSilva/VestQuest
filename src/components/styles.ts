@@ -236,19 +236,19 @@ export const endTimeModal = StyleSheet.create({
         fontWeight: '300',
         fontSize: 15,
     },
-    title:{
+    title: {
         fontSize: 22,
         fontWeight: '600',
         textAlign: 'center',
         marginBottom: 30,
         marginTop: 20,
     },
-    modalText:{
+    modalText: {
         fontSize: 12,
         textAlign: 'center',
         marginBottom: 25,
     },
-    correctText:{
+    correctText: {
         fontSize: 24,
         fontWeight: '500',
         textAlign: 'center',
@@ -256,3 +256,48 @@ export const endTimeModal = StyleSheet.create({
     },
 
 });
+
+export const SuccessAlert = StyleSheet.create({
+    overlay: {
+        flex: 1,
+        backgroundColor: 'rgba(30, 30, 30, 0.6)',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    alertBox: {
+        width: '80%',
+        backgroundColor: '#fff',
+        borderRadius: 12,
+        paddingVertical: 24,
+        paddingHorizontal: 20,
+        elevation: 10,
+        shadowColor: '#000',
+        shadowOpacity: 0.3,
+        shadowRadius: 10,
+        shadowOffset: { width: 0, height: 4 },
+    },
+    title: {
+        fontSize: 20,
+        fontWeight: '700',
+        color: '#1A3C40',
+        marginBottom: 12,
+        textAlign: 'center',
+    },
+    message: {
+        fontSize: 16,
+        color: '#444',
+        marginBottom: 24,
+        textAlign: 'center',
+        lineHeight: 22,
+    },
+    progressBarBackground: {
+        height: 4,
+        backgroundColor: '#d0e8dc',
+        borderRadius: 4,
+        overflow: 'hidden',
+    },
+    progressBarFill: {
+        height: 4,
+        backgroundColor: '#1A3C40',
+    },
+})

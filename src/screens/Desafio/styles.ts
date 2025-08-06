@@ -28,7 +28,7 @@ export const styles = StyleSheet.create({
   button: {
     backgroundColor: '#233D4D',
     paddingVertical: 17,
-    paddingHorizontal: 100,
+    paddingHorizontal: 60,
     borderRadius: 16,
     minWidth: 80,
     alignItems: 'center',
@@ -43,22 +43,20 @@ export const styles = StyleSheet.create({
     height: 28,
   },
   speechBubble: {
-    width: 260, // aumentei o tamanho
-    height: 120,
+    width: 200,
+    height: 140,
     justifyContent: "center",
     alignItems: "center",
-    marginLeft: 90, // para afastar da raposa
-    marginBottom: -35, // para aproximar da raposa
+    marginLeft: 90,
+    marginBottom: -35,
   },
-
   speechText: {
     color: "#fff",
     fontSize: 14,
     fontWeight: "bold",
     textAlign: "left",
-    marginLeft: 7, // para afastar do balão
+    marginLeft: 7,
     paddingHorizontal: 12,
-    transform: [{ rotate: "5deg" }], // Ajuste a inclinação até ficar idêntico
+    transform: [{ rotate: "4.91deg" }],
   },
-
 });

@@ -15,6 +15,7 @@ import Mapa from '../screens/Mapa';
 import Materia from '../screens/Materia';
 import Desafio from '../screens/Desafio';
 import Quiz from '../screens/Quiz';
+import Terms from '../screens/Termos'
 import TabNavigator from './TabNavigator';
 import type { RootStackParamList } from './types';
 
@@ -38,6 +39,7 @@ export default function AppRoutes() {
         <Stack.Screen name="Perfil" component={Perfil} />
         <Stack.Screen name="Desafio" component={Desafio} />
         <Stack.Screen name="Quiz" component={Quiz} />
+        <Stack.Screen name="Termos" component={Terms}/>
         <Stack.Screen name="Main" component={TabNavigator} />
       </Stack.Navigator>
     </NavigationContainer>
