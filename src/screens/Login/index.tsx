@@ -41,7 +41,6 @@ export default function Login() {
 
 
     } catch (error: any) {
-      console.error(error);
       let message = t('login.erroGenerico');
       if (error.code === 'auth/user-not-found') message = t('login.usuarioNaoEncontrado');
       else if (error.code === 'auth/wrong-password') message = t('login.senhaIncorreta');
@@ -65,7 +64,7 @@ export default function Login() {
     <View style={styles.container}>
       <TouchableOpacity
         style={styles.backButton}
-        onPress={() => navigation.goBack()}
+        onPress={() => navigation.navigate('Inicial' as never)}
       >
         <Ionicons name="chevron-back" size={24} color="#000" />
       </TouchableOpacity>

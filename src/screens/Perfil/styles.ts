@@ -3,13 +3,11 @@ import { StyleSheet } from "react-native";
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: '#fff',
   },
   scrollContainer: {
     flexGrow: 1,
-    justifyContent: "flex-end",
     padding: 16,
-    paddingBottom: 20,
   },
   profileCard: {
     backgroundColor: "#234051",

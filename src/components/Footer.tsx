@@ -5,6 +5,7 @@ import { useNavigation, useRoute } from '@react-navigation/native';
 import type { StackNavigationProp } from '@react-navigation/stack';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import type { RootStackParamList } from '../navigation/types';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 const mapScreens = ['Mapa', 'Quiz', 'Vida', 'Conquista', 'Ranking', 'Desafio'];
 const homeScreens = ['Home', 'Materia'];
@@ -12,6 +13,7 @@ const homeScreens = ['Home', 'Materia'];
 const Footer = () => {
     const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
     const route = useRoute();
+    const insets = useSafeAreaInsets();
     const isMapScreen = mapScreens.includes(route.name);
     const isHomeScreen = homeScreens.includes(route.name);
 
@@ -24,7 +26,7 @@ const Footer = () => {
     }, [isMapScreen, isHomeScreen]);
 
     return (
-        <View style={footer.container}>
+        <View style={[footer.container, {paddingBottom:insets.bottom}]}>
             <TouchableOpacity onPress={() => navigation.navigate('Home')} style={footer.iconContainer}>
                 <Animated.View style={{ opacity: fadeAnim }}>
                     <Image

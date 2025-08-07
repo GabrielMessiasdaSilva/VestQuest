@@ -17,6 +17,8 @@ import { auth, db } from "../../services/firebaseConfig";
 import { doc, getDoc, setDoc } from "firebase/firestore";
 import { onAuthStateChanged } from "firebase/auth";
 import { useTranslation } from "react-i18next";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+
 export default function Perfil() {
   const [username, setUsername] = useState("");
   const [uid, setUid] = useState<string | null>(null);
@@ -26,7 +28,7 @@ export default function Perfil() {
   const [initialImage, setInitialImage] = useState<string | null>(null);
   const [isModified, setIsModified] = useState(false);
   const { t, i18n } = useTranslation();
-
+  const insets = useSafeAreaInsets();
   const navigation = useNavigation();
 
   useEffect(() => {
@@ -134,7 +136,7 @@ export default function Perfil() {
 
   return (
     <View style={styles.container}>
-      <ScrollView contentContainerStyle={styles.scrollContainer}>
+      <ScrollView contentContainerStyle={[styles.scrollContainer, { paddingTop: Math.max(insets.top, 16) + 90 }]}>
         <View style={styles.profileCard}>
           <TouchableOpacity onPress={handleImagePicker} activeOpacity={0.7}>
             <Image
