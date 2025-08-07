@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import {
   View, Text, TextInput, TouchableOpacity, Alert, KeyboardAvoidingView, ScrollView, Platform
 } from 'react-native';
@@ -25,8 +25,8 @@ type FormData = {
 
 export default function Cadastro() {
   const [alertVisible, setAlertVisible] = useState(false);
-  const [alertTitle, setAlertTitle] = useState('');
-  const [alertMessage, setAlertMessage] = useState('');
+  const [alertTitle, setAlertTitle] = useState("");
+  const [alertMessage, setAlertMessage] = useState("");
   const [termsAccepted, setTermsAccepted] = useState(false);
 
   const showAlert = (title: string, message: string) => {
@@ -37,7 +37,7 @@ export default function Cadastro() {
 
   const onConfirmAlert = () => {
     setAlertVisible(false);
-    navigation.navigate('Login' as never);
+    navigation.navigate("Login" as never);
   };
 
   const navigation = useNavigation();
@@ -45,36 +45,46 @@ export default function Cadastro() {
   const [showConfirm, setShowConfirm] = useState(false);
   const { t } = useTranslation();
   const schema = yup.object({
-    username: yup.string().required(t('usernameRequired')),
-    email: yup.string().email(t('invalidEmail')).required(t('emailRequired')),
-    password: yup.string().min(6, t('min6chars')).required(t('passwordRequired')),
-    confirmPassword: yup.string()
-      .oneOf([yup.ref('password')], t('passwordsDontMatch'))
-      .required(t('confirmPasswordRequired')),
+    username: yup.string().required(t("usernameRequired")),
+    email: yup.string().email(t("invalidEmail")).required(t("emailRequired")),
+    password: yup
+      .string()
+      .min(6, t("min6chars"))
+      .required(t("passwordRequired")),
+    confirmPassword: yup
+      .string()
+      .oneOf([yup.ref("password")], t("passwordsDontMatch"))
+      .required(t("confirmPasswordRequired")),
   });
 
   const {
-    control, handleSubmit, formState: { errors }, reset,
+    control,
+    handleSubmit,
+    formState: { errors },
+    reset,
   } = useForm<FormData>({
     resolver: yupResolver(schema),
   });
 
   const onSubmit = async (data: FormData) => {
     try {
-      const userCredential = await createUserWithEmailAndPassword(auth, data.email, data.password);
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        data.email,
+        data.password
+      );
       const user = userCredential.user;
 
       // Salva no Firestore
-      await setDoc(doc(db, 'users', user.uid), {
+      await setDoc(doc(db, "users", user.uid), {
         username: data.username,
         email: data.email,
       });
 
-      showAlert(t('success'), t('accountCreated'));
+      showAlert(t("success"), t("accountCreated"));
       reset();
-
     } catch (error: any) {
-      showAlert(t('error'), t('accountAlreadyInUse'));
+      showAlert(t("error"), t("accountAlreadyInUse"));
     }
   };
   return (
