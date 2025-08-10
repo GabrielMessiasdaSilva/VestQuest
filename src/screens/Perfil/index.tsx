@@ -9,6 +9,7 @@ import {
   Alert,
   Modal,
   ActivityIndicator,
+  Share
 } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 import { Feather, Entypo, MaterialIcons } from "@expo/vector-icons";
@@ -144,6 +145,18 @@ export default function Perfil() {
     );
   }
 
+  const handleShareApp = async () => {
+    const message = "Baixe o aplicativo VestQuest: https://play.google.com/store/apps/details?id=com.viniiv.VestQuest";
+
+    try {
+      await Share.share({
+        message,
+      });
+    } catch (error) {
+      Alert.alert("Erro", "Não foi possível compartilhar o app.");
+    }
+  };
+
   return (
     <View style={styles.container}>
       <ScrollView contentContainerStyle={[styles.scrollContainer, { paddingTop: Math.max(insets.top, 16) + 90 }]}>
@@ -212,7 +225,7 @@ export default function Perfil() {
             <Entypo name="chevron-right" size={23} color="#000" />
           </TouchableOpacity>
 
-          <TouchableOpacity style={styles.menuItem}>
+          <TouchableOpacity style={styles.menuItem} onPress={handleShareApp}>
             <Feather name="share-2" size={23} color="#000" />
             <Text style={styles.menuText}>{t("send_app")}</Text>
             <Entypo name="chevron-right" size={23} color="#000" />

@@ -9,7 +9,7 @@ export const styles = StyleSheet.create({
     justifyContent: "space-between",
   },
   content: {
-    flex: 1,            
+    flex: 1,
     width: "100%",
     alignItems: "center",
     paddingTop: 70,
@@ -74,7 +74,7 @@ export const styles = StyleSheet.create({
     paddingHorizontal: 32,
     borderRadius: 8,
     marginTop: 20,
-    width: "80%",         
+    width: "80%",
     alignItems: "center",
     alignSelf: "center",
   },
@@ -82,4 +82,10 @@ export const styles = StyleSheet.create({
     color: "#fff",
     fontSize: 16,
   },
+  paragraph: {
+    textAlign: 'center',
+    marginTop: 20,
+    marginBottom: 20,
+    paddingHorizontal: 12,
+  }
 });

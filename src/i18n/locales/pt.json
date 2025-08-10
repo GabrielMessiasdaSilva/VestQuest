@@ -254,7 +254,7 @@
             },
             "contact": {
                 "title": "9. Contato",
-                "content": "Dúvidas? Entre em contato pelo e-mail: vini.valero@gmail.com"
+                "content": "Dúvidas? Entre em contato pelo e-mail: Vestquest62@gmail.com"
             },
             "acceptance": "Ao continuar usando o app, você concorda com estes termos."
         }
@@ -262,5 +262,6 @@
     "iAgreeToThe": "Eu concordo com os",
     "termsOfUse": "Termos de Uso",
     "termsRequiredTitle": "Termos não aceitos",
-    "termsRequiredMessage": "Você precisa aceitar os Termos de Uso para continuar."
+    "termsRequiredMessage": "Você precisa aceitar os Termos de Uso para continuar.",
+    "rankingSemDados": "Você ainda não tem dados para registrar em seu ranking, volte aperte em 'Voltar ao Mapa' para registrar."
 }

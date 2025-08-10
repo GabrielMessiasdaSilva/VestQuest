@@ -82,6 +82,10 @@ export default function Ranking() {
 
         {loading ? (
           <ActivityIndicator size="large" color="#000" />
+        ) : dataOrdenada.length === 0 || dataOrdenada.every(item => item.acertos === 0) ? (
+          <Text style={styles.paragraph}>
+            {t("rankingSemDados")}
+          </Text>
         ) : (
           <View style={styles.chartContainer}>
             {dataOrdenada.map((item, index) => {

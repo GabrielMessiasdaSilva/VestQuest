@@ -138,7 +138,7 @@ export default function Mapa() {
                       <Text style={styles.playText}>{t('mapa.jogar')}</Text>
                     </TouchableOpacity>
                   ) : (
-                    <View>
+                    <View style={{ alignItems: 'center', justifyContent: 'center' }}>
                       <Image source={imagensFases[fase.cor]} style={styles.phaseCircle} />
                       {fase.status === 'bloqueada' && (
                         <Image

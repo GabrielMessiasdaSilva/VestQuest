@@ -21,6 +21,7 @@ export const styles = StyleSheet.create({
         fontSize: 14,
         marginBottom: 16,
         color: "#666",
+        alignSelf: 'center'
     },
     paragraph: {
         fontSize: 16,
@@ -40,6 +41,6 @@ export const styles = StyleSheet.create({
         color: "#222",
         marginBottom: 4,
     },
-    backButton: { marginTop: 16, marginBottom: 16, flexDirection: 'row' },
-    return: {fontSize: 14, fontWeight: 'bold'}
+    backButton: { marginTop: 16, marginBottom: 16, flexDirection: 'row', borderRadius: 24, backgroundColor: '#1C344D', justifyContent: 'center', alignItems: 'center', paddingHorizontal: 8, }, 
+    return: {fontSize: 14, fontWeight: 'bold', color:'#fff'}
 });

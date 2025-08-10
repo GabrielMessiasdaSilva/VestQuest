@@ -2,13 +2,13 @@
   "expo": {
     "name": "VestQuest",
     "slug": "VestQuest",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "orientation": "portrait",
-    "icon": "./assets/img/raposa_mascote.png",
+    "icon": "./assets/img/icone_VestQuest.png",
     "userInterfaceStyle": "light",
     "newArchEnabled": true,
     "splash": {
-      "image": "./assets/img/raposa_mascote.png",
+      "image": "./assets/img/icone_VestQuest.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -17,21 +17,23 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/img/raposa_mascote.png",
+        "foregroundImage": "./assets/img/icone_VestQuest.png",
         "backgroundColor": "#ffffff"
       },
-      "edgeToEdgeEnabled": true
+      "edgeToEdgeEnabled": true,
+      "package": "com.viniiv.VestQuest"
     },
     "web": {
-      "favicon": "./assets/img/raposa_mascote.png"
+      "favicon": "./assets/img/icone_VestQuest.png"
     },
     "plugins": [
       "expo-web-browser"
     ],
     "extra": {
       "eas": {
-        "projectId": "a2bed419-77a0-4fe5-86e8-a3925aff94ef"
+        "projectId": "c1545138-0ce1-4cf3-a0d4-a2911a214285"
       }
-    }
+    },
+    "owner": "viniiv"
   }
 }

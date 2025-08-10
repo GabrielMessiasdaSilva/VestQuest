@@ -24,7 +24,7 @@ export const styles = StyleSheet.create({
         justifyContent: 'space-between',
         marginBottom: 24,
     },
-    passwordInput: { flex: 1, fontSize: 16 },
+    passwordInput: { flex: 1, fontSize: 16, color: '#000' },
     loginButton: {
         backgroundColor: '#1A3C40',
         padding: 16,

@@ -10,8 +10,9 @@ export default function TermsScreen() {
     const navigation = useNavigation();
 
     return (
-        <ScrollView contentContainerStyle={{ flexGrow: 1, paddingBottom: 80, backgroundColor: '#fff' }} showsVerticalScrollIndicator={false}>
-            <View style={styles.container}>
+        <View style={styles.container}>
+            <ScrollView contentContainerStyle={{ flexGrow: 1, paddingBottom: 80, backgroundColor: '#fff' }} showsVerticalScrollIndicator={false}>
+
                 <Text style={styles.title}>{t("termsNConditions.title")}</Text>
                 <Text style={styles.lastUpdate}>{t("termsNConditions.last_update")}</Text>
                 <Text style={styles.paragraph}>{t("termsNConditions.intro")}</Text>
@@ -28,14 +29,15 @@ export default function TermsScreen() {
                 <Text style={[styles.paragraph, { marginTop: 20 }]}>
                     {t("termsNConditions.sections.acceptance")}
                 </Text>
-                <TouchableOpacity
-                    style={styles.backButton}
-                    onPress={() => navigation.goBack()}
-                >
-                    <Ionicons name="chevron-back" size={24} color="#000" />
-                    <Text style={styles.return}>- Voltar</Text>
-                </TouchableOpacity>
-            </View>
-        </ScrollView>
+
+            </ScrollView>
+            <TouchableOpacity
+                style={styles.backButton}
+                onPress={() => navigation.goBack()}
+            >
+                <Ionicons name="chevron-back" size={24} color="#fff" />
+                <Text style={styles.return}>Voltar</Text>
+            </TouchableOpacity>
+        </View>
     );
 }

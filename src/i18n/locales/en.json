@@ -254,7 +254,7 @@
             },
             "contact": {
                 "title": "9. Contact",
-                "content": "Questions? Contact us at: support@enemapp.com"
+                "content": "Questions? Contact us at: Vestquest62@gmail.com"
             },
             "acceptance": "By continuing to use the app, you agree to these terms."
         }
@@ -262,5 +262,6 @@
     "iAgreeToThe": "I agree to the",
     "termsOfUse": "Terms of Use",
     "termsRequiredTitle": "Terms not accepted",
-    "termsRequiredMessage": "You need to accept the Terms of Use to continue."
+    "termsRequiredMessage": "You need to accept the Terms of Use to continue.",
+    "rankingSemDados": "You don't have any data recorded in your ranking yet. Go back and press 'Back to Map' to start recording."
 }
