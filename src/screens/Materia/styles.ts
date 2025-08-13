@@ -5,7 +5,7 @@ export const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'flex-start',
-        backgroundColor: '#ffffff',
+        backgroundColor: '#eee',
         width: '100%',
         paddingTop: 80,
     },
@@ -97,7 +97,7 @@ export const styles = StyleSheet.create({
         borderColor: '#FCCA46',
         borderWidth: 2,
         padding: 16,
-        backgroundColor: '#fff',
+        backgroundColor: '#eee',
     },
     assuntoText: {
         marginVertical: 8,

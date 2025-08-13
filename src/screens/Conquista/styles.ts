@@ -4,7 +4,7 @@ export const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'space-between',
-    backgroundColor: '#fff',
+    backgroundColor: '#eee',
   },
   content: {
     alignItems: 'center',
@@ -46,7 +46,7 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
   },
   buttonTextPrimary: {
-    color: '#fff',
+    color: '#eee',
     fontSize: 16,
   },
   buttonSecondary: {

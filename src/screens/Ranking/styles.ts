@@ -5,7 +5,7 @@ const { width: screenWidth } = Dimensions.get("window");
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "#eee",
     justifyContent: "space-between",
   },
   content: {
@@ -54,14 +54,14 @@ export const styles = StyleSheet.create({
   posicao: {
     fontSize: 30,
     fontWeight: "bold",
-    color: "#fff",
+    color: "#eee",
     textShadowColor: "rgba(0, 0, 0, 0.2)", // sombra bem clara
     textShadowOffset: { width: 0, height: 2 },
     textShadowRadius: 2,
   },
   materia: {
     fontSize: 13,
-    color: "#fff",
+    color: "#eee",
     textAlign: "center",
     marginTop: 2,
     textShadowColor: "rgba(0, 0, 0, 0.2)", // sombra bem clara
@@ -79,7 +79,7 @@ export const styles = StyleSheet.create({
     alignSelf: "center",
   },
   buttonTextPrimary: {
-    color: "#fff",
+    color: "#eee",
     fontSize: 16,
   },
   paragraph: {

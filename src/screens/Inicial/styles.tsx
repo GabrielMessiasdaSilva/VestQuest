@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
-  container: { flex:1, padding:20, backgroundColor:'#fff', justifyContent:'center', alignItems:'center' },
+  container: { flex:1, padding:20, backgroundColor:'#eee', justifyContent:'center', alignItems:'center' },
   logoContainer: { justifyContent:'center', alignItems:'center', marginBottom:44, position:'relative' },
   circleBg : { position:'absolute', width: 240, height: 220, resizeMode:'contain', zIndex:0 },
   logo: { width:220, height:200, resizeMode: 'contain', zIndex: 1 },
@@ -12,13 +12,13 @@ export const styles = StyleSheet.create({
   loginButton: { backgroundColor:'#233D4D' },
   registerButton: { borderWidth:1, borderColor:'#233D4D', backgroundColor:'transparent' },
   buttonText: { fontSize:16 },
-  loginText: { color:'#fff' },
+  loginText: { color:'#eee' },
   registerText: { color:'#233D4D' },
   input: { borderWidth:1, borderColor:'#CCC', borderRadius:6, padding:12, marginBottom:12 },
   inputRow: { flexDirection:'row', alignItems:'center', marginBottom:12 },
   eyeIcon: { position:'absolute', right:12 },
   submitButton: { backgroundColor:'#233D4D', paddingVertical:14, borderRadius:6, alignItems:'center', marginVertical:16 },
-  submitText: { color:'#fff', fontSize:16 },
+  submitText: { color:'#eee', fontSize:16 },
   dividerRow: { flexDirection:'row', alignItems:'center', marginVertical:16 },
   divider: { flex:1, height:1, backgroundColor:'#CCC' },
   dividerText: { marginHorizontal:8, color:'#555' },

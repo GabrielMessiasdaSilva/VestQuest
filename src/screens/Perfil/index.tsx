@@ -21,6 +21,7 @@ import { doc, getDoc, setDoc } from "firebase/firestore";
 import { onAuthStateChanged } from "firebase/auth";
 import { useTranslation } from "react-i18next";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { useUser } from "../../services/userContext";
 
 export default function Perfil() {
   const [username, setUsername] = useState("");
@@ -33,7 +34,7 @@ export default function Perfil() {
   const { t, i18n } = useTranslation();
   const insets = useSafeAreaInsets();
   const [isLoggingOut, setIsLoggingOut] = useState(false);
-
+  const { setPhotoURL } = useUser();
   const navigation = useNavigation();
 
   useEffect(() => {
@@ -99,6 +100,7 @@ export default function Perfil() {
         },
         { merge: true }
       ); // Usando merge para não sobrescrever outros campos
+      setPhotoURL(image || "");
       Alert.alert(t("success_title"), t("profile_updated"));
       setInitialUsername(username);
       setInitialImage(image);
@@ -250,7 +252,7 @@ export default function Perfil() {
         >
           <View
             style={{
-              backgroundColor: "#fff",
+              backgroundColor: "#eee",
               padding: 30,
               borderRadius: 10,
               alignItems: "center",
@@ -263,7 +265,6 @@ export default function Perfil() {
           </View>
         </View>
       </Modal>
-
       <Footer />
     </View>
   );

@@ -5,7 +5,7 @@ export const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'flex-start',
-        backgroundColor: '#ffffff',
+        backgroundColor: '#eee',
         width: '100%',
         paddingTop: 22,
     },
@@ -48,7 +48,7 @@ export const styles = StyleSheet.create({
     },
 
     buttonTitle: {
-        color: '#fff',
+        color: '#eee',
         fontSize: 16,
         fontWeight: 'bold',
         textAlign: 'center',
@@ -70,7 +70,7 @@ export const styles = StyleSheet.create({
         minHeight: 44,
         minWidth: 100,
         alignItems: 'center',
-        backgroundColor: '#fff',
+        backgroundColor: '#eee',
         marginHorizontal: 8,
     },
 
@@ -194,7 +194,7 @@ export const styles = StyleSheet.create({
         paddingVertical: 2,
         paddingHorizontal: 10,
         alignItems: 'center',
-        backgroundColor: '#fff',
+        backgroundColor: '#eee',
         flexDirection: 'row',
         alignSelf: 'flex-end',
         marginRight: 10

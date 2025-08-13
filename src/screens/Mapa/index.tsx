@@ -98,7 +98,7 @@ export default function Mapa() {
 
   return (
     <View style={{ flex: 1 }}>
-      <ScrollView contentContainerStyle={{ flexGrow: 1, paddingBottom: 120, backgroundColor: '#fff' }} showsVerticalScrollIndicator={false}>
+      <ScrollView contentContainerStyle={{ flexGrow: 1, paddingBottom: 120, backgroundColor: '#eee' }} showsVerticalScrollIndicator={false}>
         <View style={styles.container}>
           <Text style={styles.title}>{t('mapa.titulo')}</Text>
           <View style={styles.rowButtons}>

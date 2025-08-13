@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
-    container: { flex: 1, padding: 24, backgroundColor: '#fff' },
+    container: { flex: 1, padding: 24, backgroundColor: '#eee' },
     backButton: { marginTop: 16, marginBottom: 16 },
     title: { fontSize: 28, fontWeight: '600', textAlign: 'center', marginBottom: 4 },
     subtitle: { textAlign: 'center', marginBottom: 32, color: '#444' },
@@ -32,7 +32,7 @@ export const styles = StyleSheet.create({
         alignItems: 'center',
         marginBottom: 24,
     },
-    loginButtonText: { color: '#fff', fontWeight: '600', fontSize: 16 },
+    loginButtonText: { color: '#eee', fontWeight: '600', fontSize: 16 },
     footerText: { textAlign: 'center', color: '#333' },
     linkText: { color: '#1A3C40', fontWeight: '600' },
     error: { color: 'red', marginBottom: 8 },

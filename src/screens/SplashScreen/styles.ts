@@ -16,7 +16,7 @@ export const splashStyles = StyleSheet.create({
     text: {
         fontSize: 32,
         fontWeight: 'bold',
-        color: '#fff',
+        color: '#eee',
     },
 });
 
@@ -54,7 +54,7 @@ export const onboardingStyles = StyleSheet.create({
         marginTop: 20,
     },
     buttonText: {
-        color: '#fff',
+        color: '#eee',
         fontSize: 18,
         fontWeight: 'bold',
     },

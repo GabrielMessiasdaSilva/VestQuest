@@ -5,7 +5,7 @@ export const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'flex-start',
-        backgroundColor: '#ffffff',
+        backgroundColor: '#eee',
         width: '100%',
         paddingTop: 22,
     },
@@ -106,7 +106,7 @@ export const styles = StyleSheet.create({
     },
 
     optionButton: {
-        backgroundColor: '#ffffff',
+        backgroundColor: '#eee',
         borderWidth: 2,
         borderRadius: 12,
         borderColor: '#A1C181',

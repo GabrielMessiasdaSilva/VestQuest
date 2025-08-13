@@ -2,7 +2,7 @@
     "greeting": "Hello, {{name}}!",
     "greetingChallenge": "Hello, {{username}}!",
     "save": "Save",
-    "choose_language": "Choose language",
+    "choose_language": "Switch language (EN/PT)",
     "terms": "Terms and Conditions",
     "send_app": "Send app to friends",
     "signing_out": "Signing out...",

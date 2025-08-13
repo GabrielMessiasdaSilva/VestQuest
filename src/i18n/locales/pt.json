@@ -2,7 +2,7 @@
     "greeting": "Olá, {{name}}!",
     "greetingChallenge": "Olá, {{username}}!",
     "save": "Salvar",
-    "choose_language": "Escolher língua",
+    "choose_language": "Troque o idioma (EN/PT)",
     "terms": "Termos e Condições",
     "send_app": "Enviar o app para amigos",
     "signing_out": "Saindo...",
@@ -263,5 +263,5 @@
     "termsOfUse": "Termos de Uso",
     "termsRequiredTitle": "Termos não aceitos",
     "termsRequiredMessage": "Você precisa aceitar os Termos de Uso para continuar.",
-    "rankingSemDados": "Você ainda não tem dados para registrar em seu ranking, volte aperte em 'Voltar ao Mapa' para registrar."
+    "rankingSemDados": "Você ainda não tem dados para registrar em seu ranking, volte e aperte em 'Voltar ao Mapa' para começar a registrar."
 }

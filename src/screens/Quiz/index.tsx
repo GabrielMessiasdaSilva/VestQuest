@@ -190,7 +190,7 @@ export default function Quiz() {
 
   return (
     <View style={{ flex: 1 }}>
-      <ScrollView ref={scrollRef} contentContainerStyle={{ flexGrow: 1, paddingBottom: 80, backgroundColor: '#fff' }} showsVerticalScrollIndicator={false}>
+      <ScrollView ref={scrollRef} contentContainerStyle={{ flexGrow: 1, paddingBottom: 80, backgroundColor: '#eee' }} showsVerticalScrollIndicator={false}>
         <View style={styles.container}>
           <Text style={styles.title}>{t('quiz.title')}</Text>
           <View style={styles.statusBar}>

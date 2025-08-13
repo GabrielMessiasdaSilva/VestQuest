@@ -7,7 +7,7 @@ export const footer = StyleSheet.create({
         alignItems: 'center',
         paddingHorizontal: 10,
         paddingVertical: 10,
-        backgroundColor: '#fff',
+        backgroundColor: '#eee',
         borderTopWidth: 1,
         borderTopColor: '#eee',
     },
@@ -25,7 +25,7 @@ export const timeModal = StyleSheet.create({
         backgroundColor: 'rgba(0,0,0,0.4)',
     },
     modalContainer: {
-        backgroundColor: '#fff',
+        backgroundColor: '#eee',
         borderRadius: 16,
         borderColor: '#619B8A',
         borderWidth: 3,
@@ -68,12 +68,12 @@ export const timeModal = StyleSheet.create({
         alignItems: 'center',
     },
     activateButtonText: {
-        color: '#fff',
+        color: '#eee',
         fontWeight: '300',
         fontSize: 15,
     },
     deactivateButton: {
-        backgroundColor: '#fff',
+        backgroundColor: '#eee',
         paddingVertical: 6,
         paddingHorizontal: 6,
         borderRadius: 16,
@@ -114,7 +114,7 @@ export const greenModal = StyleSheet.create({
         alignItems: 'center',
     },
     activateButtonText: {
-        color: '#fff',
+        color: '#eee',
         fontWeight: '300',
         fontSize: 15,
     },
@@ -173,7 +173,7 @@ export const redModal = StyleSheet.create({
         alignItems: 'center',
     },
     activateButtonText: {
-        color: '#fff',
+        color: '#eee',
         fontWeight: '300',
         fontSize: 15,
     },
@@ -195,7 +195,7 @@ export const redModal = StyleSheet.create({
         position: 'absolute',
         top: 45,
         right: 22,
-        color: '#ffffff',
+        color: '#eee',
         fontSize: 13,
         fontWeight: 'semibold',
         transform: [{ rotate: '4.91deg' }],
@@ -215,7 +215,7 @@ export const endTimeModal = StyleSheet.create({
         backgroundColor: 'rgba(0,0,0,0.4)',
     },
     modalContainer: {
-        backgroundColor: '#ffffff',
+        backgroundColor: '#eee',
         borderRadius: 16,
         borderColor: '#000000',
         borderWidth: 3,
@@ -232,7 +232,7 @@ export const endTimeModal = StyleSheet.create({
         alignItems: 'center',
     },
     activateButtonText: {
-        color: '#fff',
+        color: '#eee',
         fontWeight: '300',
         fontSize: 15,
     },
@@ -266,7 +266,7 @@ export const SuccessAlert = StyleSheet.create({
     },
     alertBox: {
         width: '80%',
-        backgroundColor: '#fff',
+        backgroundColor: '#eee',
         borderRadius: 12,
         paddingVertical: 24,
         paddingHorizontal: 20,

@@ -3,7 +3,7 @@ import { StyleSheet } from "react-native";
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "#eee",
     paddingHorizontal: 24,
     justifyContent: "center",
     alignItems: "center",
@@ -34,7 +34,7 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
   },
   buttonText: {
-    color: '#fff',
+    color: '#eee',
     fontWeight: '600',
     fontSize: 16,
   },
@@ -51,7 +51,7 @@ export const styles = StyleSheet.create({
     marginBottom: -35,
   },
   speechText: {
-    color: "#fff",
+    color: "#eee",
     fontSize: 14,
     fontWeight: "bold",
     textAlign: "left",
