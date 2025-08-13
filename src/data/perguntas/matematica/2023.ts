@@ -16,20 +16,6 @@ export const perguntasMat2023: Pergunta[] = [
         ano: 2023
     },
     {
-        id: 301,
-        texto: 'O Aldrin é um inseticida agrícola organoclorado sintético de baixa polaridade, cuja estrutura molecular simétrica, de fórmula ![](https://enem.dev/broken-image.svg), está representada na figura. Introduzido na agricultura a partir da década de 1950, esse composto apresenta alta persistência no meio ambiente e acumulação nos organismos, sendo danoso para a saúde.\n\n![](https://enem.dev/broken-image.svg)\n\nVIEGAS JÚNIOR, C. Terpenos com atividade inseticida: uma alternativa para o controle químico de insetos. **Química Nova**, v. 26, n. 3, 2003 (adaptado).\n\nUm pesquisador coletou fluidos biológicos de indivíduos de uma população contaminada por esse inseticida agrícola. Ele analisou amostras de saliva, sangue, lágrima, urina e leite quanto à presença dessa substância. \n\n Em qual dos fluidos o pesquisador provavelmente encontrou a maior concentração dessa substância?',
-        alternativas: {
-            A: 'Saliva, por consequência da atividade de enzimas.',
-            B: 'Sangue, em função das hemácias e leucócitos.',
-            C: 'Lágrima, em razão da concentração de sais.',
-            D: 'Urina, pela presenca de moléculas de ureia.',
-            E: 'Leite, por causa do alto teor de gorduras.',
-        },
-        correta: 'E',
-        categoria: 'matematica',
-        ano: 2023
-    },
-    {
         id: 302,
         texto: 'Uma cafeteria adotou copos fabricados a partir de uma composição de 50% de plástico reciclado não biodegradável e 50% de casca de café. O copo é reutilizável e retornável, pois o material, semelhante a uma cerâmica, suporta a lavagem. Embora ele seja comercializado por um preço considerado alto quando comparado ao de um copo de plástico descartável, essa cafeteria possibilita aos clientes retornarem o copo sujo e levarem o café quente servido em outro copo já limpo e higienizado. O material desse copo oferece também o conforto de não esquentar na parte externa.\n\n**Cafeteria adota copo reutilizável feito com casca de café.** Disponível em: www.gazetadopovo.com.br. Acesso em: 5 dez. 2019 (adaptado). \n\n Quais duas vantagens esse copo apresenta em comparação ao copo descartável?',
         alternativas: {

@@ -97,15 +97,29 @@ export default function Quiz() {
   function proximaPergunta() {
     setGreenModalVisible(false);
     setRespostaSelecionada(null);
-    setPerguntaAtual(perguntaAtual + 1);
-    rolarParaTopo();
+
+    if (perguntaAtual === perguntasFase.length) {
+      setTimeout(() => {
+        navigation.navigate('Conquista', { acertos, faseConcluida: fase });
+      }, 300);
+    } else {
+      setPerguntaAtual(perguntaAtual + 1);
+      rolarParaTopo();
+    }
   }
 
   function respostaErrada() {
     setRedModalVisible(false);
     setRespostaSelecionada(null);
-    setPerguntaAtual(perguntaAtual + 1);
-    rolarParaTopo();
+
+    if (perguntaAtual === perguntasFase.length) {
+      setTimeout(() => {
+        navigation.navigate('Conquista', { acertos, faseConcluida: fase });
+      }, 300);
+    } else {
+      setPerguntaAtual(perguntaAtual + 1);
+      rolarParaTopo();
+    }
   }
 
   function pausarTempo() {

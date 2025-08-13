@@ -103,6 +103,7 @@ export default function Home() {
   const inputRef = useRef<TextInput>(null);
   const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
   const { t } = useTranslation();
+  const [isFocused, setIsFocused] = useState(false);
 
   // Filtra as matérias com base na busca, removendo acentos e convertendo para minúsculas
   const materiasFiltradas = materias.filter(m =>
@@ -116,9 +117,6 @@ export default function Home() {
   }));
   // Busca a matéria de Matemática, que é tratada separadamente
   const matematica = materiasFiltradas.find(m => m.grupo === 'Matemática');
-
-  // Estado para controlar o foco do campo de busca
-  const [hasInteracted, setHasInteracted] = useState(false);
 
   useEffect(() => {
     const unsubscribe = navigation.addListener("beforeRemove", (e) => {
@@ -142,13 +140,14 @@ export default function Home() {
             <TextInput
               ref={inputRef}
               style={styles.searchText}
-              placeholder={hasInteracted ? t('searchPlaceholder') : ''}
+              placeholder={isFocused ? '' : t('searchPlaceholder')}
               value={busca}
               onChangeText={text => setBusca(text.slice(0, 18))}
               maxLength={18}
               placeholderTextColor="#B5B5B5"
               underlineColorAndroid="transparent"
-              onFocus={() => setHasInteracted(true)}
+              onFocus={() => setIsFocused(true)}
+              onBlur={() => setIsFocused(false)}
             />
           </TouchableOpacity>
           {matematica && (

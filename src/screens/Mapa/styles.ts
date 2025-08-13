@@ -159,7 +159,7 @@ export const styles = StyleSheet.create({
     playText: {
         position: 'absolute',
         color: '#000000',
-        fontWeight: 'semibold',
+        fontWeight: 'bold',
         fontSize: 16,
         textAlign: 'center',
     },
