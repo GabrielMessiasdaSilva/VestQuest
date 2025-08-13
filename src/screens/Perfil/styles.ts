@@ -3,7 +3,7 @@ import { StyleSheet } from "react-native";
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#eee',
+    backgroundColor: '#f7f8fa',
   },
   scrollContainer: {
     flexGrow: 1,
@@ -32,8 +32,8 @@ export const styles = StyleSheet.create({
     height: 180,
     borderRadius: 90,
     borderWidth: 4,
-    borderColor: "#eee",
-    backgroundColor: "#eee",
+    borderColor: "#f7f8fa",
+    backgroundColor: "#f7f8fa",
     marginTop: -90, // Puxa metade para cima
     marginBottom: 16, // Espaço depois da imagem
     alignSelf: "center",
@@ -45,7 +45,7 @@ export const styles = StyleSheet.create({
     elevation: 5,
   },
   welcomeText: {
-    color: "#eee",
+    color: "#f7f8fa",
     fontSize: 20,
     fontWeight: "600",
     marginBottom: 16,
@@ -84,12 +84,12 @@ export const styles = StyleSheet.create({
     marginBottom: 20,
   },
   saveButtonText: {
-    color: "#eee",
+    color: "#f7f8fa",
     fontWeight: "bold",
     fontSize: 16,
   },
   menuContainer: {
-    backgroundColor: "#eee",
+    backgroundColor: "#f7f8fa",
     borderRadius: 12,
     paddingVertical: 10,
     paddingHorizontal: 12,

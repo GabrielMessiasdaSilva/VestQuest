@@ -96,7 +96,14 @@
         "alertAtençãoTitulo": "⚠️ Atenção",
         "alertAtençãoMensagem": "Escolha um valor entre 1 e 60 minutos",
         "alertTempoDesativadoTitulo": "⏹️ Tempo desativado",
-        "alertTempoDesativadoMensagem": "O tempo foi desativado com sucesso!"
+        "alertTempoDesativadoMensagem": "O tempo foi desativado com sucesso!",
+        "tooltipDesafio": "Aqui você pode acessar o desafio diário para testar seus conhecimentos rapidamente.",
+        "tooltipTempo": "Ative o tempo para controlar o limite durante as fases do quiz.",
+        "matematica": "Matemática",
+        "linguagens": "Linguagens",
+        "ciencias_natureza": "Ciências da Natureza",
+        "ciencias_humanas": "Ciências Humanas"
+  
     },
     "materia": {
         "segredo": "Vou te contar um segredo...",

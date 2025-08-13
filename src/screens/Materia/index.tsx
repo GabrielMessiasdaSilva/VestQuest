@@ -66,7 +66,7 @@ export default function Materia() {
     const g = parseInt(hex.substring(2, 4), 16);
     const b = parseInt(hex.substring(4, 6), 16);
     const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
-    return luminance > 0.6 ? '#222' : '#eee';
+    return luminance > 0.6 ? '#222' : '#f7f8fa';
   }
   const textColor = getContrastingTextColor(cor);
 
@@ -92,7 +92,7 @@ export default function Materia() {
           {t(`subjects.${normalizarNomeParaChave(nome)}`)}
         </Text>
       </View>
-      <ScrollView contentContainerStyle={{ flexGrow: 1, paddingBottom: 80, backgroundColor: '#eee' }} showsVerticalScrollIndicator={false}>
+      <ScrollView contentContainerStyle={{ flexGrow: 1, paddingBottom: 80, backgroundColor: '#f7f8fa' }} showsVerticalScrollIndicator={false}>
         <View style={styles.container}>
           <View style={styles.balaoContainer}>
             <View style={styles.balaoInner}>

@@ -7,9 +7,9 @@ export const footer = StyleSheet.create({
         alignItems: 'center',
         paddingHorizontal: 10,
         paddingVertical: 10,
-        backgroundColor: '#eee',
+        backgroundColor: '#f7f8fa',
         borderTopWidth: 1,
-        borderTopColor: '#eee',
+        borderTopColor: '#f7f8fa',
     },
     iconContainer: {
         flex: 1,
@@ -25,7 +25,7 @@ export const timeModal = StyleSheet.create({
         backgroundColor: 'rgba(0,0,0,0.4)',
     },
     modalContainer: {
-        backgroundColor: '#eee',
+        backgroundColor: '#f7f8fa',
         borderRadius: 16,
         borderColor: '#619B8A',
         borderWidth: 3,
@@ -114,7 +114,7 @@ export const greenModal = StyleSheet.create({
         alignItems: 'center',
     },
     activateButtonText: {
-        color: '#eee',
+        color: '',
         fontWeight: '300',
         fontSize: 15,
     },

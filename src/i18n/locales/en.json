@@ -96,7 +96,13 @@
         "alertAtençãoTitulo": "⚠️ Attention",
         "alertAtençãoMensagem": "Choose a value between 1 and 60 minutes",
         "alertTempoDesativadoTitulo": "⏹️ Timer deactivated",
-        "alertTempoDesativadoMensagem": "The timer has been successfully deactivated!"
+        "alertTempoDesativadoMensagem": "The timer has been successfully deactivated!",
+        "tooltipDesafio": "Here you can access the daily challenge to quickly test your knowledge.",
+        "tooltipTempo": "Activate the timer to control the limit during the quiz phases.",
+        "matematica": "Mathematics",
+        "linguagens": "Languages",
+        "ciencias_natureza": "Natural Sciences",
+        "ciencias_humanas": "Human Sciences"
     },
     "materia": {
         "segredo": "Let me tell you a secret...",
