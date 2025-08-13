@@ -103,10 +103,10 @@
         "linguagens": "Linguagens",
         "ciencias_natureza": "Ciências da Natureza",
         "ciencias_humanas": "Ciências Humanas"
-  
     },
     "materia": {
         "segredo": "Vou te contar um segredo...",
+        "segredoe": "segredo: clique em um dos assuntos.",
         "assuntosMaisFrequentes": "Assuntos de {{nome}} que mais caem no vestibular",
         "nenhumAssunto": "Nenhum assunto cadastrado."
     },
@@ -163,6 +163,415 @@
             "sociologiaClassica": "Sociologia Clássica (Comte, Durkheim)",
             "culturaSociedade": "Cultura e Sociedade (identidade, cultura)",
             "cidadania": "Cidadania (questões sociais, direitos)"
+        }
+    },
+    "resumos": {
+        "Geometria (plana e espacial)": "A geometria estuda formas, tamanhos, posições e propriedades do espaço.",
+        "Algebra (funcoes, equacoes, sistemas)": "A álgebra trabalha com símbolos e regras para manipular expressões e equações.",
+        "Grandezas e medidas (razoes, proporcoes, porcentagens)": "Trata de proporções, razões, porcentagens e medidas aplicadas no dia a dia.",
+        "Estatistica e Probabilidade": "Analisa dados, distribuições e cálculos de probabilidade para eventos.",
+        "Analise Grafica e Nocoes de Logica": "Estudo de gráficos, interpretação de funções e raciocínio lógico.",
+        "Interpretacao de texto (leitura e compreensao)": "Desenvolve a habilidade de compreender e interpretar textos variados.",
+        "Gramatica (morfologia, sintaxe, semantica)": "Estuda a estrutura da língua, suas regras e significados.",
+        "Literatura (movimentos literarios, analise de obras)": "Análise de obras literárias e contextos históricos e culturais.",
+        "Compreensao de texto (ingles ou espanhol)": "Entender textos em língua estrangeira com foco em sentido e inferências.",
+        "Vocabulario e gramatica basica": "Aprendizado de palavras, expressões e regras básicas de gramática.",
+        "Genetica e Evolucao": "Princípios de hereditariedade, DNA e evolução das espécies.",
+        "Ecologia (ambientes, cadeias alimentares)": "Estudo das relações entre seres vivos e o meio ambiente.",
+        "Citologia (celulas, tecidos)": "Estrutura e funcionamento de células e tecidos dos seres vivos.",
+        "Fisiologia (seres vivos, sistemas)": "Funcionamento dos sistemas do corpo e processos vitais.",
+        "Quimica Geral (equacoes, reacoes)": "Noções de reações químicas, equações e leis básicas da química.",
+        "Fisico-Quimica (reacoes, estados da materia)": "Interação entre princípios físicos e químicos em reações e mudanças de estado.",
+        "Quimica Organica (estruturas, funcoes)": "Estudo de compostos orgânicos, suas estruturas e funções químicas.",
+        "Mecanica (leis de Newton, movimento)": "Leis do movimento, forças, energia e aplicações no cotidiano.",
+        "Termologia (temperatura, calor)": "Estudo da temperatura, calor, calorimetria e transferência de energia.",
+        "Optica (espelhos, lentes)": "Comportamento da luz, reflexão, refração e formação de imagens.",
+        "Ondulatoria (ondas, som)": "Estudo de ondas mecânicas e sonoras, propriedades e fenômenos.",
+        "Eletromagnetismo (ondas eletromagneticas, circuitos)": "Estudo de eletricidade, magnetismo e ondas eletromagnéticas.",
+        "Historia do Brasil": "Linha do tempo do Brasil desde a colonização até a contemporaneidade.",
+        "Historia Geral (antiga, medieval)": "Principais civilizações antigas e medievais e seus legados.",
+        "Idade Moderna e Contemporanea": "Eventos, revoluções e transformações sociais das idades Moderna e Contemporânea.",
+        "Geografia do Brasil (economia, populacao)": "Estudo do território brasileiro, população, economia e regionalidades.",
+        "Geopolitica (geografia politica, relacoes internacionais)": "Relações entre países, conflitos, acordos e política global.",
+        "Cartografia (leitura de mapas, escalas)": "Interpretação de mapas, escalas, coordenadas e projeções cartográficas.",
+        "Meio Ambiente (questoes ambientais, sustentabilidade)": "Impactos ambientais, preservação e práticas sustentáveis.",
+        "Filosofia Antiga (Platao, Aristoteles)": "Ideias filosóficas e contribuições de pensadores antigos.",
+        "Filosofia Moderna (Descartes, Kant)": "Estudo das ideias e teorias de filósofos modernos.",
+        "Etica e Politica (questoes eticas, teorias politicas)": "Reflexão sobre moral, ética e organização política da sociedade.",
+        "Sociologia Classica (Comte, Durkheim)": "Teorias e conceitos da sociologia clássica.",
+        "Cultura e Sociedade (identidade, cultura)": "Como a cultura molda a identidade e relações sociais.",
+        "Cidadania (questoes sociais, direitos)": "Direitos, deveres e participação do cidadão na sociedade."
+    },
+    "quizzes": {
+        "assuntos": {
+            "Matematica": {
+                "geometria": {
+                    "question": "Qual é a soma dos ângulos internos de um triângulo?",
+                    "options": [
+                        "90°",
+                        "180°",
+                        "270°",
+                        "360°"
+                    ],
+                    "correct": 1
+                },
+                "algebra": {
+                    "question": "Se x + 3 = 7, qual é o valor de x?",
+                    "options": [
+                        "2",
+                        "3",
+                        "4",
+                        "5"
+                    ],
+                    "correct": 2
+                },
+                "grandezas": {
+                    "question": "Se uma camisa custa R$50 e tem 20% de desconto, qual é o preço final?",
+                    "options": [
+                        "40",
+                        "45",
+                        "50",
+                        "60"
+                    ],
+                    "correct": 0
+                },
+                "estatistica": {
+                    "question": "Qual é a média aritmética de 2, 4, 6, 8?",
+                    "options": [
+                        "4",
+                        "5",
+                        "6",
+                        "8"
+                    ],
+                    "correct": 1
+                },
+                "analiseGrafica": {
+                    "question": "O que representa o ponto de interseção de duas retas em um gráfico?",
+                    "options": [
+                        "Nada",
+                        "O mesmo valor",
+                        "Onde duas retas se encontram",
+                        "Declive"
+                    ],
+                    "correct": 2
+                }
+            },
+            "Linguas": {
+                "interpretacao": {
+                    "question": "Qual é a ideia principal de um texto?",
+                    "options": [
+                        "Tema",
+                        "Resumo",
+                        "Mensagem Principal",
+                        "Detalhe"
+                    ],
+                    "correct": 2
+                },
+                "gramatica": {
+                    "question": "Qual é a função de um sujeito em uma frase?",
+                    "options": [
+                        "Objeto",
+                        "Ação",
+                        "Quem realiza",
+                        "Complemento"
+                    ],
+                    "correct": 2
+                },
+                "literatura": {
+                    "question": "Qual movimento literário veio primeiro?",
+                    "options": [
+                        "Barroco",
+                        "Romantismo",
+                        "Realismo",
+                        "Modernismo"
+                    ],
+                    "correct": 0
+                },
+                "compreensao": {
+                    "question": "O que significa 'The cat is under the table'?",
+                    "options": [
+                        "O gato está sobre a mesa",
+                        "O gato está embaixo da mesa",
+                        "O gato está ao lado da mesa",
+                        "O gato está na frente da mesa"
+                    ],
+                    "correct": 1
+                },
+                "vocabulario": {
+                    "question": "Qual é o significado da palavra 'ancient'?",
+                    "options": [
+                        "Antigo",
+                        "Novo",
+                        "Rápido",
+                        "Lento"
+                    ],
+                    "correct": 0
+                }
+            },
+            "Biologia": {
+                "genetica": {
+                    "question": "Qual molécula carrega a informação genética?",
+                    "options": [
+                        "RNA",
+                        "DNA",
+                        "Proteína",
+                        "Lipídios"
+                    ],
+                    "correct": 1
+                },
+                "ecologia": {
+                    "question": "O que é uma cadeia alimentar?",
+                    "options": [
+                        "Conjunto de espécies em um ecossistema",
+                        "Sequência de consumo de energia",
+                        "Área de reprodução",
+                        "Habitat"
+                    ],
+                    "correct": 1
+                },
+                "citologia": {
+                    "question": "Qual organela é responsável pela produção de energia na célula?",
+                    "options": [
+                        "Mitocôndria",
+                        "Núcleo",
+                        "Ribossomo",
+                        "Lisossomo"
+                    ],
+                    "correct": 0
+                },
+                "fisiologia": {
+                    "question": "Qual é o principal órgão do sistema circulatório?",
+                    "options": [
+                        "Pulmão",
+                        "Coração",
+                        "Fígado",
+                        "Rim"
+                    ],
+                    "correct": 1
+                }
+            },
+            "Quimica": {
+                "geral": {
+                    "question": "Qual é o símbolo químico da água?",
+                    "options": [
+                        "O2",
+                        "H2O",
+                        "CO2",
+                        "HO"
+                    ],
+                    "correct": 1
+                },
+                "fisico": {
+                    "question": "Qual estado da matéria tem forma e volume definidos?",
+                    "options": [
+                        "Sólido",
+                        "Líquido",
+                        "Gasoso",
+                        "Plasma"
+                    ],
+                    "correct": 0
+                },
+                "organica": {
+                    "question": "Qual grupo funcional está presente nos álcoois?",
+                    "options": [
+                        "Amina",
+                        "Ácido carboxílico",
+                        "Hidroxila",
+                        "Cetona"
+                    ],
+                    "correct": 2
+                }
+            },
+            "Fisica": {
+                "mecanica": {
+                    "question": "Qual é a fórmula da segunda lei de Newton?",
+                    "options": [
+                        "F = m * a",
+                        "E = m * c^2",
+                        "v = d / t",
+                        "P = F / A"
+                    ],
+                    "correct": 0
+                },
+                "termologia": {
+                    "question": "Qual é a unidade de medida de temperatura no SI?",
+                    "options": [
+                        "Celsius",
+                        "Fahrenheit",
+                        "Kelvin",
+                        "Rankine"
+                    ],
+                    "correct": 2
+                },
+                "optica": {
+                    "question": "O que uma lente convergente faz com a luz?",
+                    "options": [
+                        "Desvia",
+                        "Converge",
+                        "Diverge",
+                        "Absorve"
+                    ],
+                    "correct": 1
+                },
+                "ondulatoria": {
+                    "question": "Qual é a velocidade do som no ar a 20°C?",
+                    "options": [
+                        "150 m/s",
+                        "343 m/s",
+                        "500 m/s",
+                        "1000 m/s"
+                    ],
+                    "correct": 1
+                },
+                "eletromagnetismo": {
+                    "question": "Qual é a unidade de corrente elétrica?",
+                    "options": [
+                        "Volt",
+                        "Ohm",
+                        "Ampère",
+                        "Watt"
+                    ],
+                    "correct": 2
+                }
+            },
+            "Historia": {
+                "historiaBrasil": {
+                    "question": "Em que ano ocorreu a Independência do Brasil?",
+                    "options": [
+                        "1822",
+                        "1889",
+                        "1500",
+                        "1808"
+                    ],
+                    "correct": 0
+                },
+                "historiaGeral": {
+                    "question": "Qual civilização construiu as pirâmides do Egito?",
+                    "options": [
+                        "Mesopotâmia",
+                        "Egito Antigo",
+                        "Grécia Antiga",
+                        "Roma Antiga"
+                    ],
+                    "correct": 1
+                },
+                "idadeModerna": {
+                    "question": "Qual evento marcou o início da Idade Moderna?",
+                    "options": [
+                        "Queda de Roma",
+                        "Descobrimentos",
+                        "Revolução Francesa",
+                        "Revolução Industrial"
+                    ],
+                    "correct": 1
+                }
+            },
+            "Geografia": {
+                "geografiaBrasil": {
+                    "question": "Qual é o maior bioma brasileiro?",
+                    "options": [
+                        "Amazônia",
+                        "Cerrado",
+                        "Mata Atlântica",
+                        "Pantanal"
+                    ],
+                    "correct": 0
+                },
+                "geopolitica": {
+                    "question": "Qual é o órgão principal da ONU?",
+                    "options": [
+                        "Assembleia Geral",
+                        "Conselho de Segurança",
+                        "Secretariado",
+                        "Tribunal Internacional"
+                    ],
+                    "correct": 1
+                },
+                "cartografia": {
+                    "question": "O que indica a escala de um mapa?",
+                    "options": [
+                        "Proporção entre mapa e realidade",
+                        "Altitude",
+                        "Latitude",
+                        "Longitude"
+                    ],
+                    "correct": 0
+                },
+                "meioAmbiente": {
+                    "question": "O que é sustentabilidade?",
+                    "options": [
+                        "Uso ilimitado de recursos",
+                        "Uso racional de recursos",
+                        "Poluição",
+                        "Desmatamento"
+                    ],
+                    "correct": 1
+                }
+            },
+            "Filosofia": {
+                "filosofiaAntiga": {
+                    "question": "Quem foi aluno de Sócrates?",
+                    "options": [
+                        "Aristóteles",
+                        "Platão",
+                        "Kant",
+                        "Descartes"
+                    ],
+                    "correct": 1
+                },
+                "filosofiaModerna": {
+                    "question": "Quem disse 'Penso, logo existo'?",
+                    "options": [
+                        "Kant",
+                        "Aristóteles",
+                        "Descartes",
+                        "Plató"
+                    ],
+                    "correct": 2
+                },
+                "eticaPolitica": {
+                    "question": "O que estuda a ética?",
+                    "options": [
+                        "Regras físicas",
+                        "Comportamento moral",
+                        "História",
+                        "Geografia"
+                    ],
+                    "correct": 1
+                }
+            },
+            "Sociologia": {
+                "sociologiaClassica": {
+                    "question": "Quem é considerado o pai da sociologia?",
+                    "options": [
+                        "Durkheim",
+                        "Comte",
+                        "Weber",
+                        "Marx"
+                    ],
+                    "correct": 1
+                },
+                "culturaSociedade": {
+                    "question": "O que define cultura em sociologia?",
+                    "options": [
+                        "Regras de trânsito",
+                        "Hábitos, valores e símbolos",
+                        "Economia",
+                        "Política"
+                    ],
+                    "correct": 1
+                },
+                "cidadania": {
+                    "question": "O que é cidadania?",
+                    "options": [
+                        "Direitos e deveres de um indivíduo",
+                        "Profissão",
+                        "Educação",
+                        "Cultura"
+                    ],
+                    "correct": 0
+                }
+            }
         }
     },
     "default_username": "Usuário01",

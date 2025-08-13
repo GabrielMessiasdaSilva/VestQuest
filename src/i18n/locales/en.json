@@ -106,6 +106,7 @@
     },
     "materia": {
         "segredo": "Let me tell you a secret...",
+        "segredoe": "secret: click on one of the subjects.",
         "assuntosMaisFrequentes": "Topics from {{nome}} that appear most frequently in the entrance exam",
         "nenhumAssunto": "No topics registered."
     },
@@ -162,6 +163,415 @@
             "sociologiaClassica": "Classical Sociology (Comte, Durkheim)",
             "culturaSociedade": "Culture and Society (identity, culture)",
             "cidadania": "Citizenship (social issues, rights)"
+        }
+    },
+    "resumos": {
+        "Geometria (plana e espacial)": "Geometry studies shapes, sizes, positions, and properties of space.",
+        "Algebra (funcoes, equacoes, sistemas)": "Algebra works with symbols and rules to manipulate expressions and equations.",
+        "Grandezas e medidas (razoes, proporcoes, porcentagens)": "Covers proportions, ratios, percentages, and measurements applied in daily life.",
+        "Estatistica e Probabilidade": "Analyzes data, distributions, and probability calculations for events.",
+        "Analise Grafica e Nocoes de Logica": "Study of graphs, function interpretation, and logical reasoning.",
+        "Interpretacao de texto (leitura e compreensao)": "Develops the ability to understand and interpret various texts.",
+        "Gramatica (morfologia, sintaxe, semantica)": "Studies the structure of the language, its rules, and meanings.",
+        "Literatura (movimentos literarios, analise de obras)": "Analysis of literary works and historical and cultural contexts.",
+        "Compreensao de texto (ingles ou espanhol)": "Understanding texts in a foreign language with focus on meaning and inference.",
+        "Vocabulario e gramatica basica": "Learning words, expressions, and basic grammar rules.",
+        "Genetica e Evolucao": "Principles of heredity, DNA, and species evolution.",
+        "Ecologia (ambientes, cadeias alimentares)": "Study of relationships between living beings and the environment.",
+        "Citologia (celulas, tecidos)": "Structure and function of cells and tissues in living organisms.",
+        "Fisiologia (seres vivos, sistemas)": "Functioning of body systems and vital processes.",
+        "Quimica Geral (equacoes, reacoes)": "Basics of chemical reactions, equations, and fundamental chemistry laws.",
+        "Fisico-Quimica (reacoes, estados da materia)": "Interaction between physical and chemical principles in reactions and state changes.",
+        "Quimica Organica (estruturas, funcoes)": "Study of organic compounds, their structures, and chemical functions.",
+        "Mecanica (leis de Newton, movimento)": "Laws of motion, forces, energy, and everyday applications.",
+        "Termologia (temperatura, calor)": "Study of temperature, heat, calorimetry, and energy transfer.",
+        "Optica (espelhos, lentes)": "Behavior of light, reflection, refraction, and image formation.",
+        "Ondulatoria (ondas, som)": "Study of mechanical and sound waves, their properties and phenomena.",
+        "Eletromagnetismo (ondas eletromagneticas, circuitos)": "Study of electricity, magnetism, and electromagnetic waves.",
+        "Historia do Brasil": "Timeline of Brazil from colonization to contemporary times.",
+        "Historia Geral (antiga, medieval)": "Main ancient and medieval civilizations and their legacies.",
+        "Idade Moderna e Contemporanea": "Events, revolutions, and social transformations of the Modern and Contemporary ages.",
+        "Geografia do Brasil (economia, populacao)": "Study of Brazilian territory, population, economy, and regions.",
+        "Geopolitica (geografia politica, relacoes internacionais)": "Relations between countries, conflicts, agreements, and global politics.",
+        "Cartografia (leitura de mapas, escalas)": "Interpretation of maps, scales, coordinates, and cartographic projections.",
+        "Meio Ambiente (questoes ambientais, sustentabilidade)": "Environmental impacts, preservation, and sustainable practices.",
+        "Filosofia Antiga (Platao, Aristoteles)": "Philosophical ideas and contributions of ancient thinkers.",
+        "Filosofia Moderna (Descartes, Kant)": "Study of ideas and theories of modern philosophers.",
+        "Etica e Politica (questoes eticas, teorias politicas)": "Reflection on morality, ethics, and political organization of society.",
+        "Sociologia Classica (Comte, Durkheim)": "Theories and concepts of classical sociology.",
+        "Cultura e Sociedade (identidade, cultura)": "How culture shapes identity and social relationships.",
+        "Cidadania (questoes sociais, direitos)": "Rights, duties, and citizen participation in society."
+    },
+    "quizzes": {
+        "assuntos": {
+            "Matematica": {
+                "geometria": {
+                    "question": "What is the sum of the internal angles of a triangle?",
+                    "options": [
+                        "90°",
+                        "180°",
+                        "270°",
+                        "360°"
+                    ],
+                    "correct": 1
+                },
+                "algebra": {
+                    "question": "If x + 3 = 7, what is the value of x?",
+                    "options": [
+                        "2",
+                        "3",
+                        "4",
+                        "5"
+                    ],
+                    "correct": 2
+                },
+                "grandezas": {
+                    "question": "If a shirt costs R$50 and has a 20% discount, what is the final price?",
+                    "options": [
+                        "40",
+                        "45",
+                        "50",
+                        "60"
+                    ],
+                    "correct": 0
+                },
+                "estatistica": {
+                    "question": "What is the arithmetic mean of 2, 4, 6, 8?",
+                    "options": [
+                        "4",
+                        "5",
+                        "6",
+                        "8"
+                    ],
+                    "correct": 1
+                },
+                "analiseGrafica": {
+                    "question": "What does the intersection point of two lines on a graph represent?",
+                    "options": [
+                        "Nothing",
+                        "Same value",
+                        "Where two lines meet",
+                        "Slope"
+                    ],
+                    "correct": 2
+                }
+            },
+            "Linguas": {
+                "interpretacao": {
+                    "question": "What is the main idea of a text?",
+                    "options": [
+                        "Theme",
+                        "Summary",
+                        "Main Message",
+                        "Detail"
+                    ],
+                    "correct": 2
+                },
+                "gramatica": {
+                    "question": "What is the function of a subject in a sentence?",
+                    "options": [
+                        "Object",
+                        "Action",
+                        "Performer",
+                        "Complement"
+                    ],
+                    "correct": 2
+                },
+                "literatura": {
+                    "question": "Which literary movement came first?",
+                    "options": [
+                        "Baroque",
+                        "Romanticism",
+                        "Realism",
+                        "Modernism"
+                    ],
+                    "correct": 0
+                },
+                "compreensao": {
+                    "question": "What does 'The cat is under the table' mean?",
+                    "options": [
+                        "The cat is on the table",
+                        "The cat is under the table",
+                        "The cat is next to the table",
+                        "The cat is in front of the table"
+                    ],
+                    "correct": 1
+                },
+                "vocabulario": {
+                    "question": "What is the meaning of the word 'ancient'?",
+                    "options": [
+                        "Old",
+                        "New",
+                        "Fast",
+                        "Slow"
+                    ],
+                    "correct": 0
+                }
+            },
+            "Biologia": {
+                "genetica": {
+                    "question": "Which molecule carries genetic information?",
+                    "options": [
+                        "RNA",
+                        "DNA",
+                        "Protein",
+                        "Lipids"
+                    ],
+                    "correct": 1
+                },
+                "ecologia": {
+                    "question": "What is a food chain?",
+                    "options": [
+                        "Set of species in an ecosystem",
+                        "Sequence of energy consumption",
+                        "Reproduction area",
+                        "Habitat"
+                    ],
+                    "correct": 1
+                },
+                "citologia": {
+                    "question": "Which organelle is responsible for energy production in the cell?",
+                    "options": [
+                        "Mitochondria",
+                        "Nucleus",
+                        "Ribosome",
+                        "Lysosome"
+                    ],
+                    "correct": 0
+                },
+                "fisiologia": {
+                    "question": "What is the main organ of the circulatory system?",
+                    "options": [
+                        "Lung",
+                        "Heart",
+                        "Liver",
+                        "Kidney"
+                    ],
+                    "correct": 1
+                }
+            },
+            "Quimica": {
+                "geral": {
+                    "question": "What is the chemical symbol for water?",
+                    "options": [
+                        "O2",
+                        "H2O",
+                        "CO2",
+                        "HO"
+                    ],
+                    "correct": 1
+                },
+                "fisico": {
+                    "question": "Which state of matter has a defined shape and volume?",
+                    "options": [
+                        "Solid",
+                        "Liquid",
+                        "Gas",
+                        "Plasma"
+                    ],
+                    "correct": 0
+                },
+                "organica": {
+                    "question": "Which functional group is present in alcohols?",
+                    "options": [
+                        "Amine",
+                        "Carboxylic acid",
+                        "Hydroxyl",
+                        "Ketone"
+                    ],
+                    "correct": 2
+                }
+            },
+            "Fisica": {
+                "mecanica": {
+                    "question": "What is the formula of Newton's second law?",
+                    "options": [
+                        "F = m * a",
+                        "E = m * c^2",
+                        "v = d / t",
+                        "P = F / A"
+                    ],
+                    "correct": 0
+                },
+                "termologia": {
+                    "question": "What is the SI unit of temperature?",
+                    "options": [
+                        "Celsius",
+                        "Fahrenheit",
+                        "Kelvin",
+                        "Rankine"
+                    ],
+                    "correct": 2
+                },
+                "optica": {
+                    "question": "What does a converging lens do to light?",
+                    "options": [
+                        "Deviates",
+                        "Converges",
+                        "Diverges",
+                        "Absorbs"
+                    ],
+                    "correct": 1
+                },
+                "ondulatoria": {
+                    "question": "What is the speed of sound in air at 20°C?",
+                    "options": [
+                        "150 m/s",
+                        "343 m/s",
+                        "500 m/s",
+                        "1000 m/s"
+                    ],
+                    "correct": 1
+                },
+                "eletromagnetismo": {
+                    "question": "What is the unit of electric current?",
+                    "options": [
+                        "Volt",
+                        "Ohm",
+                        "Ampere",
+                        "Watt"
+                    ],
+                    "correct": 2
+                }
+            },
+            "Historia": {
+                "historiaBrasil": {
+                    "question": "In what year did Brazil gain independence?",
+                    "options": [
+                        "1822",
+                        "1889",
+                        "1500",
+                        "1808"
+                    ],
+                    "correct": 0
+                },
+                "historiaGeral": {
+                    "question": "Which civilization built the pyramids of Egypt?",
+                    "options": [
+                        "Mesopotamia",
+                        "Ancient Egypt",
+                        "Ancient Greece",
+                        "Ancient Rome"
+                    ],
+                    "correct": 1
+                },
+                "idadeModerna": {
+                    "question": "Which event marked the beginning of the Modern Age?",
+                    "options": [
+                        "Fall of Rome",
+                        "Discoveries",
+                        "French Revolution",
+                        "Industrial Revolution"
+                    ],
+                    "correct": 1
+                }
+            },
+            "Geografia": {
+                "geografiaBrasil": {
+                    "question": "What is the largest Brazilian biome?",
+                    "options": [
+                        "Amazon",
+                        "Cerrado",
+                        "Atlantic Forest",
+                        "Pantanal"
+                    ],
+                    "correct": 0
+                },
+                "geopolitica": {
+                    "question": "What is the main body of the UN?",
+                    "options": [
+                        "General Assembly",
+                        "Security Council",
+                        "Secretariat",
+                        "International Court"
+                    ],
+                    "correct": 1
+                },
+                "cartografia": {
+                    "question": "What does the scale of a map indicate?",
+                    "options": [
+                        "Proportion between map and reality",
+                        "Altitude",
+                        "Latitude",
+                        "Longitude"
+                    ],
+                    "correct": 0
+                },
+                "meioAmbiente": {
+                    "question": "What is sustainability?",
+                    "options": [
+                        "Unlimited use of resources",
+                        "Rational use of resources",
+                        "Pollution",
+                        "Deforestation"
+                    ],
+                    "correct": 1
+                }
+            },
+            "Filosofia": {
+                "filosofiaAntiga": {
+                    "question": "Who was Socrates’ student?",
+                    "options": [
+                        "Aristotle",
+                        "Plato",
+                        "Kant",
+                        "Descartes"
+                    ],
+                    "correct": 1
+                },
+                "filosofiaModerna": {
+                    "question": "Who said 'I think, therefore I am'?",
+                    "options": [
+                        "Kant",
+                        "Aristotle",
+                        "Descartes",
+                        "Plato"
+                    ],
+                    "correct": 2
+                },
+                "eticaPolitica": {
+                    "question": "What does ethics study?",
+                    "options": [
+                        "Physical rules",
+                        "Moral behavior",
+                        "History",
+                        "Geography"
+                    ],
+                    "correct": 1
+                }
+            },
+            "Sociologia": {
+                "sociologiaClassica": {
+                    "question": "Who is considered the father of sociology?",
+                    "options": [
+                        "Durkheim",
+                        "Comte",
+                        "Weber",
+                        "Marx"
+                    ],
+                    "correct": 1
+                },
+                "culturaSociedade": {
+                    "question": "What defines culture in sociology?",
+                    "options": [
+                        "Traffic rules",
+                        "Habits, values, and symbols",
+                        "Economy",
+                        "Politics"
+                    ],
+                    "correct": 1
+                },
+                "cidadania": {
+                    "question": "What is citizenship?",
+                    "options": [
+                        "Rights and duties of an individual",
+                        "Profession",
+                        "Education",
+                        "Culture"
+                    ],
+                    "correct": 0
+                }
+            }
         }
     },
     "default_username": "User01",

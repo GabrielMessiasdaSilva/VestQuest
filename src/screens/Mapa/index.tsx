@@ -65,12 +65,7 @@ export default function Mapa() {
     { numero: 1, status: "disponivel", cor: "amarelo", nome: "matematica" },
     { numero: 2, status: "bloqueada", cor: "azul", nome: "linguagens" },
     { numero: 3, status: "bloqueada", cor: "verde", nome: "ciencias_natureza" },
-    {
-      numero: 4,
-      status: "bloqueada",
-      cor: "laranja",
-      nome: "ciencias_humanas",
-    },
+    { numero: 4, status: "bloqueada", cor: "laranja", nome: "ciencias_humanas", },
   ]);
 
   useFocusEffect(
@@ -114,26 +109,13 @@ export default function Mapa() {
   return (
     <View style={{ flex: 1, backgroundColor: "#f7f8fa" }}>
       <ScrollView contentContainerStyle={{ paddingBottom: 140 }}>
-        <View
-          style={{
-            paddingTop: 40,
-            alignItems: "center",
-            paddingHorizontal: 20,
-          }}
-        >
-          <Text
-            style={{
-              fontSize: 24,
-              fontWeight: "700",
-              color: "#222",
-              marginBottom: 32,
-            }}
-          >
+        <View style={styles.container}>
+          <Text style={styles.title}>
             {t("mapa.titulo")}
           </Text>
 
           {/* Linha dos ícones com tooltip */}
-          <View style={[styles.rowButtons, { gap: 36 }]}>
+          <View style={styles.rowButtons}>
             {/* Desafio Diário */}
             <View style={{ alignItems: "center" }}>
               <View style={{ position: "relative" }}>
@@ -144,15 +126,7 @@ export default function Mapa() {
                       tooltipVisible === "desafio" ? null : "desafio"
                     )
                   }
-                  style={{
-                    position: "absolute",
-                    top: -8,
-                    right: -8,
-                    backgroundColor: "#619B8A",
-                    borderRadius: 10,
-                    padding: 2,
-                    zIndex: 10,
-                  }}
+                  style={styles.questionMark}
                 >
                   <Icon name="question-circle" size={18} color="#fff" />
                 </TouchableOpacity>
@@ -160,34 +134,14 @@ export default function Mapa() {
                 <TouchableOpacity
                   onPress={() => navigation.navigate("Desafio")}
                   activeOpacity={0.7}
-                  style={{
-                    backgroundColor: "#619B8A",
-                    borderRadius: 24,
-                    padding: 16,
-                    justifyContent: "center",
-                    alignItems: "center",
-                    width: 72,
-                    height: 72,
-                    shadowColor: "#000",
-                    shadowOffset: { width: 0, height: 2 },
-                    shadowOpacity: 0.3,
-                    shadowRadius: 4,
-                    elevation: 4,
-                  }}
+                  style={styles.buttonPlaceholder}
                 >
                   <Icon name="bolt" size={32} color="#fff" />
                 </TouchableOpacity>
               </View>
 
               <Text
-                style={{
-                  color: "#333",
-                  fontWeight: "600",
-                  marginTop: 6,
-                  fontSize: 14,
-                  textAlign: "center",
-                  width: 80,
-                }}
+                style={styles.buttonTitle}
               >
                 {t("mapa.desafioDiario")}
               </Text>
@@ -203,15 +157,7 @@ export default function Mapa() {
                       tooltipVisible === "tempo" ? null : "tempo"
                     )
                   }
-                  style={{
-                    position: "absolute",
-                    top: -8,
-                    right: -8,
-                    backgroundColor: "#619B8A",
-                    borderRadius: 10,
-                    padding: 2,
-                    zIndex: 10,
-                  }}
+                  style={styles.questionMark}
                 >
                   <Icon name="question-circle" size={18} color="#fff" />
                 </TouchableOpacity>
@@ -219,17 +165,7 @@ export default function Mapa() {
                 <TouchableOpacity
                   onPress={() => setModalVisible(true)}
                   activeOpacity={0.7}
-                  style={{
-                    borderWidth: 2,
-                    borderColor: "#619B8A",
-                    borderRadius: 24,
-                    padding: 16,
-                    justifyContent: "center",
-                    alignItems: "center",
-                    width: 72,
-                    height: 72,
-                    backgroundColor: "#fff",
-                  }}
+                  style={styles.dropdownButton}
                 >
                   <Icon
                     name="clock"
@@ -240,14 +176,7 @@ export default function Mapa() {
               </View>
 
               <Text
-                style={{
-                  color: "#333",
-                  fontWeight: "600",
-                  marginTop: 6,
-                  fontSize: 14,
-                  textAlign: "center",
-                  width: 80,
-                }}
+                style={styles.buttonTitle}
               >
                 {selectedTime !== "none"
                   ? t("mapa.tempoSelecionado", { tempo: selectedTime })
@@ -264,36 +193,20 @@ export default function Mapa() {
             onRequestClose={() => setTooltipVisible(null)}
           >
             <Pressable
-              style={{
-                flex: 1,
-                backgroundColor: "rgba(0,0,0,0.3)",
-                justifyContent: "center",
-                alignItems: "center",
-                paddingHorizontal: 20,
-              }}
+              style={styles.tooltipContainer}
               onPress={() => setTooltipVisible(null)}
             >
               <View
-                style={{
-                  backgroundColor: "#fff",
-                  padding: 20,
-                  borderRadius: 12,
-                  maxWidth: 320,
-                  elevation: 6,
-                  shadowColor: "#000",
-                  shadowOffset: { width: 0, height: 2 },
-                  shadowOpacity: 0.25,
-                  shadowRadius: 4,
-                }}
+                style={styles.tooltipContent}
               >
                 {tooltipVisible === "desafio" && (
-                  <Text style={{ fontSize: 16, color: "#333" }}>
-                    {t("mapa.tooltipDesafio")} {/* Coloque no seu i18n */}
+                  <Text style={styles.tooltipText}>
+                    {t("mapa.tooltipDesafio")}
                   </Text>
                 )}
                 {tooltipVisible === "tempo" && (
-                  <Text style={{ fontSize: 16, color: "#333" }}>
-                    {t("mapa.tooltipTempo")} {/* Coloque no seu i18n */}
+                  <Text style={styles.tooltipText}>
+                    {t("mapa.tooltipTempo")}
                   </Text>
                 )}
               </View>
@@ -302,12 +215,7 @@ export default function Mapa() {
 
           {/* Mapa vertical com linhas e fases */}
           <View
-            style={{
-              width: "100%",
-              alignItems: "center",
-              position: "relative",
-              marginTop: 32,
-            }}
+            style={styles.phaseMapContainer}
           >
             {fases.map((fase, index) => {
               const faseStatus = fase.status;
@@ -316,47 +224,31 @@ export default function Mapa() {
                 faseStatus === "concluida"
                   ? "#4CAF50"
                   : faseStatus === "disponivel"
-                  ? "#FEC946"
-                  : "#bbb";
+                    ? "#FEC946"
+                    : "#bbb";
 
               return (
                 <View
                   key={fase.numero}
-                  style={{
-                    width: "100%",
-                    alignItems: "center",
-                    marginBottom: 30,
-                  }}
+                  style={styles.phaseItem}
                 >
                   <TouchableOpacity
                     disabled={faseStatus !== "disponivel"}
                     onPress={() => iniciarFase(fase.numero)}
                     activeOpacity={0.7}
-                    style={{
-                      width: 110,
-                      height: 110,
-                      borderRadius: 55,
+                    style={[styles.phaseCircle, {
                       backgroundColor:
                         faseStatus === "concluida" ? "#4CAF50" : "#fff",
-                      justifyContent: "center",
-                      alignItems: "center",
-                      borderWidth: 4,
                       borderColor,
                       shadowColor:
                         faseStatus === "disponivel" ? "#FEC946" : "transparent",
-                      shadowOpacity: 0.9,
-                      shadowRadius: 10,
-                      shadowOffset: { width: 0, height: 6 },
                       elevation: faseStatus === "disponivel" ? 10 : 0,
-                      position: "relative",
-                    }}
+                    }]}
                   >
                     <Text
-                      style={{
-                        fontSize: 36,
-                        fontWeight: "bold",
+                      style={[styles.phaseNumber, {
                         color: faseStatus === "concluida" ? "#fff" : "#333",
-                      }}
+                      }]}
                     >
                       {fase.numero}
                     </Text>
@@ -364,52 +256,20 @@ export default function Mapa() {
                     {faseStatus === "bloqueada" && (
                       <Image
                         source={require("../../../assets/img/cadeado.png")}
-                        style={{
-                          position: "absolute",
-                          width: 28,
-                          height: 28,
-                          top: 12,
-                          right: 12,
-                          tintColor: "#bbb",
-                        }}
+                        style={styles.iconBlocked}
                       />
                     )}
 
-                    {/* Removei o ícone check da fase concluída */}
-
                     {/* Coroa pequena no topo */}
                     <View
-                      style={{
-                        position: "absolute",
-                        top: -18,
-                        backgroundColor: "#FEC946",
-                        paddingHorizontal: 10,
-                        paddingVertical: 4,
-                        borderRadius: 16,
-                        flexDirection: "row",
-                        alignItems: "center",
-                        shadowColor: "#B8860B",
-                        shadowOpacity: 0.7,
-                        shadowRadius: 5,
-                        shadowOffset: { width: 0, height: 2 },
-                        elevation: 5,
-                      }}
+                      style={styles.crownPlaceholder}
                     >
                       <Image
                         source={require("../../../assets/img/coroa.png")}
-                        style={{
-                          width: 20,
-                          height: 20,
-                          resizeMode: "contain",
-                          marginRight: 6,
-                        }}
+                        style={styles.crownIcon}
                       />
                       <Text
-                        style={{
-                          fontWeight: "700",
-                          color: "#5A3E00",
-                          fontSize: 18,
-                        }}
+                        style={styles.crownNumber}
                       >
                         {fase.numero}
                       </Text>
@@ -417,24 +277,16 @@ export default function Mapa() {
                   </TouchableOpacity>
 
                   <Text
-                    style={{
-                      marginTop: 10,
-                      fontSize: 16,
-                      fontWeight: "600",
+                    style={[styles.subjectTitle, {
                       color: faseStatus === "bloqueada" ? "#aaa" : "#444",
-                      textTransform: "capitalize",
-                    }}
+                    }]}
                   >
                     {t(`mapa.${fase.nome}`)}
                   </Text>
 
                   {index < fases.length - 1 && (
                     <View
-                      style={{
-                        width: 6,
-                        alignItems: "center",
-                        marginTop: 10,
-                      }}
+                      style={styles.lineContainer}
                     >
                       {/* Linha vertical entre as fases */}
                       <View
@@ -446,7 +298,7 @@ export default function Mapa() {
                               : 40, // linha padrão caso contrário
                           backgroundColor:
                             fases[index].status === "concluida" &&
-                            fases[index + 1].status !== "bloqueada"
+                              fases[index + 1].status !== "bloqueada"
                               ? "#4CAF50"
                               : "#ccc",
                           borderRadius: 2,
@@ -465,7 +317,7 @@ export default function Mapa() {
                           borderRadius: 6,
                           backgroundColor:
                             fases[index].status === "concluida" &&
-                            fases[index + 1].status !== "bloqueada"
+                              fases[index + 1].status !== "bloqueada"
                               ? "#4CAF50"
                               : "#ccc",
                           borderWidth: 2,

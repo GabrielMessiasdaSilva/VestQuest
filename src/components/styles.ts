@@ -68,12 +68,12 @@ export const timeModal = StyleSheet.create({
         alignItems: 'center',
     },
     activateButtonText: {
-        color: '#eee',
+        color: '#f7f8fa',
         fontWeight: '300',
         fontSize: 15,
     },
     deactivateButton: {
-        backgroundColor: '#eee',
+        backgroundColor: '#f7f8fa',
         paddingVertical: 6,
         paddingHorizontal: 6,
         borderRadius: 16,
@@ -114,7 +114,7 @@ export const greenModal = StyleSheet.create({
         alignItems: 'center',
     },
     activateButtonText: {
-        color: '',
+        color: '#f7f8fa',
         fontWeight: '300',
         fontSize: 15,
     },
@@ -173,7 +173,7 @@ export const redModal = StyleSheet.create({
         alignItems: 'center',
     },
     activateButtonText: {
-        color: '#eee',
+        color: '#f7f8fa',
         fontWeight: '300',
         fontSize: 15,
     },
@@ -195,7 +195,7 @@ export const redModal = StyleSheet.create({
         position: 'absolute',
         top: 45,
         right: 22,
-        color: '#eee',
+        color: '#f7f8fa',
         fontSize: 13,
         fontWeight: 'bold',
         transform: [{ rotate: '4.91deg' }],
@@ -215,7 +215,7 @@ export const endTimeModal = StyleSheet.create({
         backgroundColor: 'rgba(0,0,0,0.4)',
     },
     modalContainer: {
-        backgroundColor: '#eee',
+        backgroundColor: '#f7f8fa',
         borderRadius: 16,
         borderColor: '#000000',
         borderWidth: 3,
@@ -232,7 +232,7 @@ export const endTimeModal = StyleSheet.create({
         alignItems: 'center',
     },
     activateButtonText: {
-        color: '#eee',
+        color: '#f7f8fa',
         fontWeight: '300',
         fontSize: 15,
     },
@@ -266,7 +266,7 @@ export const SuccessAlert = StyleSheet.create({
     },
     alertBox: {
         width: '80%',
-        backgroundColor: '#eee',
+        backgroundColor: '#f7f8fa',
         borderRadius: 12,
         paddingVertical: 24,
         paddingHorizontal: 20,

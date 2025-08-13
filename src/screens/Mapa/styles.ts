@@ -2,12 +2,9 @@ import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'flex-start',
-        backgroundColor: '#eee',
-        width: '100%',
-        paddingTop: 22,
+        paddingTop: 40,
+        alignItems: "center",
+        paddingHorizontal: 20,
     },
 
     title: {
@@ -27,31 +24,41 @@ export const styles = StyleSheet.create({
         marginTop: 36,
         flexDirection: 'row',
         justifyContent: 'center',
-        gap: 12,
+        gap: 48,
+    },
+
+    questionMark: {
+        position: "absolute",
+        top: -8,
+        right: -8,
+        backgroundColor: "#619B8A",
+        borderRadius: 10,
+        padding: 2,
+        zIndex: 10,
     },
 
     buttonPlaceholder: {
-        backgroundColor: '#619B8A',
-        borderRadius: 20,
-        paddingVertical: 5,
-        paddingHorizontal: 15,
-        elevation: 4,
-        shadowColor: '#000',
+        backgroundColor: "#619B8A",
+        borderRadius: 24,
+        padding: 16,
+        justifyContent: "center",
+        alignItems: "center",
+        width: 72,
+        height: 72,
+        shadowColor: "#000",
         shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 0.3,
         shadowRadius: 4,
-        minHeight: 44,
-        minWidth: 100,
-        justifyContent: 'center',
-        alignItems: 'center',
-        marginHorizontal: 8,
+        elevation: 4,
     },
 
     buttonTitle: {
-        color: '#eee',
-        fontSize: 16,
-        fontWeight: 'bold',
-        textAlign: 'center',
+        color: "#333",
+        fontWeight: "600",
+        marginTop: 6,
+        fontSize: 14,
+        textAlign: "center",
+        width: 80,
     },
 
     buttonSubtitle: {
@@ -62,98 +69,95 @@ export const styles = StyleSheet.create({
 
     dropdownButton: {
         borderWidth: 2,
-        borderColor: '#619B8A',
-        borderRadius: 20,
-        paddingVertical: 5,
-        paddingHorizontal: 15,
-        justifyContent: 'center',
-        minHeight: 44,
-        minWidth: 100,
-        alignItems: 'center',
-        backgroundColor: '#eee',
-        marginHorizontal: 8,
+        borderColor: "#619B8A",
+        borderRadius: 24,
+        padding: 16,
+        justifyContent: "center",
+        alignItems: "center",
+        width: 72,
+        height: 72,
+        backgroundColor: "#fff",
     },
 
-    dropdownContent: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        paddingVertical: 10,
+    tooltipContainer: {
+        flex: 1,
+        backgroundColor: "rgba(0,0,0,0.3)",
+        justifyContent: "center",
+        alignItems: "center",
+        paddingHorizontal: 20,
     },
 
-    dropdownText: {
+    tooltipContent: {
+        backgroundColor: "#fff",
+        padding: 20,
+        borderRadius: 12,
+        maxWidth: 320,
+        elevation: 6,
+        shadowColor: "#000",
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.25,
+        shadowRadius: 4,
+    },
+
+    tooltipText: {
         fontSize: 16,
-        marginRight: 8,
-        color: '#000',
-    },
-
-    dropdownIcon: {
-        width: 12,
-        height: 12,
-        resizeMode: 'contain',
-    },
-
-    picker: {
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0,
-        backgroundColor: 'transparent',
-        borderWidth: 2,
-        borderColor: '#619B8A',
-        opacity: 0,
-        width: '100%',
-        height: '100%',
+        color: "#333"
     },
 
     phaseMapContainer: {
-        marginTop: 12,
-        paddingHorizontal: 30,
-        gap: 16,
-        width: '100%',
+        width: "100%",
+        alignItems: "center",
+        position: "relative",
+        marginTop: 32,
     },
 
     phaseItem: {
-        marginBottom: 16,
-        position: 'relative',
-        alignItems: 'center',
-    },
-
-    phaseLeft: {
-        alignSelf: 'flex-start',
-        marginLeft: 50,
-    },
-
-    phaseRight: {
-        alignSelf: 'flex-end',
-        marginRight: 50,
+        width: "100%",
+        alignItems: "center",
+        marginBottom: 30,
     },
 
     phaseCircle: {
         width: 110,
-        height: 100,
-        resizeMode: 'contain',
+        height: 110,
+        borderRadius: 55,
+        justifyContent: "center",
+        alignItems: "center",
+        borderWidth: 4,
+        shadowOpacity: 0.9,
+        shadowRadius: 10,
+        shadowOffset: { width: 0, height: 6 },
+        position: "relative",
     },
 
-    iconCenter: {
-        position: 'absolute',
-        top: '50%',
-        left: '50%',
-        transform: [{ translateX: -96 }, { translateY: -16 }],
-        width: 32,
-        height: 32,
-        resizeMode: 'contain',
-        zIndex: 2,
+    phaseNumber: {
+        fontSize: 36,
+        fontWeight: "bold",
     },
 
-    playTextContainer: {
-        position: 'absolute',
-        top: '35%',
-        left: 0,
-        right: 0,
-        alignItems: 'center',
-        zIndex: 1,
+    iconBlocked: {
+        position: "absolute",
+        width: 28,
+        height: 28,
+        top: 12,
+        right: 12,
+        tintColor: "#bbb",
+    },
+
+    crownPlaceholder: {
+        position: "absolute",
+        top: -18,
+        backgroundColor: "#FEC946",
+        paddingHorizontal: 10,
+        paddingVertical: 4,
+        borderRadius: 16,
+        flexDirection: "row",
+        alignItems: "center",
+        shadowColor: "#B8860B",
+        shadowOpacity: 0.7,
+        shadowRadius: 5,
+        shadowOffset: { width: 0, height: 2 },
+        elevation: 5,
     },
 
     playText: {
@@ -165,39 +169,29 @@ export const styles = StyleSheet.create({
     },
 
     crownIcon: {
-        position: 'absolute',
-        bottom: 10,
-        right: -10,
-        width: 52,
-        height: 32,
-        resizeMode: 'contain',
+        width: 20,
+        height: 20,
+        resizeMode: "contain",
+        marginRight: 6,
     },
 
     crownNumber: {
-        position: 'absolute',
-        bottom: 15,
-        right: 11,
-        color: '#000',
+        fontWeight: "700",
+        color: "#5A3E00",
+        fontSize: 18,
     },
 
-    foxMascot: {
-        width: 140,
-        height: 90,
-        resizeMode: 'contain',
-        marginVertical: 8
+    subjectTitle: {
+        marginTop: 10,
+        fontSize: 16,
+        fontWeight: "600",
+        textTransform: "capitalize",
     },
 
-    legendContainer: {
-        borderWidth: 2,
-        borderColor: '#FEC946',
-        borderRadius: 20,
-        paddingVertical: 2,
-        paddingHorizontal: 10,
-        alignItems: 'center',
-        backgroundColor: '#eee',
-        flexDirection: 'row',
-        alignSelf: 'flex-end',
-        marginRight: 10
+    lineContainer: {
+        width: 6,
+        alignItems: "center",
+        marginTop: 10,
     },
 
     legendCrownIcon: {

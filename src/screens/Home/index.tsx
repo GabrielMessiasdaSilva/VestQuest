@@ -128,7 +128,7 @@ export default function Home() {
 
   return (
     <View style={{ flex: 1 }}>
-      <ScrollView contentContainerStyle={{ flexGrow: 1, paddingBottom: 80, backgroundColor: '#eee' }} showsVerticalScrollIndicator={false}>
+      <ScrollView contentContainerStyle={{ flexGrow: 1, paddingBottom: 80, backgroundColor: '#f7f8fa' }} showsVerticalScrollIndicator={false}>
         <View style={styles.container}>
           <Text style={styles.title}>{t('studySubjects')}</Text>
           <TouchableOpacity

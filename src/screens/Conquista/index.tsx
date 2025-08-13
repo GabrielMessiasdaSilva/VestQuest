@@ -105,7 +105,7 @@ export default function ResultadoQuiz() {
             progress={1}
             thickness={8}
             color="#D9534F"
-            unfilledColor="#eee"
+            unfilledColor="#f7f8fa"
             borderWidth={0}
           />
           <Progress.Circle

@@ -5,7 +5,7 @@ export const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'flex-start',
-        backgroundColor: '#eee',
+        backgroundColor: '#f7f8fa',
         width: '100%',
         paddingTop: 72,
     },
@@ -42,5 +42,5 @@ export const styles = StyleSheet.create({
         marginBottom: 4,
     },
     backButton: { marginTop: 16, marginBottom: 16, flexDirection: 'row', borderRadius: 24, backgroundColor: '#1C344D', justifyContent: 'center', alignItems: 'center', paddingHorizontal: 8, }, 
-    return: {fontSize: 14, fontWeight: 'bold', color:'#eee'}
+    return: {fontSize: 14, fontWeight: 'bold', color:'#f7f8fa'}
 });

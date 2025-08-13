@@ -252,7 +252,7 @@ const handleLogout = async () => {
         >
           <View
             style={{
-              backgroundColor: "#eee",
+              backgroundColor: "#f7f8fa",
               padding: 30,
               borderRadius: 10,
               alignItems: "center",
