@@ -1,3 +1,5 @@
+//onboardingScreen.tsx
+
 import React, { useRef } from 'react';
 import { View, Text, TouchableOpacity, Image } from 'react-native';
 import Swiper from 'react-native-swiper';
@@ -5,6 +7,7 @@ import { StackScreenProps } from '@react-navigation/stack';
 import { onboardingStyles } from './styles';
 import type { RootStackParamList } from '../../navigation/types';
 import { useTranslation } from 'react-i18next';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 type OnboardingScreenProps = StackScreenProps<RootStackParamList, 'Onboarding'>;
 
@@ -12,9 +15,11 @@ const OnboardingScreen: React.FC<OnboardingScreenProps> = ({ navigation }) => {
   const swiperRef = useRef<Swiper>(null);
   const { t } = useTranslation();
 
-  const handleFinishOnboarding = () => {
-    navigation.replace('Inicial');
-  };
+  
+const handleFinishOnboarding = async () => {
+  await AsyncStorage.setItem('hasSeenOnboarding', 'true');
+  navigation.replace('Inicial');
+};
 
   const renderSlide = (
     backgroundColor: string,

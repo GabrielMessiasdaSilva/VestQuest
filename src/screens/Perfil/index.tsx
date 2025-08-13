@@ -22,6 +22,7 @@ import { onAuthStateChanged } from "firebase/auth";
 import { useTranslation } from "react-i18next";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useUser } from "../../services/userContext";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function Perfil() {
   const [username, setUsername] = useState("");
@@ -110,26 +111,25 @@ export default function Perfil() {
       Alert.alert(t("error_title"), t("profile_save_error"));
     }
   };
+const handleLogout = async () => {
+  setIsLoggingOut(true);
 
-  const handleLogout = async () => {
-    setIsLoggingOut(true); // Mostra o modal
-
-    try {
-      // Aguarde um pouco para a animação aparecer (ex: 1.5 segundos)
-      setTimeout(async () => {
-        await auth.signOut();
-        navigation.dispatch(
-          CommonActions.reset({
-            index: 0,
-            routes: [{ name: "Login" }],
-          })
-        );
-      }, 1300);
-    } catch (error) {
-      setIsLoggingOut(false); // Oculta o modal em caso de erro
-      Alert.alert(t("error_title"), t("logout_error"));
-    }
-  };
+  try {
+    setTimeout(async () => {
+      await auth.signOut();                     // Firebase logout
+      await AsyncStorage.removeItem('userToken'); // Remove token local
+      navigation.dispatch(
+        CommonActions.reset({
+          index: 0,
+          routes: [{ name: "Login" }],
+        })
+      );
+    }, 1300);
+  } catch (error) {
+    setIsLoggingOut(false);
+    Alert.alert(t("error_title"), t("logout_error"));
+  }
+};
 
   const checkIfModified = () => {
     return username !== initialUsername || image !== initialImage;

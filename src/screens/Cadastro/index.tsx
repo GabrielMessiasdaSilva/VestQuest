@@ -1,3 +1,5 @@
+//cadastro.tsx
+
 import React, { useState } from "react";
 import {
   View, Text, TextInput, TouchableOpacity, Alert, KeyboardAvoidingView, ScrollView, Platform

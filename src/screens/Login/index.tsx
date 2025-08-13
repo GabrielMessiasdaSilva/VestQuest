@@ -1,3 +1,5 @@
+//login.tsx
+
 import React, { useState } from 'react';
 import {
   View, Text, TextInput, StyleSheet, TouchableOpacity, Alert, BackHandler
@@ -11,6 +13,8 @@ import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../services/firebaseConfig';
 import { useTranslation } from 'react-i18next';
 import { styles } from './styles';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 
 type FormData = {
   email: string;
@@ -32,11 +36,14 @@ export default function Login() {
     resolver: yupResolver(schema),
   });
 
-  const onSubmit = async (data: FormData) => {
-    try {
-      await signInWithEmailAndPassword(auth, data.email, data.password);
-      //navigation.navigate('Main', { screen: 'Home' });
-      navigation.navigate('Home' as never);
+const onSubmit = async (data: FormData) => {
+  try {
+    const userCredential = await signInWithEmailAndPassword(auth, data.email, data.password);
+    const user = userCredential.user;
+
+    await AsyncStorage.setItem('userToken', user.uid);  // salva o id do usuário
+
+    navigation.navigate('Home' as never);
 
 
     } catch (error: any) {
