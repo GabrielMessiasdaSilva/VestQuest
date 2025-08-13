@@ -125,8 +125,9 @@ export default function Cadastro() {
           name="email"
           render={({ field: { onChange, value } }) => (
             <TextInput
-              style={styles.input}
+              style={[styles.input, { color: '#000' }]}
               placeholder={t('emailPlaceholder')}
+              placeholderTextColor="#999"
               value={value}
               onChangeText={onChange}
               keyboardType="email-address"
@@ -142,8 +143,9 @@ export default function Cadastro() {
             name="password"
             render={({ field: { onChange, value } }) => (
               <TextInput
-                style={styles.passwordInput}
+                style={[styles.passwordInput, { color: '#000' }]}
                 placeholder="***************"
+                placeholderTextColor="#999"
                 secureTextEntry={!showPassword}
                 value={value}
                 onChangeText={onChange}

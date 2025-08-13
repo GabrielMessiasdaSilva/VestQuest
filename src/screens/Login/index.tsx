@@ -36,14 +36,14 @@ export default function Login() {
     resolver: yupResolver(schema),
   });
 
-const onSubmit = async (data: FormData) => {
-  try {
-    const userCredential = await signInWithEmailAndPassword(auth, data.email, data.password);
-    const user = userCredential.user;
+  const onSubmit = async (data: FormData) => {
+    try {
+      const userCredential = await signInWithEmailAndPassword(auth, data.email, data.password);
+      const user = userCredential.user;
 
-    await AsyncStorage.setItem('userToken', user.uid);  // salva o id do usuário
+      await AsyncStorage.setItem('userToken', user.uid);  // salva o id do usuário
 
-    navigation.navigate('Home' as never);
+      navigation.navigate('Home' as never);
 
 
     } catch (error: any) {
@@ -85,7 +85,7 @@ const onSubmit = async (data: FormData) => {
         render={({ field: { onChange, value } }) => (
           <TextInput
             placeholder={t('login.placeholderEmail')}
-            style={styles.input}
+            style={[styles.input, { color: '#000' }]}
             keyboardType="email-address"
             placeholderTextColor="#999"
             value={value}
@@ -104,7 +104,7 @@ const onSubmit = async (data: FormData) => {
           render={({ field: { onChange, value } }) => (
             <TextInput
               placeholder="***************"
-              style={styles.passwordInput}
+              style={[styles.passwordInput, { color: '#000' }]}
               secureTextEntry={!showPassword}
               placeholderTextColor="#999"
               value={value}
