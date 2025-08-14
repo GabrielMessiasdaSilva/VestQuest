@@ -1,3 +1,4 @@
+// perfil.tsx
 import React, { useEffect, useState } from "react";
 import {
   View,
@@ -17,51 +18,46 @@ import { styles } from "./styles";
 import Footer from "../../components/Footer";
 import { useNavigation, CommonActions } from "@react-navigation/native";
 import { auth, db } from "../../services/firebaseConfig";
-import { doc, getDoc, setDoc } from "firebase/firestore";
-import { onAuthStateChanged } from "firebase/auth";
+import { doc, setDoc } from "firebase/firestore";
 import { useTranslation } from "react-i18next";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useUser } from "../../services/userContext";
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function Perfil() {
-  const [username, setUsername] = useState("");
-  const [uid, setUid] = useState<string | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [image, setImage] = useState<string | null>(null);
-  const [initialUsername, setInitialUsername] = useState("");
-  const [initialImage, setInitialImage] = useState<string | null>(null);
-  const [isModified, setIsModified] = useState(false);
   const { t, i18n } = useTranslation();
   const insets = useSafeAreaInsets();
-  const [isLoggingOut, setIsLoggingOut] = useState(false);
-  const { setPhotoURL } = useUser();
   const navigation = useNavigation();
+  const { username, setUsername, photoURL, setPhotoURL, uid } = useUser();
 
+  const [image, setImage] = useState<string | null>(photoURL);
+  const [initialUsername, setInitialUsername] = useState(username);
+  const [initialImage, setInitialImage] = useState(photoURL);
+  const [isModified, setIsModified] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [isLoggingOut, setIsLoggingOut] = useState(false);
+
+  // Bloqueia acesso se não estiver logado
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, async (user) => {
-      if (user) {
-        setUid(user.uid);
-        const docRef = doc(db, "users", user.uid);
-        const docSnap = await getDoc(docRef);
+    if (!uid && !loading) {
+      navigation.dispatch(
+        CommonActions.reset({ index: 0, routes: [{ name: "Login" }] })
+      );
+    }
+  }, [uid, loading]);
 
-        if (docSnap.exists()) {
-          const data = docSnap.data();
-          setUsername(data.username || "");
-          setImage(data.photoURL || null);
-          setInitialUsername(data.username || "");
-          setInitialImage(data.photoURL || null);
-        } else {
-          setUsername(t("default_username"));
-        }
-      } else {
-        navigation.navigate("Login" as never);
-      }
-      setLoading(false);
-    });
+  // Marca se houve alteração
+  useEffect(() => {
+    setIsModified(username !== initialUsername || image !== initialImage);
+  }, [username, image]);
 
-    return () => unsubscribe();
-  }, []);
+  // Inicializa estado com valores do contexto
+  useEffect(() => {
+    setImage(photoURL);
+    setInitialUsername(username);
+    setInitialImage(photoURL);
+    setLoading(false);
+  }, [username, photoURL]);
 
   const handleImagePicker = async () => {
     const permissionResult =
@@ -79,8 +75,7 @@ export default function Perfil() {
     });
 
     if (!result.canceled) {
-      const localUri = result.assets[0].uri;
-      setImage(localUri);
+      setImage(result.assets[0].uri);
     }
   };
 
@@ -95,49 +90,43 @@ export default function Perfil() {
     try {
       await setDoc(
         doc(db, "users", uid),
-        {
-          username,
-          photoURL: image || "", // Agora armazena o link local da imagem
-        },
+        { username, photoURL: image || "" },
         { merge: true }
-      ); // Usando merge para não sobrescrever outros campos
+      );
       setPhotoURL(image || "");
-      Alert.alert(t("success_title"), t("profile_updated"));
       setInitialUsername(username);
       setInitialImage(image);
-      setIsModified(false); // Resetando o estado de modificação após salvar
+      setIsModified(false);
+      Alert.alert(t("success_title"), t("profile_updated"));
     } catch (error) {
       console.error(error);
       Alert.alert(t("error_title"), t("profile_save_error"));
     }
   };
+  
 const handleLogout = async () => {
   setIsLoggingOut(true);
-
   try {
-    setTimeout(async () => {
-      await auth.signOut();                     // Firebase logout
-      await AsyncStorage.removeItem('userToken'); // Remove token local
-      navigation.dispatch(
-        CommonActions.reset({
-          index: 0,
-          routes: [{ name: "Login" }],
-        })
-      );
-    }, 1300);
+    await auth.signOut();
+    await AsyncStorage.clear();
+    navigation.replace("Login" as never); // substitui a tela atual
+    setIsLoggingOut(false);
   } catch (error) {
     setIsLoggingOut(false);
-    Alert.alert(t("error_title"), t("logout_error"));
+    Alert.alert("Erro", "Não foi possível sair.");
   }
 };
 
-  const checkIfModified = () => {
-    return username !== initialUsername || image !== initialImage;
-  };
 
-  useEffect(() => {
-    setIsModified(checkIfModified());
-  }, [username, image]);
+  const handleShareApp = async () => {
+    const message =
+      "Baixe o aplicativo VestQuest: https://play.google.com/store/apps/details?id=com.viniiv.VestQuest";
+    try {
+      await Share.share({ message });
+    } catch (error) {
+      Alert.alert("Erro", "Não foi possível compartilhar o app.");
+    }
+  };
 
   if (loading) {
     return (
@@ -147,28 +136,19 @@ const handleLogout = async () => {
     );
   }
 
-  const handleShareApp = async () => {
-    const message = "Baixe o aplicativo VestQuest: https://play.google.com/store/apps/details?id=com.viniiv.VestQuest";
-
-    try {
-      await Share.share({
-        message,
-      });
-    } catch (error) {
-      Alert.alert("Erro", "Não foi possível compartilhar o app.");
-    }
-  };
-
   return (
     <View style={styles.container}>
-      <ScrollView contentContainerStyle={[styles.scrollContainer, { paddingTop: Math.max(insets.top, 16) + 90 }]}>
+      <ScrollView
+        contentContainerStyle={[
+          styles.scrollContainer,
+          { paddingTop: Math.max(insets.top, 16) + 90 },
+        ]}
+      >
         <View style={styles.profileCard}>
           <TouchableOpacity onPress={handleImagePicker} activeOpacity={0.7}>
             <Image
               source={
-                image
-                  ? { uri: image }
-                  : require("../../../assets/img/perfil.png")
+                image ? { uri: image } : require("../../../assets/img/perfil.png")
               }
               style={styles.avatarExpanded}
             />
@@ -182,7 +162,7 @@ const handleLogout = async () => {
             <TextInput
               style={styles.input}
               value={username}
-              onChangeText={(text) => setUsername(text)}
+              onChangeText={setUsername}
             />
             <Feather name="edit-3" size={20} color="#000" />
           </View>
@@ -190,7 +170,7 @@ const handleLogout = async () => {
           <TouchableOpacity
             style={[styles.saveButton, { opacity: isModified ? 1 : 0.5 }]}
             onPress={handleSave}
-            disabled={!isModified} // Desativa o botão quando não houver alterações
+            disabled={!isModified}
           >
             <Text style={styles.saveButtonText}>{t("save")}</Text>
           </TouchableOpacity>
@@ -241,7 +221,7 @@ const handleLogout = async () => {
         </View>
       </ScrollView>
 
-      <Modal transparent={true} animationType="fade" visible={isLoggingOut}>
+      <Modal transparent animationType="fade" visible={isLoggingOut}>
         <View
           style={{
             flex: 1,
@@ -265,6 +245,7 @@ const handleLogout = async () => {
           </View>
         </View>
       </Modal>
+
       <Footer />
     </View>
   );
