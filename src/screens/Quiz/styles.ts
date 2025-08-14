@@ -123,6 +123,52 @@ export const styles = StyleSheet.create({
         color: '#000000',
         textAlign: 'center',
     },
+questionTextContainer: {
+  flexDirection: 'row',
+  flexWrap: 'wrap',
+  paddingHorizontal: 16,
+  marginBottom: 18,
+},
+timerRow: {
+  flexDirection: 'row',
+  alignItems: 'center',
+  justifyContent: 'center',
+  marginBottom: 12,
+},
+floatingPencil: {
+  position: 'absolute',
+  bottom: 20,
+  right: 20,
+  width: 56,
+  height: 56,
+  borderRadius: 28,
+  backgroundColor: '#FFF',
+  alignItems: 'center',
+  justifyContent: 'center',
+  elevation: 5, // sombra no Android
+  shadowColor: '#000',
+  shadowOffset: { width: 0, height: 2 },
+  shadowOpacity: 0.3,
+  shadowRadius: 3,
+},
+floatingBoard: {
+  position: 'absolute',
+  bottom: 20,
+  left: 20,
+  width: 56,
+  height: 56,
+  borderRadius: 28,
+  backgroundColor: '#FFF',
+  alignItems: 'center',
+  justifyContent: 'center',
+  elevation: 5,
+  shadowColor: '#000',
+  shadowOffset: { width: 0, height: 2 },
+  shadowOpacity: 0.3,
+  shadowRadius: 3,
+},
+
+
 
 
 });
