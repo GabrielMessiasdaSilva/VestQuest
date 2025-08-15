@@ -105,26 +105,28 @@ export default function Perfil() {
       Alert.alert(t("error_title"), t("profile_save_error"));
     }
   };
-  
-const handleLogout = async () => {
-  setIsLoggingOut(true);
-  try {
-    await auth.signOut();
-    await AsyncStorage.clear();
-    setUsername("");
-    setPhotoURL("");
 
-    navigation.dispatch(
-      StackActions.replace("Onboarding") 
-    );
-  } catch (error) {
-    console.error("Erro no logout:", error);
-    Alert.alert("Erro", "Não foi possível sair.");
-  } finally {
-    setIsLoggingOut(false);
-  }
-};
-      
+  const handleLogout = async () => {
+    setIsLoggingOut(true);
+    try {
+      await auth.signOut();
+      setUsername("");
+      setPhotoURL("");
+      //await AsyncStorage.clear();
+
+      navigation.dispatch(
+        StackActions.replace("Onboarding")
+      );
+      await AsyncStorage.clear();
+
+    } catch (error) {
+      console.error("Erro no logout:", error);
+      Alert.alert("Erro", "Não foi possível sair.");
+    } finally {
+      setIsLoggingOut(false);
+    }
+  };
+
   const handleShareApp = async () => {
     const message =
       "Baixe o aplicativo VestQuest: https://play.google.com/store/apps/details?id=com.viniiv.VestQuest";
