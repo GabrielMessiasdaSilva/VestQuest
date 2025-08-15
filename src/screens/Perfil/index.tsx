@@ -23,6 +23,8 @@ import { useTranslation } from "react-i18next";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useUser } from "../../services/userContext";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { StackActions } from "@react-navigation/native";
+
 
 export default function Perfil() {
   const { t, i18n } = useTranslation();
@@ -109,15 +111,20 @@ const handleLogout = async () => {
   try {
     await auth.signOut();
     await AsyncStorage.clear();
-    navigation.replace("Login" as never); // substitui a tela atual
-    setIsLoggingOut(false);
+    setUsername("");
+    setPhotoURL("");
+
+    navigation.dispatch(
+      StackActions.replace("Onboarding") 
+    );
   } catch (error) {
-    setIsLoggingOut(false);
+    console.error("Erro no logout:", error);
     Alert.alert("Erro", "Não foi possível sair.");
+  } finally {
+    setIsLoggingOut(false);
   }
 };
-
-
+      
   const handleShareApp = async () => {
     const message =
       "Baixe o aplicativo VestQuest: https://play.google.com/store/apps/details?id=com.viniiv.VestQuest";
