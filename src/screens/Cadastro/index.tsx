@@ -17,6 +17,8 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import CustomAlert from '../../components/SuccessAlert';
 import { styles } from './styles';
+import { sendEmailVerification } from 'firebase/auth';
+
 
 type FormData = {
   username: string;
@@ -67,28 +69,32 @@ export default function Cadastro() {
   } = useForm<FormData>({
     resolver: yupResolver(schema),
   });
+const onSubmit = async (data: FormData) => {
+  try {
+    const userCredential = await createUserWithEmailAndPassword(
+      auth,
+      data.email,
+      data.password
+    );
+    const user = userCredential.user;
 
-  const onSubmit = async (data: FormData) => {
-    try {
-      const userCredential = await createUserWithEmailAndPassword(
-        auth,
-        data.email,
-        data.password
-      );
-      const user = userCredential.user;
+    // Envia email de verificação
+    await sendEmailVerification(user);
 
-      // Salva no Firestore
-      await setDoc(doc(db, "users", user.uid), {
-        username: data.username,
-        email: data.email,
-      });
+    // Salva no Firestore
+    await setDoc(doc(db, "users", user.uid), {
+      username: data.username,
+      email: data.email,
+    });
 
-      showAlert(t("success"), t("accountCreated"));
-      reset();
-    } catch (error: any) {
-      showAlert(t("error"), t("accountAlreadyInUse"));
-    }
-  };
+    showAlert(t("success"), t("accountCreatedCheckEmail"));
+    reset();
+  } catch (error: any) {
+    console.log(error);
+    showAlert(t("error"), t("accountAlreadyInUse"));
+  }
+};
+
   return (
     <KeyboardAvoidingView style={styles.container} behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
       <ScrollView contentContainerStyle={{ flexGrow: 1 }}

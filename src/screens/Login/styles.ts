@@ -22,7 +22,7 @@ export const styles = StyleSheet.create({
         borderRadius: 8,
         alignItems: 'center',
         justifyContent: 'space-between',
-        marginBottom: 24,
+        marginBottom: 10,
     },
     passwordInput: { flex: 1, fontSize: 16, color: '#000' },
     loginButton: {
@@ -32,6 +32,25 @@ export const styles = StyleSheet.create({
         alignItems: 'center',
         marginBottom: 24,
     },
+    forgotPasswordContainer: {
+        marginTop: 1,
+        marginBottom: 30,
+
+    },
+
+        forgotPasswordText1: {
+        color: '#333', 
+        fontSize: 14,
+        left:10,
+
+    },
+    forgotPasswordText: {
+        color: '#1A3C40', // azul estilo link
+        fontWeight: '500',
+        fontSize: 14,
+        left:10,
+    },
+
     loginButtonText: { color: '#f7f8fa', fontWeight: '600', fontSize: 16 },
     footerText: { textAlign: 'center', color: '#333' },
     linkText: { color: '#1A3C40', fontWeight: '600' },
