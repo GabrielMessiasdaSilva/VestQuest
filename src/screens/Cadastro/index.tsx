@@ -1,12 +1,11 @@
-//cadastro.tsx
-
+// cadastro.tsx
 import React, { useState } from "react";
 import {
-  View, Text, TextInput, TouchableOpacity, Alert, KeyboardAvoidingView, ScrollView, Platform
+  View, Text, TextInput, TouchableOpacity, KeyboardAvoidingView, ScrollView, Platform
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { createUserWithEmailAndPassword, sendEmailVerification } from 'firebase/auth';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { auth } from '../../services/firebaseConfig';
 import { doc, setDoc } from 'firebase/firestore';
@@ -15,10 +14,8 @@ import { useTranslation } from 'react-i18next';
 import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
-import CustomAlert from '../../components/SuccessAlert';
 import { styles } from './styles';
-import { sendEmailVerification } from 'firebase/auth';
-
+import { showMessage } from "react-native-flash-message";
 
 type FormData = {
   username: string;
@@ -28,37 +25,17 @@ type FormData = {
 };
 
 export default function Cadastro() {
-  const [alertVisible, setAlertVisible] = useState(false);
-  const [alertTitle, setAlertTitle] = useState("");
-  const [alertMessage, setAlertMessage] = useState("");
-  const [termsAccepted, setTermsAccepted] = useState(false);
-
-  const showAlert = (title: string, message: string) => {
-    setAlertTitle(title);
-    setAlertMessage(message);
-    setAlertVisible(true);
-  };
-
-  const onConfirmAlert = () => {
-    setAlertVisible(false);
-    navigation.navigate("Login" as never);
-  };
-
   const navigation = useNavigation();
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirm, setShowConfirm] = useState(false);
   const { t } = useTranslation();
+  const [termsAccepted, setTermsAccepted] = useState(false);
+
   const schema = yup.object({
     username: yup.string().required(t("usernameRequired")),
     email: yup.string().email(t("invalidEmail")).required(t("emailRequired")),
-    password: yup
-      .string()
-      .min(6, t("min6chars"))
-      .required(t("passwordRequired")),
-    confirmPassword: yup
-      .string()
-      .oneOf([yup.ref("password")], t("passwordsDontMatch"))
-      .required(t("confirmPasswordRequired")),
+    password: yup.string().min(6, t("min6chars")).required(t("passwordRequired")),
+    confirmPassword: yup.string().oneOf([yup.ref("password")], t("passwordsDontMatch")).required(t("confirmPasswordRequired")),
   });
 
   const {
@@ -69,95 +46,90 @@ export default function Cadastro() {
   } = useForm<FormData>({
     resolver: yupResolver(schema),
   });
-const onSubmit = async (data: FormData) => {
-  try {
-    const userCredential = await createUserWithEmailAndPassword(
-      auth,
-      data.email,
-      data.password
-    );
-    const user = userCredential.user;
 
-    // Envia email de verificação
-    await sendEmailVerification(user);
+  const onSubmit = async (data: FormData) => {
+    try {
+      const userCredential = await createUserWithEmailAndPassword(auth, data.email, data.password);
+      const user = userCredential.user;
 
-    // Salva no Firestore
-    await setDoc(doc(db, "users", user.uid), {
-      username: data.username,
-      email: data.email,
-    });
+      // envia email de verificação
+      await sendEmailVerification(user);
 
-    showAlert(t("success"), t("accountCreatedCheckEmail"));
-    reset();
-  } catch (error: any) {
-    console.log(error);
-    showAlert(t("error"), t("accountAlreadyInUse"));
-  }
-};
+      // salva no Firestore
+      await setDoc(doc(db, "users", user.uid), {
+        username: data.username,
+        email: data.email,
+      });
+
+      // Flash message com explicação sobre spam
+      showMessage({
+        message: t("success"),
+        description: t("accountCreatedCheckEmail"),
+        type: "success",
+        icon: "success",
+        duration: 7000
+      });
+
+      reset();
+      navigation.navigate("Login" as never);
+
+    } catch (error: any) {
+      console.log(error);
+      let message = t("accountAlreadyInUse");
+      if (error.code === "auth/email-already-in-use") message = t("accountAlreadyInUse");
+      else if (error.code === "auth/invalid-email") message = t("invalidEmail");
+
+      showMessage({
+        message: t("error"),
+        description: message,
+        type: "danger",
+        icon: "danger",
+        duration: 4000
+      });
+    }
+  };
 
   return (
     <KeyboardAvoidingView style={styles.container} behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
-      <ScrollView contentContainerStyle={{ flexGrow: 1 }}
-        keyboardShouldPersistTaps="handled"
-        showsVerticalScrollIndicator={false}
-      >
-        <TouchableOpacity
-          style={styles.backButton}
-          onPress={() => navigation.navigate('Inicial' as never)}
-        >
+      <ScrollView contentContainerStyle={{ flexGrow: 1 }} keyboardShouldPersistTaps="handled" showsVerticalScrollIndicator={false}>
+        <TouchableOpacity style={styles.backButton} onPress={() => navigation.navigate('Inicial' as never)}>
           <Ionicons name="chevron-back" size={24} color="#000" />
         </TouchableOpacity>
+
         <Text style={styles.title}>{t('register')}</Text>
         <Text style={styles.subtitle}>{t('createAccount')}</Text>
 
         <Text style={styles.label}>{t('username')}</Text>
-        <Controller
-          control={control}
-          name="username"
-          render={({ field: { onChange, value } }) => (
-            <TextInput
-              style={styles.input}
-              placeholder={t('usernamePlaceholder')}
-              value={value}
-              onChangeText={onChange}
-            />
-          )}
-        />
+        <Controller control={control} name="username" render={({ field: { onChange, value } }) => (
+          <TextInput style={styles.input} placeholder={t('usernamePlaceholder')} value={value} onChangeText={onChange} />
+        )} />
         {errors.username && <Text style={styles.error}>{errors.username.message}</Text>}
 
         <Text style={styles.label}>Email</Text>
-        <Controller
-          control={control}
-          name="email"
-          render={({ field: { onChange, value } }) => (
-            <TextInput
-              style={[styles.input, { color: '#000' }]}
-              placeholder={t('emailPlaceholder')}
-              placeholderTextColor="#999"
-              value={value}
-              onChangeText={onChange}
-              keyboardType="email-address"
-            />
-          )}
-        />
+        <Controller control={control} name="email" render={({ field: { onChange, value } }) => (
+          <TextInput
+            style={[styles.input, { color: '#000' }]}
+            placeholder={t('emailPlaceholder')}
+            placeholderTextColor="#999"
+            value={value}
+            onChangeText={onChange}
+            keyboardType="email-address"
+          />
+        )} />
         {errors.email && <Text style={styles.error}>{errors.email.message}</Text>}
 
         <Text style={styles.label}>Senha</Text>
         <View style={styles.passwordContainer}>
-          <Controller
-            control={control}
-            name="password"
-            render={({ field: { onChange, value } }) => (
-              <TextInput
-                style={[styles.passwordInput, { color: '#000' }]}
-                placeholder="***************"
-                placeholderTextColor="#999"
-                secureTextEntry={!showPassword}
-                value={value}
-                onChangeText={onChange}
-              />
-            )}
-          />
+          <Controller control={control} name="password" render={({ field: { onChange, value } }) => (
+            <TextInput
+              style={[styles.passwordInput, { color: '#000' }]}
+              placeholder="***************"
+              placeholderTextColor="#999"
+              secureTextEntry={!showPassword}
+              value={value}
+              onChangeText={onChange}
+            />
+          )} />
           <TouchableOpacity onPress={() => setShowPassword(!showPassword)}>
             <Ionicons name={showPassword ? 'eye-off' : 'eye'} size={22} color="#333" />
           </TouchableOpacity>
@@ -166,19 +138,15 @@ const onSubmit = async (data: FormData) => {
 
         <Text style={styles.label}>{t('confirmPassword')}</Text>
         <View style={styles.passwordContainer}>
-          <Controller
-            control={control}
-            name="confirmPassword"
-            render={({ field: { onChange, value } }) => (
-              <TextInput
-                style={styles.passwordInput}
-                placeholder="***************"
-                secureTextEntry={!showConfirm}
-                value={value}
-                onChangeText={onChange}
-              />
-            )}
-          />
+          <Controller control={control} name="confirmPassword" render={({ field: { onChange, value } }) => (
+            <TextInput
+              style={styles.passwordInput}
+              placeholder="***************"
+              secureTextEntry={!showConfirm}
+              value={value}
+              onChangeText={onChange}
+            />
+          )} />
           <TouchableOpacity onPress={() => setShowConfirm(!showConfirm)}>
             <Ionicons name={showConfirm ? 'eye-off' : 'eye'} size={22} color="#333" />
           </TouchableOpacity>
@@ -186,22 +154,12 @@ const onSubmit = async (data: FormData) => {
         {errors.confirmPassword && <Text style={styles.error}>{errors.confirmPassword.message}</Text>}
 
         <View style={styles.checkboxContainer}>
-          <TouchableOpacity
-            style={styles.checkbox}
-            onPress={() => setTermsAccepted(!termsAccepted)}
-          >
-            <Ionicons
-              name={termsAccepted ? 'checkbox' : 'square-outline'}
-              size={22}
-              color="#333"
-            />
+          <TouchableOpacity style={styles.checkbox} onPress={() => setTermsAccepted(!termsAccepted)}>
+            <Ionicons name={termsAccepted ? 'checkbox' : 'square-outline'} size={22} color="#333" />
           </TouchableOpacity>
           <Text style={styles.checkboxText}>
             {t('iAgreeToThe')}{' '}
-            <Text
-              style={styles.linkTextTerms}
-              onPress={() => navigation.navigate('Termos' as never)}
-            >
+            <Text style={styles.linkTextTerms} onPress={() => navigation.navigate('Termos' as never)}>
               {t('termsOfUse')}
             </Text>
           </Text>
@@ -211,7 +169,13 @@ const onSubmit = async (data: FormData) => {
           style={[styles.loginButton, !termsAccepted && { opacity: 0.5 }]}
           onPress={() => {
             if (!termsAccepted) {
-              Alert.alert(t('termsRequiredTitle'), t('termsRequiredMessage'));
+              showMessage({
+                message: t('termsRequiredTitle'),
+                description: t('termsRequiredMessage'),
+                type: "warning",
+                icon: "warning",
+                duration: 4000
+              });
               return;
             }
             handleSubmit(onSubmit)();
@@ -223,21 +187,10 @@ const onSubmit = async (data: FormData) => {
 
         <Text style={styles.footerText}>
           {t('alreadyHaveAccount')}{' '}
-          <Text
-            style={styles.linkText}
-            onPress={() => navigation.navigate('Login' as never)}
-          >
+          <Text style={styles.linkText} onPress={() => navigation.navigate('Login' as never)}>
             {t('loginHere')}
           </Text>
         </Text>
-
-        <CustomAlert
-          visible={alertVisible}
-          title={alertTitle}
-          message={alertMessage}
-          onConfirm={onConfirmAlert}
-          duration={3500}
-        />
       </ScrollView>
     </KeyboardAvoidingView>
   );

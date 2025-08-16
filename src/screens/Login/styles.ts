@@ -1,7 +1,8 @@
+//styles.ts (login)
 import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
-    container: { flex: 1, padding: 24, backgroundColor: '#f7f8fa' },
+    container: { flex: 1, padding: 24, backgroundColor: '#ebececd8' },
     backButton: { marginTop: 16, marginBottom: 16 },
     title: { fontSize: 28, fontWeight: '600', textAlign: 'center', marginBottom: 4 },
     subtitle: { textAlign: 'center', marginBottom: 32, color: '#444' },
@@ -38,18 +39,20 @@ export const styles = StyleSheet.create({
 
     },
 
-        forgotPasswordText1: {
-        color: '#333', 
-        fontSize: 14,
-        left:10,
 
-    },
-    forgotPasswordText: {
-        color: '#1A3C40', // azul estilo link
-        fontWeight: '500',
-        fontSize: 14,
-        left:10,
-    },
+   resetButton: {
+  paddingVertical: 6,
+  paddingHorizontal: 12,
+  borderRadius: 6,
+  alignSelf: 'flex-start', // botão não ocupa a tela toda
+  marginBottom: 16,
+},
+resetButtonText: {
+  color: '#1A3C40',
+  fontWeight: '500',
+  fontSize: 13,
+},
+
 
     loginButtonText: { color: '#f7f8fa', fontWeight: '600', fontSize: 16 },
     footerText: { textAlign: 'center', color: '#333' },

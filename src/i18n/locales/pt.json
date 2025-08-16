@@ -1,10 +1,10 @@
 {
     "greeting": "Olá, {{name}}!",
-    "accountCreatedCheckEmail": "Conta criada com sucesso! Verifique seu e-mail para ativar sua conta.",
+    "accountCreatedCheckEmail": "Conta criada com sucesso! Verifique seu e-mail para ativar sua conta.Verifique sua caixa de spam",
     "emailNaoVerificadoTitulo": "E-mail não verificado",
     "emailNaoVerificadoMensagem": "Por favor, verifique seu e-mail antes de continuar.",
     "reenviarEmail": "Reenviar e-mail de verificação",
-    "emailReenviado": "E-mail de verificação reenviado com sucesso.",
+    "emailReenviado": "E-mail de verificação reenviado com sucesso. Verifique sua caixa de spam",
     "erroReenviarEmail": "Erro ao reenviar o e-mail. Tente novamente.",
     "ok": "OK",
     "erro": "Erro",

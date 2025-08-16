@@ -7,24 +7,24 @@ import {
   TouchableOpacity,
   ScrollView,
   Image,
-  Alert,
   Modal,
   ActivityIndicator,
-  Share
+  Share,
+  Linking
 } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 import { Feather, Entypo, MaterialIcons } from "@expo/vector-icons";
 import { styles } from "./styles";
 import Footer from "../../components/Footer";
-import { useNavigation, CommonActions } from "@react-navigation/native";
+import { useNavigation, CommonActions, StackActions } from "@react-navigation/native";
 import { auth, db } from "../../services/firebaseConfig";
 import { doc, setDoc } from "firebase/firestore";
 import { useTranslation } from "react-i18next";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useUser } from "../../services/userContext";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { StackActions } from "@react-navigation/native";
-
+import { showMessage } from "react-native-flash-message";
+import * as Animatable from 'react-native-animatable';
 
 export default function Perfil() {
   const { t, i18n } = useTranslation();
@@ -39,7 +39,6 @@ export default function Perfil() {
   const [loading, setLoading] = useState(true);
   const [isLoggingOut, setIsLoggingOut] = useState(false);
 
-  // Bloqueia acesso se não estiver logado
   useEffect(() => {
     if (!uid && !loading) {
       navigation.dispatch(
@@ -48,12 +47,10 @@ export default function Perfil() {
     }
   }, [uid, loading]);
 
-  // Marca se houve alteração
   useEffect(() => {
     setIsModified(username !== initialUsername || image !== initialImage);
   }, [username, image]);
 
-  // Inicializa estado com valores do contexto
   useEffect(() => {
     setImage(photoURL);
     setInitialUsername(username);
@@ -62,10 +59,14 @@ export default function Perfil() {
   }, [username, photoURL]);
 
   const handleImagePicker = async () => {
-    const permissionResult =
-      await ImagePicker.requestMediaLibraryPermissionsAsync();
+    const permissionResult = await ImagePicker.requestMediaLibraryPermissionsAsync();
     if (!permissionResult.granted) {
-      Alert.alert(t("permission_needed_title"), t("permission_needed_message"));
+      showMessage({
+        message: t("permission_needed_title"),
+        description: t("permission_needed_message"),
+        type: "warning",
+        icon: "warning"
+      });
       return;
     }
 
@@ -83,7 +84,12 @@ export default function Perfil() {
 
   const handleSave = async () => {
     if (!username.trim()) {
-      Alert.alert(t("fill_correctly_title"), t("fill_correctly_message"));
+      showMessage({
+        message: t("fill_correctly_title"),
+        description: t("fill_correctly_message"),
+        type: "warning",
+        icon: "warning"
+      });
       return;
     }
 
@@ -99,42 +105,70 @@ export default function Perfil() {
       setInitialUsername(username);
       setInitialImage(image);
       setIsModified(false);
-      Alert.alert(t("success_title"), t("profile_updated"));
+
+      showMessage({
+        message: t("success_title"),
+        description: t("profile_updated"),
+        type: "success",
+        icon: "success"
+      });
     } catch (error) {
       console.error(error);
-      Alert.alert(t("error_title"), t("profile_save_error"));
+      showMessage({
+        message: t("error_title"),
+        description: t("profile_save_error"),
+        type: "danger",
+        icon: "danger"
+      });
     }
   };
 
   const handleLogout = async () => {
-    setIsLoggingOut(true);
+    setIsLoggingOut(true); 
     try {
       await auth.signOut();
       setUsername("");
       setPhotoURL("");
-      //await AsyncStorage.clear();
-
-      navigation.dispatch(
-        StackActions.replace("Onboarding")
-      );
+      navigation.dispatch(StackActions.replace("Onboarding"));
       await AsyncStorage.clear();
-
     } catch (error) {
       console.error("Erro no logout:", error);
-      Alert.alert("Erro", "Não foi possível sair.");
+      showMessage({
+        message: t("erro"),
+        description: t("logout_failed") || "Não foi possível sair.",
+        type: "danger",
+        icon: "danger"
+      });
     } finally {
       setIsLoggingOut(false);
     }
   };
 
   const handleShareApp = async () => {
-    const message =
-      "Baixe o aplicativo VestQuest: https://play.google.com/store/apps/details?id=com.viniiv.VestQuest";
+    const message = "Baixe o aplicativo VestQuest: https://play.google.com/store/apps/details?id=com.viniiv.VestQuest";
     try {
       await Share.share({ message });
     } catch (error) {
-      Alert.alert("Erro", "Não foi possível compartilhar o app.");
+      showMessage({
+        message: t("erro"),
+        description: t("share_failed") || "Não foi possível compartilhar o app.",
+        type: "danger",
+        icon: "danger"
+      });
     }
+  };
+
+  const handleContactEmail = () => {
+    const email = "vestquest62@gmail.com";
+    const subject = "Solicitação de exclusão de conta";
+    const body = "Olá, gostaria de solicitar a exclusão da minha conta.";
+    const mailtoUrl = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    Linking.openURL(mailtoUrl);
+  };
+
+  const handleOpenPrivacy = () => {
+    const privacyUrl = "https://gabrielmessiasdasilva.github.io/VestQuest-Termos/";
+    Linking.openURL(privacyUrl);
   };
 
   if (loading) {
@@ -156,9 +190,7 @@ export default function Perfil() {
         <View style={styles.profileCard}>
           <TouchableOpacity onPress={handleImagePicker} activeOpacity={0.7}>
             <Image
-              source={
-                image ? { uri: image } : require("../../../assets/img/perfil.png")
-              }
+              source={image ? { uri: image } : require("../../../assets/img/perfil.png")}
               style={styles.avatarExpanded}
             />
           </TouchableOpacity>
@@ -222,6 +254,18 @@ export default function Perfil() {
             <Entypo name="chevron-right" size={23} color="#000" />
           </TouchableOpacity>
 
+          <TouchableOpacity style={styles.menuItem} onPress={handleContactEmail}>
+            <Feather name="mail" size={23} color="#000" />
+            <Text style={styles.menuText}>Contato via Email</Text>
+            <Entypo name="chevron-right" size={23} color="#000" />
+          </TouchableOpacity>
+
+          <TouchableOpacity style={styles.menuItem} onPress={handleOpenPrivacy}>
+            <Feather name="file-text" size={23} color="#000" />
+            <Text style={styles.menuText}>Política de Privacidade</Text>
+            <Entypo name="chevron-right" size={23} color="#000" />
+          </TouchableOpacity>
+
           <TouchableOpacity style={styles.menuItem} onPress={handleLogout}>
             <MaterialIcons name="logout" size={23} color="#000" />
             <Text style={styles.menuText}>{t("logout")}</Text>
@@ -231,27 +275,11 @@ export default function Perfil() {
       </ScrollView>
 
       <Modal transparent animationType="fade" visible={isLoggingOut}>
-        <View
-          style={{
-            flex: 1,
-            backgroundColor: "rgba(0,0,0,0.5)",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <View
-            style={{
-              backgroundColor: "#f7f8fa",
-              padding: 30,
-              borderRadius: 10,
-              alignItems: "center",
-            }}
-          >
+        <View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.5)', justifyContent: 'center', alignItems: 'center' }}>
+          <Animatable.View animation="zoomIn" duration={500} style={{ backgroundColor: '#fff', padding: 30, borderRadius: 10, alignItems: 'center' }}>
             <ActivityIndicator size="large" color="#000" />
-            <Text style={{ marginTop: 15, fontSize: 16 }}>
-              {t("signing_out") || "Saindo..."}
-            </Text>
-          </View>
+            <Text style={{ marginTop: 15, fontSize: 16 }}>{t("signing_out") || "Saindo..."}</Text>
+          </Animatable.View>
         </View>
       </Modal>
 
