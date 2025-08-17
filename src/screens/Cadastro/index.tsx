@@ -140,8 +140,9 @@ export default function Cadastro() {
         <View style={styles.passwordContainer}>
           <Controller control={control} name="confirmPassword" render={({ field: { onChange, value } }) => (
             <TextInput
-              style={styles.passwordInput}
+              style={[styles.passwordInput, {color: '#000'}]}
               placeholder="***************"
+              placeholderTextColor="#999"
               secureTextEntry={!showConfirm}
               value={value}
               onChangeText={onChange}
