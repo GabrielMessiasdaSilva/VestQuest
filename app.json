@@ -2,7 +2,7 @@
   "expo": {
     "name": "VestQuest",
     "slug": "VestQuest",
-    "version": "1.0.1",
+    "version": "1.1.1",
     "orientation": "portrait",
     "icon": "./assets/img/icone_VestQuest.png",
     "userInterfaceStyle": "light",
