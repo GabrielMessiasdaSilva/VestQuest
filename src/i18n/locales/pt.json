@@ -1,10 +1,10 @@
 {
     "greeting": "Olá, {{name}}!",
-    "accountCreatedCheckEmail": "Conta criada com sucesso! Verifique seu e-mail para ativar sua conta.Verifique sua caixa de spam",
+    "accountCreatedCheckEmail": "Conta criada com sucesso! Verifique seu e-mail para ativar sua conta. Por favor, verifique sua caixa de spam",
     "emailNaoVerificadoTitulo": "E-mail não verificado",
     "emailNaoVerificadoMensagem": "Por favor, verifique seu e-mail antes de continuar.",
     "reenviarEmail": "Reenviar e-mail de verificação",
-    "emailReenviado": "E-mail de verificação reenviado com sucesso. Verifique sua caixa de spam",
+    "emailReenviado": "E-mail de verificação reenviado com sucesso. Caso não tenha recebido o email, verifique sua caixa de spam",
     "erroReenviarEmail": "Erro ao reenviar o e-mail. Tente novamente.",
     "ok": "OK",
     "erro": "Erro",
@@ -29,6 +29,8 @@
     "choose_language": "Troque o idioma (EN/PT)",
     "terms": "Termos e Condições",
     "send_app": "Enviar o app para amigos",
+    "contact_email": "Contato via Email",
+    "policy": "Política de Privacidade",
     "signing_out": "Saindo...",
     "logout": "Sair da sua conta",
     "timeUpTitle": "Seu tempo acabou antes de finalizar as perguntas!",
@@ -133,6 +135,18 @@
         "segredoe": "segredo: clique em um dos assuntos.",
         "assuntosMaisFrequentes": "Assuntos de {{nome}} que mais caem no vestibular",
         "nenhumAssunto": "Nenhum assunto cadastrado."
+    },
+    "materias": {
+        "Matemática": "Matemática",
+        "Língua Portuguesa": "Língua Portuguesa",
+        "Língua Estrangeira": "Língua Estrangeira",
+        "Biologia": "Biologia",
+        "Química": "Química",
+        "Física": "Física",
+        "História": "História",
+        "Geografia": "Geografia",
+        "Filosofia": "Filosofia",
+        "Sociologia": "Sociologia"
     },
     "assuntos": {
         "Matematica": {

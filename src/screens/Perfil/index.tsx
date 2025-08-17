@@ -256,13 +256,13 @@ export default function Perfil() {
 
           <TouchableOpacity style={styles.menuItem} onPress={handleContactEmail}>
             <Feather name="mail" size={23} color="#000" />
-            <Text style={styles.menuText}>Contato via Email</Text>
+            <Text style={styles.menuText}>{t("contact_email")}</Text>
             <Entypo name="chevron-right" size={23} color="#000" />
           </TouchableOpacity>
 
           <TouchableOpacity style={styles.menuItem} onPress={handleOpenPrivacy}>
             <Feather name="file-text" size={23} color="#000" />
-            <Text style={styles.menuText}>Política de Privacidade</Text>
+            <Text style={styles.menuText}>{t("policy")}</Text>
             <Entypo name="chevron-right" size={23} color="#000" />
           </TouchableOpacity>
 

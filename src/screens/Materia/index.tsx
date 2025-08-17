@@ -10,7 +10,7 @@ import { useTranslation } from 'react-i18next';
 
 type RootStackParamList = {
   Home: undefined;
-  Materia: { nome: string; cor: string; assuntos: string[] };
+  Materia: { chave: string, nome: string; cor: string; assuntos: string[] };
 };
 
 export default function Materia() {
@@ -225,7 +225,7 @@ export default function Materia() {
           />
           <View style={styles.assuntosContainer}>
             <Text style={styles.assuntos}>
-              {t('materia.assuntosMaisFrequentes', { nome })}
+              {t('materia.assuntosMaisFrequentes', { nome: t(`materias.${route.params.nome}`) })}
             </Text>
             <View style={[styles.assuntosBox, { borderColor: cor }]}>
               {assuntos && assuntos.length > 0 ? (
