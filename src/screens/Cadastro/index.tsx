@@ -101,7 +101,7 @@ export default function Cadastro() {
 
         <Text style={styles.label}>{t('username')}</Text>
         <Controller control={control} name="username" render={({ field: { onChange, value } }) => (
-          <TextInput style={styles.input} placeholder={t('usernamePlaceholder')} value={value} onChangeText={onChange} />
+          <TextInput style={[styles.input, { color: '#000' }]} placeholder={t('usernamePlaceholder')} value={value} onChangeText={onChange} />
         )} />
         {errors.username && <Text style={styles.error}>{errors.username.message}</Text>}
 
@@ -140,7 +140,7 @@ export default function Cadastro() {
         <View style={styles.passwordContainer}>
           <Controller control={control} name="confirmPassword" render={({ field: { onChange, value } }) => (
             <TextInput
-              style={[styles.passwordInput, {color: '#000'}]}
+              style={[styles.passwordInput, { color: '#000' }]}
               placeholder="***************"
               placeholderTextColor="#999"
               secureTextEntry={!showConfirm}
