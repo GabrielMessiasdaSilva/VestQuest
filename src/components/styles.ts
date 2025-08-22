@@ -47,6 +47,7 @@ export const timeModal = StyleSheet.create({
         fontSize: 18,
         marginBottom: 8,
         padding: 4,
+        color: '#f7f8fa'
     },
     label: {
         fontSize: 18,
